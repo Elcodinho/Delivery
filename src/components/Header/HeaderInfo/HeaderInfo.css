@@ -1,0 +1,129 @@
+.header-info {
+  border-top: 1px solid #d4d4d4;
+  border-bottom: 1px solid #d4d4d4;
+}
+
+.header-info__wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 0;
+}
+
+.header-info__logo {
+  max-width: 130px;
+  max-height: 39px;
+}
+
+.header-info__logo-link {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.header-info__logo-img {
+  display: block;
+  width: 130px;
+  height: 39px;
+}
+/* adress */
+
+.header-info__contacts {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.header-info__contacts-button {
+  display: block;
+}
+
+.header-info__contacts-item {
+  font-size: 1.2rem;
+}
+
+.header-info__contacts-span {
+  display: block;
+  text-align: start;
+}
+
+.header-info__contacts-span--decor {
+  font-size: 1rem;
+  opacity: 0.5;
+}
+
+.header-info__contacts-phone {
+  transition: color 0.2s linear;
+}
+
+.header-info__contacts-phone:hover,
+.header-info__contacts-phone:active {
+  color: blue;
+}
+
+.header-info__contacts-icon {
+  position: absolute;
+  top: 0;
+  left: -20px;
+}
+
+/* delivery-toggle */
+.header-info__delivery-toggle {
+  display: inline-flex;
+  background-color: #f3f3f3;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.header-info__delivery-input {
+  display: none;
+}
+
+.header-info__delivery-label {
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 1rem;
+  color: inherit;
+  transition: background-color 0.3s linear, color 0.4s linear;
+}
+
+.header-info__delivery-input:checked + .header-info__delivery-label {
+  background-color: var(--my-gr-color);
+  color: white;
+}
+
+.header-info__delivery-time {
+  font-size: 1rem;
+  margin-top: 5px;
+  text-align: center;
+}
+.header-info__delivery-time strong {
+  font-weight: bold;
+  color: var(--my-gr-color);
+  opacity: 0.8;
+}
+
+/* to login */
+.header-info__login-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+
+.header-info__login-icon {
+  display: block;
+  width: 35px;
+  height: 35px;
+  padding: 5px;
+
+  border-radius: 50%;
+  color: white;
+  background-color: var(--my-gr-color);
+  transition: opacity 0.2s linear;
+}
+
+.header-info__login-btn:hover .header-info__login-icon {
+  opacity: 0.6;
+}

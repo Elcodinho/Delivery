@@ -1,0 +1,11 @@
+.contacts {
+  margin-bottom: 50px;
+}
+
+.contacts__list {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 30px 15px;
+}

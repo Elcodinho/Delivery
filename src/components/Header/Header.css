@@ -1,0 +1,12 @@
+.header {
+  margin-bottom: 50px;
+  background: #fcfcfc;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.header__wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 10px 0;
+}

@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "baseUrl": "src", // Базовая директория для всех путей
+    "paths": {
+      "@components/*": ["components/*"],
+      "@store/*": ["store/*"],
+      "@pages/*": ["pages/*"],
+      "@constants/*": ["constants/*"],
+      "@MyContext/*": ["MyContext/*"],
+      "@utils/*": ["utils/*"],
+      "@hooks/*": ["hooks/*"],
+      "@styles/*": ["styles/*"],
+      "@assets/*": ["assets/*"]
+    }
+  },
+  "include": ["src"] // Включение директории, где ты работаешь
+}

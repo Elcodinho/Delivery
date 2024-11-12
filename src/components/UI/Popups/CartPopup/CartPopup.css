@@ -1,0 +1,62 @@
+/* popup */
+.cart-popup {
+  display: none;
+  position: absolute;
+  top: 105%;
+  right: 0;
+  width: 450px;
+  padding: 30px 20px;
+  background-color: #fff;
+  border-radius: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  z-index: 10;
+}
+
+.cart-popup__amount {
+  margin-bottom: 20px;
+  text-align: start;
+  font-weight: 600;
+}
+
+.cart-popup__amount-count {
+  color: #222;
+  opacity: 0.6;
+}
+
+.cart-popup__title {
+  margin-bottom: 20px;
+  font-size: 3rem;
+  font-weight: 700;
+  color: #ccc;
+}
+
+.cart-popup__text {
+  margin-bottom: 20px;
+  color: #222;
+  opacity: 0.7;
+}
+
+.cart-popup__link {
+  color: var(--my-gr-color);
+  font-weight: 600;
+  opacity: 1;
+  transition: color 0.25s linear;
+}
+
+.cart-popup__link:hover {
+  color: #222;
+  opacity: 0.7;
+}
+
+.cart-popup__button-block {
+  display: flex;
+  justify-content: flex-end;
+  padding: 10px 0;
+  border-top: 1px solid #ccc;
+}
+
+/* Показать popup при наведении */
+.header-menu__cart:hover .cart-popup {
+  display: block;
+}

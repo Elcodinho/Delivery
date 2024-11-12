@@ -1,0 +1,61 @@
+.button {
+  display: block;
+  padding: 10px 20px;
+  background-color: var(--my-yel-color);
+  border: none;
+  border-radius: 20px;
+  font-size: 16px;
+  text-align: center;
+  color: #000;
+  cursor: pointer;
+
+  transition: color 0.2s linear, background-color 0.2s linear;
+}
+
+.button:hover {
+  color: white;
+  background-color: var(--my-gr-color);
+}
+
+.button--show-more {
+  border: 1px solid var(--my-gr-color);
+  background-color: white;
+  color: var(--my-gr-color);
+}
+
+.button--show-more:hover {
+  background-color: var(--my-gr-color);
+  color: white;
+}
+
+.button--fedback-form-send {
+  padding: 12px 27px;
+  border-radius: 25px;
+  font-size: 18px;
+}
+
+/* Стили для кнопки пагинации */
+.pagination-btn {
+  padding: 10px 16px;
+  border-radius: 48%;
+  border: 1px solid var(--my-yel-color);
+  font-weight: 500;
+  background-color: white;
+  color: var(--my-yel-color);
+}
+
+.pagination-btn:hover {
+  color: #000;
+  background-color: var(--my-yel-color);
+}
+
+.active--p {
+  border: none;
+  background-color: var(--my-yel-color);
+  color: #000;
+}
+
+.active--p:hover {
+  color: white;
+  background-color: var(--my-gr-color);
+}

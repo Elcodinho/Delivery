@@ -1,0 +1,492 @@
+{
+  "menu": [
+    {
+      "id": "1",
+      "name": "Калифорния с краб миксом",
+      "category": "sushi-i-rolli",
+      "subCat": "rolli",
+      "type": "classic",
+      "slug": "california-crab",
+      "price": {
+        "small": 210,
+        "large": 390
+      },
+      "weight": {
+        "small": 126,
+        "large": 280
+      },
+      "image": "img",
+      "description": "рис, нори, крабовый микс, сливочный сыр, свежий огурец, икра масаго, кунжут"
+    },
+    {
+      "id": "2",
+      "name": "Калифорния с лососем",
+      "category": "sushi-i-rolli",
+      "subCat": "rolli",
+      "type": "classic",
+      "slug": "california-losos",
+      "price": {
+        "small": 270,
+        "large": 510
+      },
+      "weight": {
+        "small": 126,
+        "large": 280
+      },
+      "image": "img",
+      "description": "рис, нори, сливочный сыр, филе лосося слабой соли, икра масаго, свежий огурец"
+    },
+    {
+      "id": "3",
+      "name": "Калифорния окунь",
+      "category": "sushi-i-rolli",
+      "subCat": "rolli",
+      "type": "classic",
+      "slug": "california-okun",
+      "price": {
+        "small": 220,
+        "large": 410
+      },
+      "weight": {
+        "small": 126,
+        "large": 280
+      },
+      "image": "img",
+      "description": "рис, нори, сливочный сыр, филе окуня в кляре, икра масаго, свежий огурец, соус Унаги."
+    },
+    {
+      "id": "4",
+      "name": "Филадельфия классик",
+      "category": "sushi-i-rolli",
+      "subCat": "rolli",
+      "type": "classic",
+      "slug": "filadelfiya-classic",
+      "price": {
+        "small": 280,
+        "large": 550
+      },
+      "weight": {
+        "small": 126,
+        "large": 280
+      },
+      "image": "img",
+      "description": "рис, нори, сливочный сыр, свежий огурец, филе лосося слабой соли, майонез."
+    },
+    {
+      "id": "5",
+      "name": "Филадельфия с лососем",
+      "category": "sushi-i-rolli",
+      "subCat": "rolli",
+      "type": "classic",
+      "slug": "filadelfiya-losos",
+      "price": {
+        "small": 280,
+        "large": 550
+      },
+      "weight": {
+        "small": 126,
+        "large": 280
+      },
+      "image": "img",
+      "description": "рис, нори, сливочный сыр, свежий огурец, филе лосося слабой соли, майонез."
+    },
+    {
+      "id": "6",
+      "name": "Филадельфия с креветкой",
+      "category": "sushi-i-rolli",
+      "subCat": "rolli",
+      "type": "classic",
+      "slug": "filadelfiya-crevetka",
+      "price": {
+        "small": 280,
+        "large": 540
+      },
+      "weight": {
+        "small": 126,
+        "large": 280
+      },
+      "image": "img",
+      "description": "рис, нори, сливочный сыр, тигровая креветка, свежие огурцы, соус чесночный, крабовый микс."
+    },
+    {
+      "id": "7",
+      "name": "Филадельфия люкс",
+      "category": "sushi-i-rolli",
+      "subCat": "rolli",
+      "type": "classic",
+      "slug": "filadelfiya-luks",
+      "price": {
+        "small": 380,
+        "large": 760
+      },
+      "weight": {
+        "small": 126,
+        "large": 280
+      },
+      "image": "img",
+      "description": "рис, нори, сливочный сыр, свежий огурец, филе лосося слабой соли, икра лососевая, майонез"
+    },
+    {
+      "id": "8",
+      "name": "Женский ролл",
+      "category": "sushi-i-rolli",
+      "subCat": "rolli",
+      "type": "classic",
+      "slug": "zhenskiy-roll",
+      "price": {
+        "small": 300,
+        "large": 700
+      },
+      "weight": {
+        "small": 126,
+        "large": 280
+      },
+      "image": "img",
+      "description": "рис, нори, сливочный сыр, свежий огурец, женская креветка, икра лососевая, майонез"
+    },
+    {
+      "id": "9",
+      "name": "Онигири",
+      "category": "sushi-i-rolli",
+      "subCat": "sushi",
+      "slug": "onigiri",
+      "price": 220,
+      "weight": 100,
+      "image": "img",
+      "description": "рис, крабовый микс, нори"
+    },
+    {
+      "id": "10",
+      "name": "Суши авокадо",
+      "category": "sushi-i-rolli",
+      "subCat": "sushi",
+      "slug": "sushi-avocado",
+      "price": 75,
+      "weight": 40,
+      "image": "img",
+      "description": "рис авокадо"
+    },
+    {
+      "id": "11",
+      "name": "Суши креветка",
+      "category": "sushi-i-rolli",
+      "subCat": "sushi",
+      "slug": "sushi-crevetka",
+      "price": 100,
+      "weight": 40,
+      "image": "img",
+      "description": "рис, тигровая креветка"
+    },
+    {
+      "id": "12",
+      "name": "Суши лосось",
+      "category": "sushi-i-rolli",
+      "subCat": "sushi",
+      "slug": "sushi-losos",
+      "price": 160,
+      "weight": 40,
+      "image": "img",
+      "description": "рис, филе лосося слабой соли"
+    },
+    {
+      "id": "13",
+      "name": "Запеченная Калифорния",
+      "category": "sushi-i-rolli",
+      "subCat": "rolli",
+      "type": "hot",
+      "slug": "california-hot",
+      "price": {
+        "small": 270,
+        "large": 510
+      },
+      "weight": {
+        "small": 160,
+        "large": 320
+      },
+      "image": "img",
+      "description": "рис, нори, свежий огурец, сыр сливочный и плавленый , икра масаго, крабовый микс, соус чесночный, майонез"
+    },
+    {
+      "id": "14",
+      "name": "Креветка краб в кляре",
+      "category": "sushi-i-rolli",
+      "subCat": "rolli",
+      "type": "hot",
+      "slug": "crevetka-crab-klyar",
+      "price": {
+        "small": 200,
+        "large": 370
+      },
+      "weight": {
+        "small": 130,
+        "large": 260
+      },
+      "image": "img",
+      "description": "рис, нори, тигровые креветки, сливочный сыр, крабовый микс, кляр"
+    },
+    {
+      "id": "15",
+      "name": "Запеченная Филадельфия",
+      "category": "sushi-i-rolli",
+      "subCat": "rolli",
+      "type": "hot",
+      "slug": "filadelfiya-hot",
+      "price": {
+        "small": 280,
+        "large": 530
+      },
+      "weight": {
+        "small": 125,
+        "large": 250
+      },
+      "image": "img",
+      "description": "рис, нори, сливочный сыр, свежий огурец, лосось под сыром моцарелла"
+    },
+    {
+      "id": "16",
+      "name": "Горячий лосось",
+      "category": "sushi-i-rolli",
+      "subCat": "rolli",
+      "type": "hot",
+      "slug": "losos-hot",
+      "price": {
+        "small": 410,
+        "large": 730
+      },
+      "weight": {
+        "small": 160,
+        "large": 320
+      },
+      "image": "img",
+      "description": "рис, нори, сливочный сыр, филе лосося слабой соли, соус чесночный, томаго, майонез"
+    },
+    {
+      "id": "17",
+      "name": "Мидия лосось",
+      "category": "sushi-i-rolli",
+      "subCat": "rolli",
+      "type": "hot",
+      "slug": "midiya-losos-hot",
+      "price": {
+        "small": 220,
+        "large": 400
+      },
+      "weight": {
+        "small": 160,
+        "large": 320
+      },
+      "image": "img",
+      "description": "рис, нори, сливочный сыр, филе лосося в соусе спайси, мидии, омлет томаго, майонез"
+    },
+    {
+      "id": "18",
+      "name": "Горячий окунь",
+      "category": "sushi-i-rolli",
+      "subCat": "rolli",
+      "type": "hot",
+      "slug": "okun-hot",
+      "price": {
+        "small": 200,
+        "large": 380
+      },
+      "weight": {
+        "small": 165,
+        "large": 330
+      },
+      "image": "img",
+      "description": "рис, нори, свежий огурец, запеченый окунь, томаго, сливочный сыр"
+    },
+    {
+      "id": "19",
+      "name": "Бургер Чиз",
+      "category": "burgeri",
+      "slug": "burger-chiz",
+      "price": 570,
+      "weight": 325,
+      "image": "img",
+      "description": "нежный сырный соус, натуральная говяжья котлета, сыр чеддер, свежие овощи под булочкой бриошь"
+    },
+    {
+      "id": "20",
+      "name": "Бургер Спайси",
+      "category": "burgeri",
+      "slug": "burger-spicy",
+      "price": 490,
+      "weight": 300,
+      "image": "img",
+      "description": "острый соус спайси, зеленый перчик халапеньо в сочетании с овощами, сыром чеддер на булочке бриошь"
+    },
+    {
+      "id": "21",
+      "name": "Бургер стрит",
+      "category": "burgeri",
+      "slug": "burger-street",
+      "price": 205,
+      "weight": 190,
+      "image": "img",
+      "description": "настоящая классика: пшеничная булочка, котлета куриная в панировке, маринованные огурчики, томаты и соус ранч"
+    },
+    {
+      "id": "22",
+      "name": "Бургер c яйцом",
+      "category": "burgeri",
+      "slug": "burger-yaitso",
+      "price": 490,
+      "weight": 240,
+      "image": "img",
+      "description": "сытный микс из натуральной говяжьей котлеты, овощей, куриного яйца, обжаренным беконом с соусами сальса и ранч на воздушной булочке бриошь"
+    },
+    {
+      "id": "23",
+      "name": "Бургер Завтрак",
+      "category": "burgeri",
+      "slug": "burger-zavtrak",
+      "price": 175,
+      "weight": 170,
+      "image": "img",
+      "description": "булочка английский маффин, яйцо куриное, сыр чеддер, кетчуп, соус голландский"
+    },
+    {
+      "id": "24",
+      "name": "Бургер Завтрак Биф",
+      "category": "burgeri",
+      "slug": "burger-zavtrak-beef",
+      "price": 365,
+      "weight": 180,
+      "image": "img",
+      "description": "булочка английский маффин, котлета из телятины, яйцо куриное, сыр чеддер, микс салата, кетчуп, соус голландский"
+    },
+    {
+      "id": "25",
+      "name": "Пицца '4 сыра Mazeratti'",
+      "category": "pizza",
+      "type": "classic",
+      "slug": "syra-mazeratii-pizza",
+      "price": {
+        "small": 600,
+        "large": 990
+      },
+      "size": {
+        "small": 30,
+        "large": 54
+      },
+      "image": "img",
+      "description": "итальянская мука, сливочный соус и пикантные сыры: моцарелла, дорблю, эдам и молодой пармезан"
+    },
+    {
+      "id": "26",
+      "name": "Маргарита",
+      "category": "pizza",
+      "type": "classic",
+      "slug": "margarita-pizza",
+      "price": {
+        "small": 480,
+        "large": 780
+      },
+      "size": {
+        "small": 30,
+        "large": 54
+      },
+      "image": "img",
+      "description": "итальянская мука, соус томатный, сыр моцарелла, помидоры, орегано, базилик"
+    },
+    {
+      "id": "27",
+      "name": "Пицца Море",
+      "category": "pizza",
+      "type": "classic",
+      "slug": "more-pizza",
+      "price": {
+        "small": 860,
+        "large": 1220
+      },
+      "size": {
+        "small": 30,
+        "large": 54
+      },
+      "image": "img",
+      "description": "итальянская мука, соус томатный, сыр моцарелла, филе лосося, тигровая креветка, кальмар, мидии, помидоры черри, оливки, зелень"
+    },
+    {
+      "id": "28",
+      "name": "Пепперони",
+      "category": "pizza",
+      "type": "classic",
+      "slug": "pepperoni-pizza",
+      "price": {
+        "small": 520,
+        "large": 860
+      },
+      "size": {
+        "small": 30,
+        "large": 54
+      },
+      "image": "img",
+      "description": "итальянская мука, соус томатный, сыр моцарелла, колбаса сырокопчёная"
+    },
+    {
+      "id": "29",
+      "name": "Сырный Цыпленок",
+      "category": "pizza",
+      "type": "classic",
+      "slug": "syrniy-tsiplenok-pizza",
+      "price": {
+        "small": 570,
+        "large": 890
+      },
+      "size": {
+        "small": 30,
+        "large": 54
+      },
+      "image": "img",
+      "description": "итальянская мука, соус сливочный, куриное филе, сыр моцарелла, помидоры черри, масло чесночное, зелень"
+    },
+    {
+      "id": "30",
+      "name": "Пицца Ветчина грибы",
+      "category": "pizza",
+      "type": "classic",
+      "slug": "vetchina-gribi-pizza",
+      "price": {
+        "small": 590,
+        "large": 910
+      },
+      "size": {
+        "small": 30,
+        "large": 54
+      },
+      "image": "img",
+      "description": "итальянская мука, грибной соус, ветчина, шампиньоны, сыр моцарелла, зелень"
+    },
+    {
+      "id": "31",
+      "name": "Пицца римская Пепперони",
+      "category": "pizza",
+      "type": "rimskaya",
+      "slug": "pizza-rimskaya-pepperoni",
+      "price": 540,
+      "image": "img",
+      "description": "Тесто для римской пиццы, соус томатный, сыр моцарелла, колбаса сырокопчёная"
+    },
+    {
+      "id": "32",
+      "name": "Пицца римская По-деревенски",
+      "category": "pizza",
+      "type": "rimskaya",
+      "slug": "pizza-rimskaya-po-derevenski",
+      "price": 620,
+      "image": "img",
+      "description": "Тесто для римской пиццы, соуса сливочный и медово-горчичный, сыр моцарелла, сервелат, бекон, охотничьи колбаски , грибы шампиньоны, картофельные дольки, лук зеленый"
+    },
+    {
+      "id": "33",
+      "name": "Пицца римская Сырный Цыпленок",
+      "category": "pizza",
+      "type": "rimskaya",
+      "slug": "pizza-rimskaya-syrniy-tsiplenok",
+      "price": 630,
+      "image": "img",
+      "description": "Тесто для римской пиццы, соус сливочный, куриное филе, сыр моцарелла, помидоры черри, масло чесночное, зелень"
+    }
+  ]
+}

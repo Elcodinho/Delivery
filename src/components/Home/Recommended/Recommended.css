@@ -1,0 +1,17 @@
+.recommend {
+  margin-bottom: 30px;
+}
+
+.recommend__title {
+  margin-bottom: 30px;
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+
+.recommend__list {
+  width: 100%;
+  display: flex;
+  align-items: stretch;
+  flex-wrap: wrap;
+  gap: 15px;
+}

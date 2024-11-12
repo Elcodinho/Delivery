@@ -1,0 +1,27 @@
+.secondary__nav {
+  width: 100%;
+  margin: 15px 0;
+}
+
+.secondary__nav-list {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 15px;
+}
+
+.secondary__nav-item {
+  display: block;
+}
+
+.secondary__nav-link {
+  display: block;
+  padding: 8px 20px;
+  border: 1px solid #ebeced;
+  border-radius: 100px;
+  color: #3d3d3d;
+}
+
+.secondary__nav-link--active {
+  background-color: var(--my-yel-color);
+}

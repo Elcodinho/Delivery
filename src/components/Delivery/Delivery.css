@@ -1,0 +1,35 @@
+.delivery {
+  margin-bottom: 50px;
+}
+
+.delivery__wrapper {
+  width: 100%;
+}
+
+.delivery-method {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  margin-top: 25px;
+  padding: 15px 0;
+  border-top: 1px solid #ccc;
+}
+
+.delivery__wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.delivery-method__title {
+  margin-bottom: 15px;
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: #4c4c4c;
+}
+
+.delivery-method__list {
+  display: flex;
+  align-items: stretch;
+  flex-wrap: wrap;
+  gap: 15px;
+}
