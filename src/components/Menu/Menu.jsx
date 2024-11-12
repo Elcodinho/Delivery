@@ -11,27 +11,37 @@ export function Menu() {
   const { category } = useParams();
   const menu = useSelector(selectMenu);
   const dispatch = useDispatch();
+
+  const title =
+    category === "burgeri"
+      ? "Бургеры"
+      : category === "pizza"
+      ? "Пицца"
+      : "Суши и роллы";
+
   // Получаем товары
   useEffect(() => {
     dispatch(getMenu(category));
   }, [category, dispatch]);
+
   return (
     <section className="menu">
       <div className="container">
         <div className="menu__wrapper">
-          <h2 className="title--2">Бургеры</h2>
+          <h2 className="title--2 menu__title--margin">{title}</h2>
           <ul className="menu__list">
             {menu.map((item) => (
               <Card
                 key={item.id}
-                // id={item.id}
                 name={item.name}
                 description={item.description}
                 img={item.image}
                 price={item.price}
                 category={item.category}
-                {...(item.subCat ? { subCat: item.subCat } : {})} // Подкатегория передается при наличии
+                {...(item.type && { type: item.type })} // Тип передается при наличии
+                {...(item.subCat && { subCat: item.subCat })} // Подкатегория передается при наличии
                 slug={item.slug}
+                {...(item.size && { size: item.size })} // Size передается при наличии
               />
             ))}
           </ul>

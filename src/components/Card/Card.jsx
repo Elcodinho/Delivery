@@ -1,33 +1,47 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { Link } from "react-router-dom";
 import { Toggle } from "@components/Card/Toggle/Toggle";
 import { Button } from "@components/UI/Button/Button";
 import "./Card.css";
 
 export const Card = React.memo(function Card(props) {
-  const { name, description, img, price, category, subCat, slug } = props;
-  const [selectedAmount, setSelectedAmount] = useState("large"); // Состояние для выбранного количества
+  const { name, description, img, price, category, type, subCat, slug, size } =
+    props;
+  // Устанавливаем начальное значение в зависимости от категории
+  const initialSize = useMemo(() => {
+    if (category === "pizza" && type === "classic") {
+      return size ? size.small : null;
+    } else if (subCat === "rolli") {
+      return size ? size.large : null;
+    }
+    return null; // по умолчанию
+  }, [category, subCat, size, type]);
+
+  const [selectedAmount, setSelectedAmount] = useState(initialSize); // Состояние для выбранного количества товара
   const [productPrice, setProductPrice] = useState(
     typeof price === "object" ? price.large : price // Используем цену сразу, если это число
   );
-  const toggleShow =
-    subCat === "rolli" || (category === "pizza" && type !== rimskaya); // Переменная для управления показа toggle
 
-  // Обработчик изменения переключателя
-  function handleToggleChange() {
-    setSelectedAmount((prevAmount) =>
-      prevAmount === "small" ? "large" : "small"
-    );
+  // Переменная для управления показа toggle
+  const toggleShow =
+    subCat === "rolli" || (category === "pizza" && type !== "rimskaya");
+
+  // Обработчик изменения радиокнопки
+  function handleToggleChange(event) {
+    const selectedValue = parseFloat(event.target.value); // value из radio переводим в число для сравнения
+    setSelectedAmount(selectedValue); // Устанавливаем выбранное количество
   }
 
   // Определение цены в зависимости от выбранного количества
   useEffect(() => {
     // Если price это не число, а объект с ценами (зависит от категории товара), то устанавливаем его в цену
     if (typeof price === "object") {
-      setProductPrice(selectedAmount === "small" ? price.small : price.large);
+      setProductPrice(
+        selectedAmount === size.small ? price.small : price.large
+      );
     }
-  }, [selectedAmount, price]);
+  }, [selectedAmount, price, size]);
 
   return (
     <li className="card">
@@ -42,7 +56,14 @@ export const Card = React.memo(function Card(props) {
         </Link>
         <p className="card__compound">Состав: {description}</p>
         <div className="toggle-btn__wrapper">
-          {toggleShow && <Toggle handleChange={() => handleToggleChange(id)} />}
+          {toggleShow && (
+            <Toggle
+              size={size}
+              selectedAmount={selectedAmount}
+              subCat={subCat}
+              handleChange={handleToggleChange}
+            />
+          )}
           <div className="card__total-btn__wrapper">
             <p className="card__total">
               <span>{productPrice}</span>₽

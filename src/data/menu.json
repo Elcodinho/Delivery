@@ -11,6 +11,10 @@
         "small": 210,
         "large": 390
       },
+      "size": {
+        "small": 4,
+        "large": 8
+      },
       "weight": {
         "small": 126,
         "large": 280
@@ -28,6 +32,10 @@
       "price": {
         "small": 270,
         "large": 510
+      },
+      "size": {
+        "small": 4,
+        "large": 8
       },
       "weight": {
         "small": 126,
@@ -47,6 +55,10 @@
         "small": 220,
         "large": 410
       },
+      "size": {
+        "small": 4,
+        "large": 8
+      },
       "weight": {
         "small": 126,
         "large": 280
@@ -64,6 +76,10 @@
       "price": {
         "small": 280,
         "large": 550
+      },
+      "size": {
+        "small": 4,
+        "large": 8
       },
       "weight": {
         "small": 126,
@@ -83,6 +99,10 @@
         "small": 280,
         "large": 550
       },
+      "size": {
+        "small": 4,
+        "large": 8
+      },
       "weight": {
         "small": 126,
         "large": 280
@@ -100,6 +120,10 @@
       "price": {
         "small": 280,
         "large": 540
+      },
+      "size": {
+        "small": 4,
+        "large": 8
       },
       "weight": {
         "small": 126,
@@ -119,6 +143,10 @@
         "small": 380,
         "large": 760
       },
+      "size": {
+        "small": 4,
+        "large": 8
+      },
       "weight": {
         "small": 126,
         "large": 280
@@ -136,6 +164,10 @@
       "price": {
         "small": 300,
         "large": 700
+      },
+      "size": {
+        "small": 4,
+        "large": 8
       },
       "weight": {
         "small": 126,
@@ -199,6 +231,10 @@
         "small": 270,
         "large": 510
       },
+      "size": {
+        "small": 4,
+        "large": 8
+      },
       "weight": {
         "small": 160,
         "large": 320
@@ -216,6 +252,10 @@
       "price": {
         "small": 200,
         "large": 370
+      },
+      "size": {
+        "small": 4,
+        "large": 8
       },
       "weight": {
         "small": 130,
@@ -235,6 +275,10 @@
         "small": 280,
         "large": 530
       },
+      "size": {
+        "small": 4,
+        "large": 8
+      },
       "weight": {
         "small": 125,
         "large": 250
@@ -252,6 +296,10 @@
       "price": {
         "small": 410,
         "large": 730
+      },
+      "size": {
+        "small": 4,
+        "large": 8
       },
       "weight": {
         "small": 160,
@@ -271,6 +319,10 @@
         "small": 220,
         "large": 400
       },
+      "size": {
+        "small": 4,
+        "large": 8
+      },
       "weight": {
         "small": 160,
         "large": 320
@@ -288,6 +340,10 @@
       "price": {
         "small": 200,
         "large": 380
+      },
+      "size": {
+        "small": 4,
+        "large": 8
       },
       "weight": {
         "small": 165,
