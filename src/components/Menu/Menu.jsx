@@ -4,12 +4,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { getMenu } from "@store/menuSlice";
 import { selectMenu } from "@store/menuSlice";
 import { Card } from "@components/Card/Card";
-// import r from "@assets/images/rolli/onigiri.webp";
+import { Loader } from "@components/UI/Loader/Loader";
 import "./Menu.css";
 
 export function Menu() {
-  const { category } = useParams();
+  const { category, type } = useParams();
   const menu = useSelector(selectMenu);
+  const { status: menuStatus, error: menuError } = useSelector(
+    (state) => state.menu
+  );
   const dispatch = useDispatch();
 
   const title =
@@ -21,30 +24,37 @@ export function Menu() {
 
   // Получаем товары
   useEffect(() => {
-    dispatch(getMenu(category));
-  }, [category, dispatch]);
+    const params = { category };
+    if (type) params.type = type; // Добавляем type, если он существует
+
+    dispatch(getMenu(params));
+  }, [category, type, dispatch]);
 
   return (
     <section className="menu">
       <div className="container">
         <div className="menu__wrapper">
           <h2 className="title--2 menu__title--margin">{title}</h2>
-          <ul className="menu__list">
-            {menu.map((item) => (
-              <Card
-                key={item.id}
-                name={item.name}
-                description={item.description}
-                img={item.image}
-                price={item.price}
-                category={item.category}
-                {...(item.type && { type: item.type })} // Тип передается при наличии
-                {...(item.subCat && { subCat: item.subCat })} // Подкатегория передается при наличии
-                slug={item.slug}
-                {...(item.size && { size: item.size })} // Size передается при наличии
-              />
-            ))}
-          </ul>
+          {menuStatus === "loading" && <Loader />}
+          {menuError && <p className="text--error">{menuError}</p>}
+          {menuStatus === "resolved" && (
+            <ul className="menu__list">
+              {menu.map((item) => (
+                <Card
+                  key={item.id}
+                  name={item.name}
+                  description={item.description}
+                  img={item.image}
+                  price={item.price}
+                  category={item.category}
+                  {...(item.subCat && { subCat: item.subCat })} // Тип передается при наличии
+                  {...(item.type && { type: item.type })} // Тип передается при наличии
+                  slug={item.slug}
+                  {...(item.size && { size: item.size })} // Size передается при наличии
+                />
+              ))}
+            </ul>
+          )}
         </div>
       </div>
     </section>

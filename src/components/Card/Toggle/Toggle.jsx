@@ -2,7 +2,7 @@ import clsx from "clsx";
 import "./Toggle.css";
 
 export function Toggle(props) {
-  const { size, selectedAmount, subCat, handleChange } = props;
+  const { size, subCat, selectedAmount, handleChange } = props;
 
   // Если подкатегория роллы, меняем местами значения в radio
   const isRolli = subCat === "rolli";

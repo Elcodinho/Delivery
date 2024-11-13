@@ -1,22 +1,19 @@
 import React from "react";
 import { useState, useEffect, useMemo } from "react";
 import { Link } from "react-router-dom";
+import { getInitialSize } from "@utils/getInitialSize";
 import { Toggle } from "@components/Card/Toggle/Toggle";
 import { Button } from "@components/UI/Button/Button";
 import "./Card.css";
 
 export const Card = React.memo(function Card(props) {
-  const { name, description, img, price, category, type, subCat, slug, size } =
+  const { name, description, img, price, category, subCat, type, slug, size } =
     props;
-  // Устанавливаем начальное значение в зависимости от категории
-  const initialSize = useMemo(() => {
-    if (category === "pizza" && type === "classic") {
-      return size ? size.small : null;
-    } else if (subCat === "rolli") {
-      return size ? size.large : null;
-    }
-    return null; // по умолчанию
-  }, [category, subCat, size, type]);
+  // Устанавливаем начальное значение размера в зависимости от категории
+  const initialSize = useMemo(
+    () => getInitialSize(category, subCat, size, type),
+    [category, subCat, size, type]
+  );
 
   const [selectedAmount, setSelectedAmount] = useState(initialSize); // Состояние для выбранного количества товара
   const [productPrice, setProductPrice] = useState(
@@ -59,8 +56,8 @@ export const Card = React.memo(function Card(props) {
           {toggleShow && (
             <Toggle
               size={size}
-              selectedAmount={selectedAmount}
               subCat={subCat}
+              selectedAmount={selectedAmount}
               handleChange={handleToggleChange}
             />
           )}

@@ -5,17 +5,27 @@ const { MENUURL } = URL;
 // Функция получения меню
 export const getMenu = createAsyncThunk(
   "menu/getMenu",
-  async function (category = "sushi-i-rolli", { rejectWithValue }) {
-    const url = `${MENUURL}?category=${category}`;
+  async function (
+    { category = "sushi-i-rolli", type, slug },
+    { rejectWithValue }
+  ) {
+    // Url формируется на основе slug, либо category и type(необязательный параметр)
+    const url = slug
+      ? `${MENUURL}?slug=${slug}`
+      : `${MENUURL}?category=${category}${type ? `&type=${type}` : ""}`;
     try {
       const response = await fetch(url);
       if (!response.ok) {
-        return rejectWithValue("Ошибка: Не удалось получить список товаров");
+        return rejectWithValue(
+          "Ошибка: Не удалось получить список товаров, попробуйте позже"
+        );
       }
       const data = await response.json();
       return data;
     } catch (error) {
-      return rejectWithValue("Ошибка: Не удалось получить список товаров");
+      return rejectWithValue(
+        "Ошибка: Не удалось получить список товаров, попробуйте позже"
+      );
     }
   }
 );

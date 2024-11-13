@@ -59,3 +59,19 @@
   color: white;
   background-color: var(--my-gr-color);
 }
+
+/* Стили для страницы товара */
+.product-btn--size {
+  width: 100%;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  font-weight: 600;
+}
+
+/* Media */
+
+@media (max-width: 768px) {
+  .product-btn--size {
+    font-weight: 500;
+  }
+}

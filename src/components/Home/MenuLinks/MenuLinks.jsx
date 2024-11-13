@@ -25,14 +25,18 @@ const menuLinks = [
 ];
 export function MenuLinks() {
   const [isTargetScreen, setIsTargetScreen] = useState(
-    window.innerWidth >= 980 && window.innerWidth <= 1200
+    window.innerWidth >= 991 ||
+      (window.innerWidth >= 540 && window.innerWidth <= 768)
   ); // Состояние отображает наличие нужного размера экрана
 
   useEffect(() => {
     const handleResize = () => {
-      setIsTargetScreen(window.innerWidth >= 980 && window.innerWidth <= 1200);
+      setIsTargetScreen(
+        window.innerWidth >= 991 ||
+          (window.innerWidth >= 540 && window.innerWidth <= 768)
+      );
     };
-
+    handleResize();
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);

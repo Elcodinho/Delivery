@@ -1,8 +1,10 @@
 import { NavLink } from "react-router-dom";
+import clsx from "clsx";
 import { getActiveClass } from "@utils/getActiveClass";
 import "./SecondaryNav.css";
 
-export function SecondaryNav({ buttons }) {
+export function SecondaryNav(props) {
+  const { buttons, linkClass = "", activeClass = "" } = props;
   return (
     <nav className="secondary__nav">
       <ul className="secondary__nav-list">
@@ -12,11 +14,12 @@ export function SecondaryNav({ buttons }) {
               className={({ isActive }) =>
                 getActiveClass(
                   { isActive },
-                  "secondary__nav-link",
-                  "secondary__nav-link--active"
+                  clsx("secondary__nav-link", linkClass), // объединяем базовый класс с переданным
+                  clsx("secondary__nav-link--active", activeClass)
                 )
               }
               to={item.path}
+              end // Активно только при точном совпадении url
             >
               {item.name}
             </NavLink>

@@ -108,6 +108,12 @@ img {
   color: #4c4c4c;
 }
 
+.text--error {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: red;
+}
+
 /* .loading {
   font-size: 40px;
   font-weight: 800;

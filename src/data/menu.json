@@ -181,6 +181,7 @@
       "name": "Онигири",
       "category": "sushi-i-rolli",
       "subCat": "sushi",
+      "type": "sushi",
       "slug": "onigiri",
       "price": 220,
       "weight": 100,
@@ -192,6 +193,7 @@
       "name": "Суши авокадо",
       "category": "sushi-i-rolli",
       "subCat": "sushi",
+      "type": "sushi",
       "slug": "sushi-avocado",
       "price": 75,
       "weight": 40,
@@ -203,6 +205,7 @@
       "name": "Суши креветка",
       "category": "sushi-i-rolli",
       "subCat": "sushi",
+      "type": "sushi",
       "slug": "sushi-crevetka",
       "price": 100,
       "weight": 40,
@@ -214,6 +217,7 @@
       "name": "Суши лосось",
       "category": "sushi-i-rolli",
       "subCat": "sushi",
+      "type": "sushi",
       "slug": "sushi-losos",
       "price": 160,
       "weight": 40,
@@ -426,6 +430,10 @@
         "small": 30,
         "large": 54
       },
+      "weight": {
+        "small": 400,
+        "large": 960
+      },
       "image": "img",
       "description": "итальянская мука, сливочный соус и пикантные сыры: моцарелла, дорблю, эдам и молодой пармезан"
     },
@@ -442,6 +450,10 @@
       "size": {
         "small": 30,
         "large": 54
+      },
+      "weight": {
+        "small": 380,
+        "large": 920
       },
       "image": "img",
       "description": "итальянская мука, соус томатный, сыр моцарелла, помидоры, орегано, базилик"
@@ -460,6 +472,10 @@
         "small": 30,
         "large": 54
       },
+      "weight": {
+        "small": 450,
+        "large": 990
+      },
       "image": "img",
       "description": "итальянская мука, соус томатный, сыр моцарелла, филе лосося, тигровая креветка, кальмар, мидии, помидоры черри, оливки, зелень"
     },
@@ -476,6 +492,10 @@
       "size": {
         "small": 30,
         "large": 54
+      },
+      "weight": {
+        "small": 420,
+        "large": 960
       },
       "image": "img",
       "description": "итальянская мука, соус томатный, сыр моцарелла, колбаса сырокопчёная"
@@ -494,6 +514,10 @@
         "small": 30,
         "large": 54
       },
+      "weight": {
+        "small": 500,
+        "large": 1050
+      },
       "image": "img",
       "description": "итальянская мука, соус сливочный, куриное филе, сыр моцарелла, помидоры черри, масло чесночное, зелень"
     },
@@ -511,6 +535,10 @@
         "small": 30,
         "large": 54
       },
+      "weight": {
+        "small": 510,
+        "large": 1070
+      },
       "image": "img",
       "description": "итальянская мука, грибной соус, ветчина, шампиньоны, сыр моцарелла, зелень"
     },
@@ -521,6 +549,7 @@
       "type": "rimskaya",
       "slug": "pizza-rimskaya-pepperoni",
       "price": 540,
+      "weight": 390,
       "image": "img",
       "description": "Тесто для римской пиццы, соус томатный, сыр моцарелла, колбаса сырокопчёная"
     },
@@ -531,6 +560,7 @@
       "type": "rimskaya",
       "slug": "pizza-rimskaya-po-derevenski",
       "price": 620,
+      "weight": 420,
       "image": "img",
       "description": "Тесто для римской пиццы, соуса сливочный и медово-горчичный, сыр моцарелла, сервелат, бекон, охотничьи колбаски , грибы шампиньоны, картофельные дольки, лук зеленый"
     },
@@ -541,6 +571,7 @@
       "type": "rimskaya",
       "slug": "pizza-rimskaya-syrniy-tsiplenok",
       "price": 630,
+      "weight": 430,
       "image": "img",
       "description": "Тесто для римской пиццы, соус сливочный, куриное филе, сыр моцарелла, помидоры черри, масло чесночное, зелень"
     }

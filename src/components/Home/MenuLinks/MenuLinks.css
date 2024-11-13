@@ -5,20 +5,17 @@
 
 .menu-links__list {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
-  gap: 15px;
-  margin-right: -15px;
-  margin-left: -15px;
-  border: 1px solid black;
+  gap: 30px;
 }
 
 .menu-links__item {
   position: relative;
   display: block;
-  width: 289px;
-  height: 289px;
+  min-width: 277px;
+  aspect-ratio: 1 / 1; /* Высота автоматически равна ширине */
   overflow: hidden;
   border-radius: 10px;
   cursor: pointer;
@@ -72,11 +69,13 @@
   height: 100%;
   z-index: 3;
   color: white;
-  text-decoration: none;
 }
 
 .menu-links__item-title {
-  margin-bottom: 15px;
+  position: absolute;
+  bottom: 5%;
+  left: 50%;
+  transform: translateX(-50%);
   font-size: 1.6rem;
   text-align: center center;
   font-weight: 600;
@@ -91,20 +90,29 @@
   }
 }
 
-@media (max-width: 991px), (min-width: 1201px) {
-  .menu-links__item {
-    width: 198px;
-    height: 198px;
-  }
-}
 @media (max-width: 991px) {
-  .menu-links__item-title {
-    margin-bottom: 8px;
+  .menu-links__list {
+    justify-content: center;
   }
 }
 
 @media (max-width: 768px) {
+  .menu-links__list {
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+
+  .menu-links__item {
+    min-width: 100%;
+  }
+
   .menu-links__item-title {
-    font-size: 1.5rem;
+    font-size: 1.8rem;
+  }
+}
+
+@media (max-width: 460px) {
+  .menu-links__item-title {
+    font-size: 1.4rem;
   }
 }
