@@ -11,7 +11,8 @@
     "feedback": "json-server --watch src/data/feedback.json --port 3500",
     "suggestions": "json-server --watch src/data/suggestions.json --port 3600",
     "menu": "json-server --watch src/data/menu.json --port 3700",
-    "dev:full": "concurrently \"npm run dev\" \"npm run feedback\" \"npm run suggestions\" \"npm run menu\""
+    "supplements": "json-server --watch src/data/supplements.json --port 3800",
+    "dev:full": "concurrently \"npm run dev\" \"npm run feedback\" \"npm run suggestions\" \"npm run menu\" \"npm run supplements\""
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.3.0",

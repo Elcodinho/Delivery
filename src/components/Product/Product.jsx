@@ -3,8 +3,10 @@ import { useParams } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { selectMenu, getMenu } from "@store/menuSlice";
 import { getInitialSize } from "@utils/getInitialSize";
+import { ProductSupplements } from "./ProductSupplements/ProductSupplements";
 import { Button } from "@components/UI/Button/Button";
 import { Toggle } from "@components/Card/Toggle/Toggle";
+import { CounterBtn } from "@components/UI/CounterBtn/CounterBtn";
 import { Loader } from "@components/UI/Loader/Loader";
 import "./Product.css";
 //  // //
@@ -30,13 +32,8 @@ export function Product() {
     (state) => state.menu
   ); // Состояние статуса и ошибки получения продукта
 
-  // Устанавливаем начальное значение размера в зависимости от категории
-  const initialSize = useMemo(
-    () => getInitialSize(category, subCat, size, type),
-    [category, subCat, size, type]
-  );
-
-  const [selectedAmount, setSelectedAmount] = useState(initialSize); // Состояние для выбранного количества товара
+  const [counter, setCounter] = useState(null); // Состояние счетчика категории суши
+  const [selectedAmount, setSelectedAmount] = useState(null); // Состояние для выбранного количества товара
   const [productPrice, setProductPrice] = useState(
     typeof price === "object" ? price.large : price // Используем цену сразу, если это число
   );
@@ -44,9 +41,14 @@ export function Product() {
     typeof weight === "object" ? weight.large : weight // Используем вес сразу, если это число
   );
 
+  const isClassisPizza = category === "pizza" && type === "classic";
+
   // Переменная для управления показа toggle
   const toggleShow =
     subCat === "rolli" || (category === "pizza" && type !== "rimskaya");
+
+  // Переменная для показа кнокпи counter
+  const showCounter = subCat === "sushi";
 
   // Обработчик изменения радиокнопки
   function handleToggleChange(event) {
@@ -67,6 +69,14 @@ export function Product() {
     return attribute; // Если значение не объект, просто возвращаем его
   };
 
+  // Устанавливаем начальное значение размера в зависимости от категории после загрузки продукта
+  useEffect(() => {
+    if (product) {
+      const initialSize = getInitialSize(category, subCat, size, type);
+      setSelectedAmount(initialSize);
+    }
+  }, [product, category, subCat, size, type]);
+
   // Определение цены  и веса продукта в зависимости от выбранного количества
   useEffect(() => {
     if (product) {
@@ -75,12 +85,19 @@ export function Product() {
     }
   }, [product, selectedAmount, price, weight]);
 
+  // Установка состояния счетчика категории суши
+  useEffect(() => {
+    if (subCat === "sushi") {
+      setCounter(1);
+    }
+  }, [subCat]);
+
   return (
     <section className="product">
       <div className="container">
         {productStatus === "loading" && <Loader />}
         {productError && <p className="text--error">{productError}</p>}
-        {productStatus === "resolved" && (
+        {productStatus === "resolved" && !isClassisPizza && (
           <div className="product__wrapper">
             <div className="product__img-container">
               <img className="product__img" src={burgerImg} alt={name} />
@@ -98,13 +115,37 @@ export function Product() {
                 />
               )}
               <div className="product__btn-block">
-                <Button
-                  text={`В корзину за ${productPrice} ₽`}
-                  cssClass="product-btn--size"
-                />
+                {showCounter && (
+                  <CounterBtn
+                    price={productPrice}
+                    counter={counter}
+                    setCounter={setCounter}
+                  />
+                )}
+                {!showCounter && (
+                  <Button
+                    text={`В корзину за ${productPrice} ₽`}
+                    cssClass="product-btn--size"
+                  />
+                )}
               </div>
             </div>
           </div>
+        )}
+        {productStatus === "resolved" && isClassisPizza && (
+          <ProductSupplements
+            burgerImg={burgerImg}
+            name={name}
+            productWeight={productWeight}
+            description={description}
+            productPrice={productPrice}
+            size={size}
+            subCat={subCat}
+            selectedAmount={selectedAmount}
+            handleToggleChange={handleToggleChange}
+            toggleShow={toggleShow}
+            showCounter={showCounter}
+          />
         )}
       </div>
     </section>

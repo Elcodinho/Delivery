@@ -26,6 +26,7 @@ export const URL = {
   FEEDBACKURL: "http://localhost:3500/feedback",
   SUGGESTIONSURL: "http://localhost:3600/suggestions",
   MENUURL: "http://localhost:3700/menu",
+  SUPPLEMENTSURL: "http://localhost:3800/supplements",
 }; // Url адреса файлов с данными
 
 export const SECONDARYNAV = {

@@ -177,18 +177,6 @@
       "description": "рис, нори, сливочный сыр, свежий огурец, женская креветка, икра лососевая, майонез"
     },
     {
-      "id": "9",
-      "name": "Онигири",
-      "category": "sushi-i-rolli",
-      "subCat": "sushi",
-      "type": "sushi",
-      "slug": "onigiri",
-      "price": 220,
-      "weight": 100,
-      "image": "img",
-      "description": "рис, крабовый микс, нори"
-    },
-    {
       "id": "10",
       "name": "Суши авокадо",
       "category": "sushi-i-rolli",

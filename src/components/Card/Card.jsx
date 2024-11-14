@@ -39,7 +39,6 @@ export const Card = React.memo(function Card(props) {
       );
     }
   }, [selectedAmount, price, size]);
-
   return (
     <li className="card">
       <img className="card__img" src={img} alt={name} />
