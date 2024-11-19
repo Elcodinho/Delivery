@@ -1,9 +1,7 @@
 import { useState, useEffect } from "react";
-import { NavLink, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import clsx from "clsx";
-import { SecondaryNav } from "@components/Navigations/SecondaryNav/SecondaryNav";
-import { CartPopup } from "@components/UI/Popups/CartPopup/CartPopup";
-import { BsCart4 } from "react-icons/bs";
+import { HeaderMenuContent } from "./HeaderMenuContent/HeaderMenuContent";
 import "./HeaderMenu.css";
 
 const menuItems = [
@@ -17,7 +15,6 @@ const rolliLinks = [
   { name: "Горячие", path: "/menu/sushi-i-rolli/hot" },
   { name: "Суши", path: "/menu/sushi-i-rolli/sushi" },
 ];
-
 const pizzaLinks = [
   { name: "Все", path: "/menu/pizza" },
   { name: "Классическая", path: "/menu/pizza/classic" },
@@ -52,41 +49,27 @@ export function HeaderMenu() {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
-  //"header-menu"
+
   return (
     <section
       className={clsx("header-menu", { "header-menu--fixed ": isFixed })}
     >
-      <ul className="header-menu__list">
-        {menuItems.map((item, index) => (
-          <li className="header-menu__item" key={index}>
-            <NavLink to={item.path}>{item.name}</NavLink>
-          </li>
-        ))}
-      </ul>
-
-      <div className="header-menu__cart">
-        <div className="header-menu__cart-button">
-          <BsCart4 className="header-menu__cart-icon" />
-          <span className="header-menu__cart-divider"></span>
-          <span className="header-menu__cart-price">
-            0<span className="header-menu_currency-symbol">₽</span>
-          </span>
+      {isFixed && (
+        <div className="container">
+          <HeaderMenuContent
+            menuItems={menuItems}
+            showSecondaryNav={showSecondaryNav}
+            pizzaLinks={pizzaLinks}
+            rolliLinks={rolliLinks}
+          />
         </div>
-        <CartPopup />
-      </div>
-      {showSecondaryNav === "sushi-i-rolli" && (
-        <SecondaryNav
-          buttons={rolliLinks}
-          linkClass="secondary__nav-link-menu"
-          activeClass="secondary__nav-link-menu--active"
-        />
       )}
-      {showSecondaryNav === "pizza" && (
-        <SecondaryNav
-          buttons={pizzaLinks}
-          linkClass="secondary__nav-link-menu"
-          activeClass="secondary__nav-link-menu--active"
+      {!isFixed && (
+        <HeaderMenuContent
+          menuItems={menuItems}
+          showSecondaryNav={showSecondaryNav}
+          pizzaLinks={pizzaLinks}
+          rolliLinks={rolliLinks}
         />
       )}
     </section>

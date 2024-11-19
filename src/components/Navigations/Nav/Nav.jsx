@@ -33,7 +33,12 @@ export function Nav(props) {
       </ul>
       <div className="nav__social">
         {socText}
-        <a href="https://vk.com/" target="_blank" rel="noopener noreferrer">
+        <a
+          href="https://vk.com/"
+          aria-label="Группа вконтакте"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           <FaVk className="vk-icon" />
         </a>
       </div>

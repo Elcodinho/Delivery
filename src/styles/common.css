@@ -24,7 +24,9 @@ body {
 
   --my-gr-color: #2b542c;
   --my-yel-color: #ffdf2c;
+  --my-grey-color: #7c7a7a;
   --my-box-shadow: 2px 4px 5px rgba(0, 0, 0, 0.2);
+  --error-color: #fe9b19;
 }
 
 #root {
@@ -80,6 +82,7 @@ main {
 }
 
 .container {
+  width: 100%;
   max-width: 1240px;
   margin: 0 auto;
   padding: 0 20px;
@@ -123,3 +126,11 @@ img {
 .hidden {
   display: none;
 } */
+
+/* Media */
+
+@media (max-width: 580px) {
+  .container {
+    padding: 0 10px;
+  }
+}

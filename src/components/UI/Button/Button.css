@@ -17,6 +17,10 @@
   background-color: var(--my-gr-color);
 }
 
+.button:active {
+  background-color: #000;
+}
+
 .button--show-more {
   border: 1px solid var(--my-gr-color);
   background-color: white;

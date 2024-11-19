@@ -3,14 +3,12 @@ import { useParams } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { selectMenu, getMenu } from "@store/menuSlice";
 import { getInitialSize } from "@utils/getInitialSize";
+import { addProductToCart } from "@utils/addProductToCart";
 import { ProductSupplements } from "./ProductSupplements/ProductSupplements";
 import { Button } from "@components/UI/Button/Button";
 import { Toggle } from "@components/Card/Toggle/Toggle";
-import { CounterBtn } from "@components/UI/CounterBtn/CounterBtn";
 import { Loader } from "@components/UI/Loader/Loader";
 import "./Product.css";
-//  // //
-import burgerImg from "@assets/images/street.webp";
 
 export function Product() {
   const { slug } = useParams();
@@ -20,7 +18,7 @@ export function Product() {
   const {
     name,
     description,
-    img,
+    image: img,
     price,
     category,
     subCat,
@@ -32,8 +30,7 @@ export function Product() {
     (state) => state.menu
   ); // Состояние статуса и ошибки получения продукта
 
-  const [counter, setCounter] = useState(null); // Состояние счетчика категории суши
-  const [selectedAmount, setSelectedAmount] = useState(null); // Состояние для выбранного количества товара
+  const [selectedAmount, setSelectedAmount] = useState(null); // Состояние для выбранного количества товара или его размер
   const [productPrice, setProductPrice] = useState(
     typeof price === "object" ? price.large : price // Используем цену сразу, если это число
   );
@@ -41,14 +38,11 @@ export function Product() {
     typeof weight === "object" ? weight.large : weight // Используем вес сразу, если это число
   );
 
-  const isClassisPizza = category === "pizza" && type === "classic";
+  const isClassicPizza = category === "pizza" && type === "classic";
 
   // Переменная для управления показа toggle
   const toggleShow =
     subCat === "rolli" || (category === "pizza" && type !== "rimskaya");
-
-  // Переменная для показа кнокпи counter
-  const showCounter = subCat === "sushi";
 
   // Обработчик изменения радиокнопки
   function handleToggleChange(event) {
@@ -85,22 +79,30 @@ export function Product() {
     }
   }, [product, selectedAmount, price, weight]);
 
-  // Установка состояния счетчика категории суши
-  useEffect(() => {
-    if (subCat === "sushi") {
-      setCounter(1);
-    }
-  }, [subCat]);
+  // Функция добавления товара в корзину
+  function addProduct() {
+    addProductToCart(dispatch, {
+      slug,
+      name,
+      description,
+      productPrice,
+      img,
+      subCat,
+      isClassicPizza, // Проверка на классическую пиццу
+      isPizzaOrRolli: toggleShow, // Проверка на роллы или классическую пиццу
+      selectedAmount, // Передаем текущий размер товара
+    });
+  }
 
   return (
     <section className="product">
       <div className="container">
         {productStatus === "loading" && <Loader />}
         {productError && <p className="text--error">{productError}</p>}
-        {productStatus === "resolved" && !isClassisPizza && (
+        {productStatus === "resolved" && !isClassicPizza && (
           <div className="product__wrapper">
             <div className="product__img-container">
-              <img className="product__img" src={burgerImg} alt={name} />
+              <img className="product__img" src={img} alt={name} />
             </div>
             <div className="product__info-container">
               <h2 className="title--2">{name}</h2>
@@ -115,36 +117,28 @@ export function Product() {
                 />
               )}
               <div className="product__btn-block">
-                {showCounter && (
-                  <CounterBtn
-                    price={productPrice}
-                    counter={counter}
-                    setCounter={setCounter}
-                  />
-                )}
-                {!showCounter && (
-                  <Button
-                    text={`В корзину за ${productPrice} ₽`}
-                    cssClass="product-btn--size"
-                  />
-                )}
+                <Button
+                  text={`В корзину за ${productPrice} ₽`}
+                  cssClass="product-btn--size"
+                  handleClick={addProduct}
+                />
               </div>
             </div>
           </div>
         )}
-        {productStatus === "resolved" && isClassisPizza && (
+        {productStatus === "resolved" && isClassicPizza && (
           <ProductSupplements
-            burgerImg={burgerImg}
+            img={img}
             name={name}
             productWeight={productWeight}
             description={description}
             productPrice={productPrice}
             size={size}
             subCat={subCat}
+            slug={slug}
             selectedAmount={selectedAmount}
             handleToggleChange={handleToggleChange}
             toggleShow={toggleShow}
-            showCounter={showCounter}
           />
         )}
       </div>

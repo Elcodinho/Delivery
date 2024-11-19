@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getSupplement, selectSupplement } from "@store/supplementSlice";
+import { addProductToCart } from "@utils/addProductToCart";
 import { ProductSupplementsItem } from "./ProductSupplementsItem/ProductSupplementsItem";
 import { Toggle } from "@components/Card/Toggle/Toggle";
 import { Button } from "@components/UI/Button/Button";
@@ -10,13 +11,14 @@ import "./ProductSupplements.css";
 
 export function ProductSupplements(props) {
   const {
-    burgerImg,
+    img,
     name,
     productWeight,
     description,
     productPrice,
     size,
     subCat,
+    slug,
     selectedAmount,
     handleToggleChange,
     toggleShow,
@@ -28,6 +30,7 @@ export function ProductSupplements(props) {
   );
   const [totalPrice, setTotalPrice] = useState(productPrice); // Состояние для отслеживания общей цены
   const [selectedSupplements, setSelectedSupplements] = useState([]); // Для отслеживания выбранных добавок
+  const [resetCheck, setResetCheck] = useState(null);
   // Получаем список добавок
   useEffect(() => {
     dispatch(getSupplement());
@@ -64,6 +67,33 @@ export function ProductSupplements(props) {
     });
   };
 
+  // Функция добавления товара в корзину
+  function addProduct() {
+    // Преобразуем массив selectedSupplements, оставив только имена
+    const supplements = selectedSupplements.map(
+      (supplement) => supplement.name
+    );
+    addProductToCart(dispatch, {
+      slug,
+      name,
+      description,
+      productPrice: totalPrice,
+      img,
+      isClassicPizza: true,
+      isPizzaOrRolli: true,
+      selectedAmount, // Передаем текущий размер товара
+      supplements, // Массив добавок
+    });
+    setSelectedSupplements([]); // Очищаем массив добавок
+    setTotalPrice(productPrice); // В totalPrice устанавливаем только цену самого товара(без добавок)
+    setResetCheck(true); // Сбрасываем отмченные добавки
+
+    // После того как resetCheck сработает, сбрасываем его обратно на null
+    setTimeout(() => {
+      setResetCheck(null);
+    }, 10); // Сбрасываем на null через 10 миллисекунд
+  }
+
   // Количество выбранных добавок
   const selectedCount = selectedSupplements.length;
   return (
@@ -71,7 +101,7 @@ export function ProductSupplements(props) {
       <div className="supplements__wrapper">
         <div className="supplements__info">
           <div className="supplements__info-img-container">
-            <img className="supplements__info-img" src={burgerImg} alt={name} />
+            <img className="supplements__info-img" src={img} alt={name} />
           </div>
           <div className="supplements__info-text">
             <h2 className="title--2">{name}</h2>
@@ -109,11 +139,13 @@ export function ProductSupplements(props) {
                 <ProductSupplementsItem
                   key={item.id}
                   name={item.name}
+                  weight={item.weight}
                   price={item.price}
                   img={item.img}
                   updateTotalPrice={updateTotalPrice}
                   selectedCount={selectedCount} // Передаем количество выбранных добавок
-                  resetCheck={productWeight} // передаем значение для сбросаотмеченных добавок
+                  productWeight={productWeight} // Передаем вес товара
+                  resetCheck={resetCheck} // передаем значение для сброса отмеченных добавок
                 />
               ))}
             </ul>
@@ -121,7 +153,10 @@ export function ProductSupplements(props) {
         </div>
       </div>
       <div className="btn-sup-container">
-        <Button text={`В корзину за ${totalPrice} ₽`} />
+        <Button
+          text={`В корзину за ${totalPrice} ₽`}
+          handleClick={addProduct}
+        />
       </div>
     </div>
   );

@@ -1,12 +1,19 @@
 import { useState, useEffect } from "react";
 import clsx from "clsx";
-import tomatoImg from "@assets/images/tomato.webp";
 import "./ProductSupplementsItem.css";
 
 export function ProductSupplementsItem(props) {
-  const { name, price, img, updateTotalPrice, selectedCount, resetCheck } =
-    props;
-  const [isChecked, setIsChecked] = useState(false);
+  const {
+    name,
+    weight,
+    price,
+    img,
+    updateTotalPrice,
+    selectedCount,
+    productWeight,
+    resetCheck,
+  } = props;
+  const [isChecked, setIsChecked] = useState(false); // Состояние выбранных добавок
 
   const isDisabled = selectedCount >= 10 && !isChecked; // Блокируем добавление 11-й добавки
 
@@ -20,7 +27,7 @@ export function ProductSupplementsItem(props) {
   // Сброс отмеченных добавок при изменении размера или цены пиццы
   useEffect(() => {
     setIsChecked(false);
-  }, [resetCheck]);
+  }, [productWeight, resetCheck]);
 
   return (
     <li className="supplements__item">
@@ -31,8 +38,10 @@ export function ProductSupplementsItem(props) {
           value={name}
           onChange={handleChange}
         />
-        <img className="supplements__img" src={tomatoImg} alt={name} />
-        <p className="supplements__name">{name}</p>
+        <img className="supplements__img" src={img} alt={name} />
+        <p className="supplements__name">
+          {name} {weight ? `${weight}гр` : ""}
+        </p>
         <p className="supplements__price">+{price} ₽</p>
       </label>
     </li>

@@ -54,3 +54,22 @@
 .counter-btn--plus:hover .counter-btn__icon {
   color: white;
 }
+
+/* Стили для корзины */
+.counter-block--cart {
+  width: 80%;
+  height: 40px;
+}
+
+.counter-width--cart {
+  width: 33.33%;
+}
+
+/* Media */
+
+@media (max-width: 768px) {
+  .counter-block--cart {
+    width: 100%;
+    height: 35px;
+  }
+}

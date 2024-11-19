@@ -86,6 +86,7 @@
   background-color: #4c4c4c;
   color: white;
   font-size: 0.9rem;
+  z-index: 6;
 }
 
 .supplements__toggle-container {

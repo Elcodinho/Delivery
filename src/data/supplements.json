@@ -1,16 +1,87 @@
 {
   "supplements": [
-    { "id": "1", "name": "Двойной сыр", "price": 50, "img": "img" },
-    { "id": "2", "name": "Помидоры 50гр", "price": 40, "img": "img" },
-    { "id": "3", "name": "Пеперони 50гр", "price": 75, "img": "img" },
-    { "id": "4", "name": "Маслины 50гр", "price": 55, "img": "img" },
-    { "id": "5", "name": "Огурцы соленые 50гр", "price": 35, "img": "img" },
-    { "id": "6", "name": "Бекон 50гр", "price": 75, "img": "img" },
-    { "id": "7", "name": "Шампиньоны 50гр", "price": 50, "img": "img" },
-    { "id": "8", "name": "Халапеньо 50 гр", "price": 45, "img": "img" },
-    { "id": "9", "name": "Куриное филе 50гр", "price": 60, "img": "img" },
-    { "id": "10", "name": "Перец чили 20гр", "price": 20, "img": "img" },
-    { "id": "11", "name": "Курица копченая", "price": 80, "img": "img" },
-    { "id": "12", "name": "Ветчина 50гр", "price": 75, "img": "img" }
+    {
+      "id": "1",
+      "name": "Двойной сыр",
+      "price": 50,
+      "img": "https://res.cloudinary.com/dynzztjct/image/upload/v1731662555/sir_cin5tc.webp"
+    },
+    {
+      "id": "2",
+      "name": "Помидоры",
+      "weight": 50,
+      "price": 40,
+      "img": "https://res.cloudinary.com/dynzztjct/image/upload/v1731662556/tomato_nyx5lt.webp"
+    },
+    {
+      "id": "3",
+      "name": "Пеперони",
+      "weight": 50,
+      "price": 75,
+      "img": "https://res.cloudinary.com/dynzztjct/image/upload/v1731662556/pepperoni_verqtu.webp"
+    },
+    {
+      "id": "4",
+      "name": "Маслины",
+      "weight": 50,
+      "price": 55,
+      "img": "https://res.cloudinary.com/dynzztjct/image/upload/v1731662579/maslini_zjw9j2.webp"
+    },
+    {
+      "id": "5",
+      "name": "Огурцы соленые",
+      "weight": 50,
+      "price": 35,
+      "img": "https://res.cloudinary.com/dynzztjct/image/upload/v1731662582/ogurci_gvrebb.webp"
+    },
+    {
+      "id": "6",
+      "name": "Бекон",
+      "weight": 50,
+      "price": 75,
+      "img": "https://res.cloudinary.com/dynzztjct/image/upload/v1731662559/becon_pblf6g.webp"
+    },
+    {
+      "id": "7",
+      "name": "Шампиньоны",
+      "weight": 50,
+      "price": 50,
+      "img": "https://res.cloudinary.com/dynzztjct/image/upload/v1731662572/gribi_hczhtm.webp"
+    },
+    {
+      "id": "8",
+      "name": "Халапеньо",
+      "weight": 50,
+      "price": 45,
+      "img": "https://res.cloudinary.com/dynzztjct/image/upload/v1731662575/halapenho_pc02ow.webp"
+    },
+    {
+      "id": "9",
+      "name": "Куриное филе",
+      "weight": 50,
+      "price": 60,
+      "img": "https://res.cloudinary.com/dynzztjct/image/upload/v1731662577/kur-file_rnns1h.webp"
+    },
+    {
+      "id": "10",
+      "name": "Перец чили",
+      "weight": 20,
+      "price": 20,
+      "img": "https://res.cloudinary.com/dynzztjct/image/upload/v1731662571/chili_ubtu2b.webp"
+    },
+    {
+      "id": "11",
+      "name": "Курица копченая",
+      "weight": 50,
+      "price": 80,
+      "img": "https://res.cloudinary.com/dynzztjct/image/upload/v1731662578/kur-konpchenaya_cjqjhh.webp"
+    },
+    {
+      "id": "12",
+      "name": "Ветчина",
+      "weight": 50,
+      "price": 75,
+      "img": "https://res.cloudinary.com/dynzztjct/image/upload/v1731662557/vetchina_p1cdxn.webp"
+    }
   ]
 }

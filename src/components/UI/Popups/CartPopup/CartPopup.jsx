@@ -18,7 +18,11 @@ export function CartPopup() {
         </Link>
       </p>
       <div className="cart-popup__button-block">
-        <PageLink text="Перейти в меню" cssClass="link--font" />
+        <PageLink
+          text="Перейти в меню"
+          cssClass="link--font"
+          adress="/menu/sushi-i-rolli"
+        />
       </div>
     </div>
   );

@@ -10,6 +10,18 @@
       "feedbackAbout": "О службе доставки",
       "feedbackCity": "3",
       "text": "Все ужасно"
+    },
+    {
+      "id": "2024-11-15T09:33:13.576Z",
+      "date": "птн, 15 нояб. 2024 г., 12:33",
+      "name": "Петр",
+      "phone": "",
+      "email": "",
+      "title": "",
+      "feedbackAbout": "О Ресторане",
+      "feedbackCity": "1",
+      "rating": 1,
+      "text": "Тест"
     }
   ]
 }

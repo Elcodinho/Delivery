@@ -1,4 +1,7 @@
+import { useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setCart } from "@store/cartSlice";
 
 // Pages
 import { Layout } from "@components/Layout/Layout";
@@ -11,7 +14,23 @@ import { DeliveryPage } from "@pages/DeliveryPage";
 import { PrivacyPage } from "@pages/PrivacyPage";
 import { MenuPage } from "@pages/MenuPage";
 import { ProductPage } from "@pages/ProductPage";
+import { OrderPage } from "@pages/OrderPage";
 function App() {
+  const dispatch = useDispatch();
+
+  // Обновляем состтяние state для корзины при любом обновлении local storage
+  useEffect(() => {
+    const handleStorageChange = (event) => {
+      if (event.key === "cart") {
+        const updatedCart = JSON.parse(event.newValue) || [];
+        dispatch(setCart(updatedCart));
+      }
+    };
+    window.addEventListener("storage", handleStorageChange);
+    return () => {
+      window.removeEventListener("storage", handleStorageChange);
+    };
+  }, [dispatch]);
   return (
     <>
       <Routes>
@@ -25,6 +44,7 @@ function App() {
           <Route path="/privacy" element={<PrivacyPage />} />
           <Route path="/menu/:category/:type?" element={<MenuPage />} />
           <Route path="/product/:slug" element={<ProductPage />} />
+          <Route path="/order" element={<OrderPage />} />
         </Route>
       </Routes>
     </>
