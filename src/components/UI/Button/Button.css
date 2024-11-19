@@ -72,6 +72,16 @@
   font-weight: 600;
 }
 
+/* Стили для Confirmation */
+.confirmation-btn--style {
+  background-color: #f0f0f0;
+  transition: background-color 0.2s linear;
+}
+
+.confirmation-btn--style:hover {
+  color: #000;
+  background-color: #ccc;
+}
 /* Media */
 
 @media (max-width: 768px) {

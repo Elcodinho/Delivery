@@ -1,4 +1,22 @@
-.success-mask {
+@keyframes appearance {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes disappearance {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+.confirmation-mask {
   position: fixed;
   top: 0;
   left: 0;
@@ -13,16 +31,27 @@
 
   background-color: rgba(0, 0, 0, 0.7);
   z-index: 10;
+  animation: appearance 0.3s ease-in;
 }
 
-.success-modal {
+.confirmation-modal {
   position: relative;
+  max-width: 400px;
   border-radius: 5px;
   background-color: white;
   z-index: 11;
+  animation: appearance 0.3s ease-in;
 }
 
-.success-modal__wrapper {
+.confirmation-mask--disappear {
+  animation: disappearance 0.3s ease-in;
+}
+
+.confirmation-modal--disappear {
+  animation: disappearance 0.3s ease-in;
+}
+
+.confirmation-modal__wrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -30,34 +59,30 @@
   padding: 20px 50px;
 }
 
-.success-modal__sub {
+.confirmation-modal__sub {
   font-size: 1.5rem;
   font-weight: 600;
   text-align: center;
   color: var(--my-gr-color);
 }
 
-.success-modal__text {
+.confirmation-modal__text {
   font-size: 1.2rem;
   font-weight: 500;
   text-align: center;
   color: var(--my-gr-color);
 }
 
-.success-modal__btn {
-  display: block;
-  margin-top: 10px;
-  text-align: center;
-  font-size: 1.1rem;
-  transition: all 0.2s linear;
+.confirmation-modal__btn-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+  padding: 5px 0;
 }
 
-.success-modal__btn:hover {
-  transform: scale(105%);
-  color: var(--my-yel-color);
-}
-
-.success-modal__close-btn {
+.confirmation-modal__close-btn {
   position: absolute;
   top: 10px;
   right: 10px;
@@ -70,6 +95,6 @@
   transition: color 0.3s;
 }
 
-.success-modal__close-btn:hover {
+.confirmation-modal__close-btn:hover {
   color: red;
 }

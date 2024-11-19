@@ -1,3 +1,39 @@
+.cart__wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.cart--empty {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  width: 100%;
+}
+
+.cart__title--empty {
+  text-align: center;
+}
+
+.cart__button-container {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.cart__button--clear {
+  font-size: 1rem;
+  color: var(--my-yel-color);
+  transition: color 0.3s linear;
+}
+
+.cart__button--clear:hover {
+  color: black;
+}
+
 .cart__list {
   display: flex;
   flex-direction: column;

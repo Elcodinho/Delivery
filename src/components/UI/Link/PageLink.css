@@ -21,6 +21,24 @@
   font-size: 16px;
 }
 
+/* Стили для пустой корзины */
+.button-cart--empty {
+  border: 1px solid var(--my-yel-color);
+  color: var(--my-yel-color);
+  background-color: white;
+
+  transition: all 0.2s linear;
+}
+
+.button-cart--empty:hover {
+  background-color: var(--my-yel-color);
+  color: #000;
+}
+
+.button-cart--empty:active {
+  background-color: #b19b1f;
+}
+
 /* Media */
 @media (max-width: 768px) {
   .link {

@@ -1,10 +1,13 @@
-import { useState } from "react";
+import React from "react";
+import { useDispatch } from "react-redux";
+import { updateProductAmount, removeFromCart } from "@store/cartSlice";
 import { CounterBtn } from "@components/UI/CounterBtn/CounterBtn";
 
 import "./CartItem.css";
 
-export function CartItem(props) {
+export const CartItem = React.memo(function CartItem(props) {
   const {
+    cartId,
     subCat,
     isClassicPizza,
     name,
@@ -15,9 +18,9 @@ export function CartItem(props) {
     image,
     supplements,
   } = props;
+  const dispatch = useDispatch();
 
-  const [counter, setCounter] = useState(amount); // Состояние счетчика кол-ва товара
-  const totalPrice = price * counter; // Общая сумма за товар
+  const totalPrice = price * amount; // Общая сумма за товар
 
   const isRolli = subCat === "rolli";
   const isPizza = isClassicPizza;
@@ -26,9 +29,19 @@ export function CartItem(props) {
     btnsWidth: "counter-width--cart",
     btnBlock: "counter-block--cart",
   };
-
   // Объединяем элементы supplements в строку, если они есть
   const supplementNames = supplements ? supplements.join(", ") : null;
+
+  // Увеличение кол-ва товара
+  const handleIncrease = () => {
+    dispatch(updateProductAmount({ cartId, amount: amount + 1 }));
+  };
+
+  // Уменьшение кол-ва товара
+  const handleDecrease = () => {
+    dispatch(updateProductAmount({ cartId, amount: amount - 1 }));
+  };
+
   return (
     <li className="cart__item">
       <div className="cart__description">
@@ -67,23 +80,34 @@ export function CartItem(props) {
       </div>
       {/* Cart-Count */}
       <div className="cart-count">
-        <div className="cart-count__price">{price} ₽</div>
+        <div className="cart-count__price">
+          <span className="cart-count__inform-span">Цена за шт</span>
+          <p>{price} ₽</p>
+        </div>
         <div className="cart-count__counter">
+          <span className="cart-count__inform-span">Кол-во</span>
           <CounterBtn
             price={price}
-            counter={counter}
-            setCounter={setCounter}
-            countData={counter}
+            amount={amount}
+            handleIncrease={handleIncrease}
+            handleDecrease={handleDecrease}
+            countData={amount}
             cssClass={counterCss}
           />
         </div>
         <div className="cart-count__price cart-count__price--total">
-          {totalPrice}
+          <span className="cart-count__inform-span">Итого</span>
+          <p>{totalPrice} ₽</p>
         </div>
       </div>
-      <button className="cart__item-delete" type="button">
+      <button
+        className="cart__item-delete"
+        type="button"
+        aria-label="Удалить товар из корзины"
+        onClick={() => dispatch(removeFromCart(cartId))}
+      >
         ×
       </button>
     </li>
   );
-}
+});
