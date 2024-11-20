@@ -5,29 +5,25 @@ import "./CounterBtn.css";
 
 export function CounterBtn(props) {
   const {
-    price,
-    amount,
     handleIncrease,
     handleDecrease,
-    countData = `${amount} шт х ${price} ₽`,
-    cssClass = {},
+    countData = 0,
+    cssClass = "",
   } = props;
 
-  const { btnsWidth, btnBlock } = cssClass;
-
   return (
-    <div className={clsx("counter-btn-container", btnBlock)}>
+    <div className={clsx("counter-btn-container", cssClass)}>
       <button
-        className={clsx("counter-btn counter-btn--minus", btnsWidth)}
+        className="counter-btn counter-btn--minus"
         type="button"
         aria-label="Удалить единицу товара"
         onClick={handleDecrease}
       >
         <FaMinus className="counter-btn__icon counter-btn__icon--minus" />
       </button>
-      <div className={clsx("counter-stepper", btnsWidth)}>{countData}</div>
+      <div className="counter-stepper">{countData}</div>
       <button
-        className={clsx("counter-btn counter-btn--plus", btnsWidth)}
+        className="counter-btn counter-btn--plus"
         type="button"
         aria-label="Добавить единицу товара"
         onClick={handleIncrease}

@@ -1,0 +1,42 @@
+.added-popup {
+  position: fixed;
+  right: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 220px;
+  height: 50px;
+  padding: 10px;
+  border-radius: 15px;
+  background-color: #4c4c4c;
+  color: white;
+  font-size: 0.9rem;
+  font-weight: 600;
+  z-index: 1110;
+  opacity: 1;
+  animation: fadeout 3s forwards; /* Анимация исчезновения */
+}
+
+@keyframes fadeout {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+}
+
+/* Media */
+
+@media (max-width: 580px) {
+  .added-popup {
+    left: 10px;
+    right: 10px;
+    width: 100%;
+  }
+}

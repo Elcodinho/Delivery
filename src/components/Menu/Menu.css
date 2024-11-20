@@ -2,6 +2,10 @@
   margin-bottom: 50px;
 }
 
+.menu__wrapper {
+  width: 100%;
+}
+
 .menu__title--margin {
   margin-bottom: 30px;
 }

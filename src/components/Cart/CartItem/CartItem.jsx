@@ -25,10 +25,6 @@ export const CartItem = React.memo(function CartItem(props) {
   const isRolli = subCat === "rolli";
   const isPizza = isClassicPizza;
 
-  const counterCss = {
-    btnsWidth: "counter-width--cart",
-    btnBlock: "counter-block--cart",
-  };
   // Объединяем элементы supplements в строку, если они есть
   const supplementNames = supplements ? supplements.join(", ") : null;
 
@@ -87,12 +83,9 @@ export const CartItem = React.memo(function CartItem(props) {
         <div className="cart-count__counter">
           <span className="cart-count__inform-span">Кол-во</span>
           <CounterBtn
-            price={price}
-            amount={amount}
             handleIncrease={handleIncrease}
             handleDecrease={handleDecrease}
             countData={amount}
-            cssClass={counterCss}
           />
         </div>
         <div className="cart-count__price cart-count__price--total">

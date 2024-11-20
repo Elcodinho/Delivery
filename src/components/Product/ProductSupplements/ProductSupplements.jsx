@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getSupplement, selectSupplement } from "@store/supplementSlice";
 import { addProductToCart } from "@utils/addProductToCart";
@@ -68,7 +68,7 @@ export function ProductSupplements(props) {
   };
 
   // Функция добавления товара в корзину
-  function addProduct() {
+  const addProduct = useCallback(() => {
     // Преобразуем массив selectedSupplements, оставив только имена
     const supplements = selectedSupplements.map(
       (supplement) => supplement.name
@@ -78,6 +78,7 @@ export function ProductSupplements(props) {
       name,
       description,
       productPrice: totalPrice,
+      weight: productWeight,
       img,
       isClassicPizza: true,
       isPizzaOrRolli: true,
@@ -92,7 +93,7 @@ export function ProductSupplements(props) {
     setTimeout(() => {
       setResetCheck(null);
     }, 10); // Сбрасываем на null через 10 миллисекунд
-  }
+  });
 
   // Количество выбранных добавок
   const selectedCount = selectedSupplements.length;

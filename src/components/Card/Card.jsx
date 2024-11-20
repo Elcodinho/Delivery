@@ -1,5 +1,5 @@
 import React from "react";
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo, useCallback } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import LazyLoad from "react-lazyload";
@@ -11,8 +11,19 @@ import { ImageLoader } from "@components/UI/ImageLoader/ImageLoader";
 import "./Card.css";
 
 export const Card = React.memo(function Card(props) {
-  const { name, description, img, price, category, subCat, type, slug, size } =
-    props;
+  const {
+    name,
+    description,
+    img,
+    price,
+    weight,
+    category,
+    subCat,
+    type,
+    slug,
+    size,
+    addPopup,
+  } = props;
   const dispatch = useDispatch();
   // Устанавливаем начальное значение размера в зависимости от категории
   const initialSize = useMemo(
@@ -24,6 +35,9 @@ export const Card = React.memo(function Card(props) {
   const [productPrice, setProductPrice] = useState(
     typeof price === "object" ? price.large : price // Используем цену сразу, если это число
   );
+  const [productWeight, setProductWeight] = useState(
+    typeof weight === "object" ? weight.large : weight // Используем вес сразу, если это число
+  );
 
   // Проверка на классическую пиццу
   const isClassicPizza = category === "pizza" && type === "classic";
@@ -31,35 +45,43 @@ export const Card = React.memo(function Card(props) {
   const toggleShow = subCat === "rolli" || isClassicPizza;
 
   // Обработчик изменения радиокнопки
-  function handleToggleChange(event) {
+  const handleToggleChange = useCallback((event) => {
     const selectedValue = parseFloat(event.target.value); // value из radio переводим в число для сравнения
     setSelectedAmount(selectedValue); // Устанавливаем выбранное количество
-  }
-
-  // Определение цены в зависимости от выбранного количества
-  useEffect(() => {
-    // Если price это не число, а объект с ценами (зависит от категории товара), то устанавливаем его в цену
-    if (typeof price === "object") {
-      setProductPrice(
-        selectedAmount === size.small ? price.small : price.large
-      );
-    }
-  }, [selectedAmount, price, size]);
+  });
 
   // Добавляем товар в корзину
-  function addProduct() {
+
+  // Универсальная функция для получения нужной цены или веса
+  const getProductAttribute = (attribute, selectedAmount) => {
+    if (typeof attribute === "object") {
+      return selectedAmount === size.small ? attribute.small : attribute.large;
+    }
+    return attribute; // Если значение не объект, просто возвращаем его
+  };
+
+  // Определение цены  и веса продукта в зависимости от выбранного количества
+  useEffect(() => {
+    setProductPrice(getProductAttribute(price, selectedAmount));
+    setProductWeight(getProductAttribute(weight, selectedAmount));
+  }, [selectedAmount, price, weight]);
+
+  // Добавляем товар в корзину
+  const addProduct = useCallback(() => {
     addProductToCart(dispatch, {
       slug,
       name,
       description,
       productPrice,
+      weight: productWeight,
       img,
       subCat,
       isClassicPizza, // Проверка на классическую пиццу
       isPizzaOrRolli: toggleShow, // Проверка на роллы или классическую пиццу
       selectedAmount, // Передаем текущий размер товара
     });
-  }
+    addPopup(name); // Передаём имя товара в массив popups
+  });
 
   return (
     <li className="card">

@@ -39,6 +39,12 @@
   background-color: #b19b1f;
 }
 
+/* Стили для Popup корзины */
+
+.cart-popup-style {
+  width: 50%;
+}
+
 /* Media */
 @media (max-width: 768px) {
   .link {

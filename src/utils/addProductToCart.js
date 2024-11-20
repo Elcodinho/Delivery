@@ -8,6 +8,7 @@ export function addProductToCart(
     name,
     description,
     productPrice,
+    weight,
     img,
     subCat,
     isClassicPizza,
@@ -22,6 +23,7 @@ export function addProductToCart(
     description,
     amount: 1,
     price: productPrice,
+    weight,
     image: img,
     ...(subCat === "rolli" && { subCat }), // Добавляем subCat только если subCat === 'rolli'
     ...(isClassicPizza && { isClassicPizza: true }), // Проверка пиццы на классическую

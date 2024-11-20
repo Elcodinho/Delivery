@@ -1,4 +1,7 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { selectCart } from "@store/cartSlice";
+import { countCartTotalSum } from "@utils/countCartTotalSum";
 import { SecondaryNav } from "@components/Navigations/SecondaryNav/SecondaryNav";
 import { CartPopup } from "@components/UI/Popups/CartPopup/CartPopup";
 import { BsCart4 } from "react-icons/bs";
@@ -6,6 +9,11 @@ import "./HeaderMenuContent.css";
 
 export function HeaderMenuContent(props) {
   const { menuItems, showSecondaryNav, pizzaLinks, rolliLinks } = props;
+  const cart = useSelector(selectCart);
+
+  // Считаем общую сумму всех товаров в корзине
+  const sum = countCartTotalSum(cart);
+
   return (
     <div className="header-menu__wrapper">
       <div className="header-menu__content">
@@ -18,13 +26,14 @@ export function HeaderMenuContent(props) {
         </ul>
 
         <div className="header-menu__cart">
-          <div className="header-menu__cart-button">
+          <Link to="/order" className="header-menu__cart-button">
             <BsCart4 className="header-menu__cart-icon" />
             <span className="header-menu__cart-divider"></span>
             <span className="header-menu__cart-price">
-              0<span className="header-menu_currency-symbol">₽</span>
+              {sum}
+              <span className="header-menu_currency-symbol">₽</span>
             </span>
-          </div>
+          </Link>
           <CartPopup />
         </div>
       </div>

@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useParams } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { selectMenu, getMenu } from "@store/menuSlice";
@@ -45,10 +45,10 @@ export function Product() {
     subCat === "rolli" || (category === "pizza" && type !== "rimskaya");
 
   // Обработчик изменения радиокнопки
-  function handleToggleChange(event) {
+  const handleToggleChange = useCallback((event) => {
     const selectedValue = parseFloat(event.target.value); // value из radio переводим в число для сравнения
     setSelectedAmount(selectedValue); // Устанавливаем выбранное количество
-  }
+  });
 
   // Получение продукта
   useEffect(() => {
@@ -80,19 +80,20 @@ export function Product() {
   }, [product, selectedAmount, price, weight]);
 
   // Функция добавления товара в корзину
-  function addProduct() {
+  const addProduct = useCallback(() => {
     addProductToCart(dispatch, {
       slug,
       name,
       description,
       productPrice,
+      weight: productWeight,
       img,
       subCat,
       isClassicPizza, // Проверка на классическую пиццу
       isPizzaOrRolli: toggleShow, // Проверка на роллы или классическую пиццу
       selectedAmount, // Передаем текущий размер товара
     });
-  }
+  });
 
   return (
     <section className="product">
