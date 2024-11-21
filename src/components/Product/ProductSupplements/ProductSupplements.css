@@ -70,14 +70,10 @@
 }
 
 .supplements__text-information__popup {
-  display: none;
-}
-
-.info-circle-icon:hover + .supplements__text-information__popup {
   position: absolute;
   bottom: -210%;
   left: -250%;
-  display: flex;
+  display: none;
   justify-content: center;
   align-items: center;
   width: 220px;
@@ -89,9 +85,11 @@
   z-index: 6;
 }
 
+.visible {
+  display: flex;
+}
 .supplements__toggle-container {
   width: 70%;
-  /* margin: 0 auto 10px; */
 }
 
 .supplements__list {

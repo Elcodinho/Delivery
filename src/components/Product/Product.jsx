@@ -6,7 +6,7 @@ import { getInitialSize } from "@utils/getInitialSize";
 import { addProductToCart } from "@utils/addProductToCart";
 import { ProductSupplements } from "./ProductSupplements/ProductSupplements";
 import { Button } from "@components/UI/Button/Button";
-import { Toggle } from "@components/Card/Toggle/Toggle";
+import { Toggle } from "@components/UI/Toggles/Toggle/Toggle";
 import { Loader } from "@components/UI/Loader/Loader";
 import "./Product.css";
 

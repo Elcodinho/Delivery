@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import LazyLoad from "react-lazyload";
 import { getInitialSize } from "@utils/getInitialSize";
 import { addProductToCart } from "@utils/addProductToCart";
-import { Toggle } from "@components/Card/Toggle/Toggle";
+import { Toggle } from "@components/UI/Toggles/Toggle/Toggle";
 import { Button } from "@components/UI/Button/Button";
 import { ImageLoader } from "@components/UI/ImageLoader/ImageLoader";
 import "./Card.css";

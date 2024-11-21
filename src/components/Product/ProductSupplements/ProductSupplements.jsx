@@ -1,9 +1,10 @@
 import { useState, useEffect, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import clsx from "clsx";
 import { getSupplement, selectSupplement } from "@store/supplementSlice";
 import { addProductToCart } from "@utils/addProductToCart";
 import { ProductSupplementsItem } from "./ProductSupplementsItem/ProductSupplementsItem";
-import { Toggle } from "@components/Card/Toggle/Toggle";
+import { Toggle } from "@components/UI/Toggles/Toggle/Toggle";
 import { Button } from "@components/UI/Button/Button";
 import { Loader } from "@components/UI/Loader/Loader";
 import { FaInfoCircle } from "react-icons/fa";
@@ -30,7 +31,8 @@ export function ProductSupplements(props) {
   );
   const [totalPrice, setTotalPrice] = useState(productPrice); // Состояние для отслеживания общей цены
   const [selectedSupplements, setSelectedSupplements] = useState([]); // Для отслеживания выбранных добавок
-  const [resetCheck, setResetCheck] = useState(null);
+  const [resetCheck, setResetCheck] = useState(null); // Состояние для сброса всех отмеченых добавок
+  const [showInfo, setShowInfo] = useState(false); // Состояние показа popup добавок
   // Получаем список добавок
   useEffect(() => {
     dispatch(getSupplement());
@@ -66,6 +68,11 @@ export function ProductSupplements(props) {
       return newSupplements;
     });
   };
+
+  // Функция показа popup для добавок
+  function handleInfoToggle() {
+    setShowInfo((prevShow) => !prevShow);
+  }
 
   // Функция добавления товара в корзину
   const addProduct = useCallback(() => {
@@ -126,8 +133,16 @@ export function ProductSupplements(props) {
           <div className="supplements__text">
             <p>Дополнительные ингредиенты</p>
             <div className="supplements__text-information">
-              {selectedCount} / 10 <FaInfoCircle className="info-circle-icon" />
-              <div className="supplements__text-information__popup">
+              {selectedCount} / 10{" "}
+              <FaInfoCircle
+                className="info-circle-icon"
+                onClick={handleInfoToggle}
+              />
+              <div
+                className={clsx("supplements__text-information__popup", {
+                  visible: showInfo,
+                })}
+              >
                 Можно выбрать максимум 10
               </div>
             </div>

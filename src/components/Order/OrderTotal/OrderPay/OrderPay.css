@@ -1,0 +1,68 @@
+.order-pay__block {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.order-pay__radio {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 15px;
+  border: 2px solid transparent;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: border-color 0.3s linear;
+}
+
+.order-pay__radio--selected {
+  border-color: var(--my-yel-color);
+}
+
+.order-pay__radio__icon {
+  width: 24px;
+  height: 24px;
+}
+
+.order-pay__radio__label {
+  font-size: 1rem;
+  color: #4c4c4c;
+  font-weight: 500;
+  transition: color 0.3s linear;
+}
+
+.order-pay__radio--selected .order-pay__radio__label {
+  color: var(--my-yel-color);
+}
+
+.order-pay__radio input {
+  display: none;
+}
+
+.change-block {
+  display: none;
+  align-items: center;
+  gap: 5px;
+  padding: 15px;
+}
+
+.input-change {
+  padding: 5px;
+  border: none;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+}
+
+.input-change::-webkit-outer-spin-button,
+.input-change::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.input-change:focus {
+  outline: none;
+}
+
+.visible {
+  display: flex;
+}

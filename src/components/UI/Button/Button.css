@@ -82,6 +82,14 @@
   color: #000;
   background-color: #ccc;
 }
+
+/* Стиля для Order-total */
+.order-total--style {
+  width: 100%;
+  padding: 13px 20px;
+  font-weight: 600;
+}
+
 /* Media */
 
 @media (max-width: 768px) {

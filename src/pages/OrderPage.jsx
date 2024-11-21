@@ -1,8 +1,8 @@
-import { Cart } from "@components/Cart/Cart";
+import { Order } from "@components/Order/Order";
 export function OrderPage() {
   return (
     <main>
-      <Cart />
+      <Order />
     </main>
   );
 }
