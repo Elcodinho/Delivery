@@ -1,0 +1,37 @@
+.form-delivery {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-delivery__main-adress {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.form__group-container--street {
+  width: calc(60% - 10px) !important;
+}
+
+.form__group-container--house {
+  width: calc(40% - 10px) !important;
+}
+
+/* Media */
+
+@media (max-width: 540px) {
+  .form-delivery__main-adress {
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .form__group-container--street {
+    width: 100% !important;
+  }
+
+  .form__group-container--house {
+    width: 100% !important;
+  }
+}

@@ -1,4 +1,4 @@
-.toggle-container {
+.form__toggle-container {
   position: relative;
   display: flex;
   justify-content: center;
@@ -6,56 +6,43 @@
   width: 100%;
   border: 1px solid #ccc;
   border-radius: 20px;
+  font-size: 1rem;
+  color: #4c4c4c;
 }
 
-.toggle {
+.form__toggle {
   display: flex;
   align-items: center;
   width: 50%;
-  height: 40px;
+  height: 50px;
 
   cursor: pointer;
   padding: 5px;
   transition: background-color 0.3s ease;
 }
 
-.toggle-input {
+.form__toggle-input {
   display: none;
 }
 
-.toggle-label {
+.form__toggle-label {
   flex: 1;
   text-align: center;
   z-index: 2;
 }
 
-.toggle-switch {
+.form__toggle-switch {
   position: absolute;
   top: 3.5px;
   left: 5px;
   width: 48%;
-  height: 32px;
+  height: 42px;
   background-color: #ccc;
   border-radius: 20px;
-  transition: left 0.3s ease;
+  transition: left 0.4s ease;
 }
 
-.toggle-switch.right {
+.form__toggle-switch.right {
   left: calc(100% - 5px - 48%);
 }
-
 /* Media */
-
-@media (max-width: 768px) {
-  .toggle-container {
-    width: 80%;
-    margin: 0 auto;
-  }
-}
-
-@media (max-width: 540px) {
-  .toggle-container {
-    width: 100%;
-    margin: 0;
-  }
-}

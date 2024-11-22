@@ -38,7 +38,6 @@ export function Toggle(props) {
       {/* Переключатель */}
       <span
         className={clsx("toggle-switch", {
-          left: left,
           right: right,
         })}
       ></span>

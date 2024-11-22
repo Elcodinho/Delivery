@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 import clsx from "clsx";
-import { getActiveClass } from "@utils/getActiveClass";
+import { getActiveClass } from "@utils/getClasses/getActiveClass";
 import "./SecondaryNav.css";
 
 export function SecondaryNav(props) {

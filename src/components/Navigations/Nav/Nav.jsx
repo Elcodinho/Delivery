@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import { getActiveClass } from "@utils/getActiveClass";
+import { getActiveClass } from "@utils/getClasses/getActiveClass";
 import { FaVk } from "react-icons/fa";
 import "./Nav.css";
 

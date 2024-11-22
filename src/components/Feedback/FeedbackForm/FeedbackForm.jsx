@@ -6,6 +6,9 @@ import { ru } from "date-fns/locale";
 import clsx from "clsx";
 import { addProposition, clearError } from "@store/propositionsSlice";
 import { validateEmail } from "@utils/validateEmail";
+import { getCssClass } from "@utils/getClasses/getCssClass";
+import { handleChange } from "@utils/formUtils/handleChange";
+import { handleEmailChange } from "@utils/formUtils/handleEmailChange";
 import { Button } from "@components/UI/Button/Button";
 import { WarningForm } from "@components/UI/Warnings/WarningForm/WarningForm";
 import { WarningError } from "@components/UI/Warnings/WarningError/WarningError";
@@ -35,7 +38,6 @@ export function FeedbackForm(props) {
   const [emailError, setEmailError] = useState(null); // состояние ошибки валидации email
   const [textError, setTextError] = useState(null); // состояние ошибки валидации текста отзыва
   const [rating, setRating] = useState(1); // Состояние рейтинга
-  const allowedEmailChars = /^[a-zA-Z0-9._%+-@]*$/; // Разрешенные символы для email
   const { status: proposStatus, error: proposError } = useSelector(
     (state) => state.propositions
   ); // Состояние статуса и ошибки запроса при отправке отзыва(addProposition)
@@ -84,21 +86,6 @@ export function FeedbackForm(props) {
     }
   }
 
-  // Функция для контроля состояний и ввода данных в required инпуты (name,text)
-  function handleChange(e, setData, error, setError) {
-    setData(e.target.value);
-    // Если ошибка есть, то при вводе мы ее сбрасываем (это позволяет убрать все стили и уведомления об ошибках, как только пользователь начинает вводить исправления)
-    if (error) {
-      setError(null);
-    }
-  }
-
-  // Функция переключения класса ошибки (При наличии error класс ошибки добавиться и наоборот)
-  function getCssClass(error, baseClass, errorClass, element, length) {
-    return clsx(baseClass, {
-      [errorClass]: error || element.length > length,
-    });
-  }
   // Функция переключения класса ошибки для email
   function getCssClassEmail(baseClass, errorClass) {
     return clsx(baseClass, {
@@ -137,14 +124,6 @@ export function FeedbackForm(props) {
       return () => clearTimeout(timer); // Очистка таймера при размонтировании компонента
     }
   }, [proposError, dispatch]);
-
-  // Функция обновления email с фильтрацией неразрешённых символов
-  function handleEmailChange(e) {
-    const inputValue = e.target.value;
-    if (allowedEmailChars.test(inputValue)) {
-      setEmail(inputValue);
-    }
-  }
 
   return (
     <div className="feedback-form__mask" onClick={() => setShowForm(false)}>
@@ -229,7 +208,7 @@ export function FeedbackForm(props) {
                   aria-label="электронная почта"
                   placeholder=""
                   value={email}
-                  onChange={handleEmailChange}
+                  onChange={(e) => handleEmailChange(e, setEmail)}
                 />
                 <label className="feedback-form__label" htmlFor="email">
                   Эл. почта
