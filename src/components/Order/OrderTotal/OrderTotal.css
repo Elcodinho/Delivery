@@ -1,3 +1,7 @@
+.order-total {
+  margin: 30px;
+}
+
 .order-total__wrapper {
   display: flex;
   align-items: stretch;

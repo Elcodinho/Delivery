@@ -1,10 +1,9 @@
 import { createPortal } from "react-dom";
 import { useDispatch } from "react-redux";
-import { clearStatus } from "@store/propositionsSlice";
 import "./Success.css";
 
 export function Success(props) {
-  const { text, setShowForm } = props;
+  const { text, clearStatus, setShowForm = () => {} } = props;
   const dispatch = useDispatch();
 
   // Закрываем модалку сбросив статус запроса

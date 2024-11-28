@@ -28,6 +28,10 @@
   width: calc(33.333% - 10px);
 }
 
+.comment-input__wrapper {
+  width: 50%;
+}
+
 .form__group {
   position: relative;
   width: 100%;
@@ -81,6 +85,10 @@
 
   .form__group-container {
     width: calc(50% - 7.5px);
+  }
+
+  .comment-input__wrapper {
+    width: 100%;
   }
 }
 

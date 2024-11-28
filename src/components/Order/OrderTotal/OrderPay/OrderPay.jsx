@@ -24,9 +24,9 @@ const options = [
   },
 ];
 
-export function OrderPay() {
-  const [selectedOption, setSelectedOption] = useState("card_online");
-  const [changeValue, setChangeValue] = useState("");
+export function OrderPay(props) {
+  const { selectedOption, setSelectedOption, changeValue, setChangeValue } =
+    props;
 
   // Убираем все кроме цифр из инпута
   function handleInput(e) {

@@ -4,6 +4,7 @@ import propositionsReducer from "@store/propositionsSlice";
 import menuReducer from "@store/menuSlice";
 import supplementReducer from "@store/supplementSlice";
 import cartReducer from "@store/cartSlice";
+import orderReducer from "@store/orderSlice";
 
 export default configureStore({
   reducer: {
@@ -12,5 +13,6 @@ export default configureStore({
     menu: menuReducer,
     supplement: supplementReducer,
     cart: cartReducer,
+    order: orderReducer,
   },
 });

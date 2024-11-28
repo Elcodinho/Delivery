@@ -29,6 +29,7 @@ export const URL = {
   SUGGESTIONSURL: "http://localhost:3600/suggestions",
   MENUURL: "http://localhost:3700/menu",
   SUPPLEMENTSURL: "http://localhost:3800/supplements",
+  ORDERSURL: "http://localhost:3900/orders",
 }; // Url адреса файлов с данными
 
 export const SECONDARYNAV = {
