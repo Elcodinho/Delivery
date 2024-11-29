@@ -22,6 +22,7 @@ export function validateOrderForm({
   setHouseError,
   setFlatNumError,
   setPickupPointError,
+  formRef,
 }) {
   let isValid = true;
 
@@ -31,7 +32,7 @@ export function validateOrderForm({
     isValid = false;
   }
 
-  if (phone.trim() === "") {
+  if (phone.trim() === "" || (phone.length > 0 && phone.length < 16)) {
     setPhoneError(true);
     isValid = false;
   }
@@ -63,8 +64,15 @@ export function validateOrderForm({
     isValid = false;
   }
 
-  // Если форма не валидна, выходим
-  if (!isValid) return false;
+  // Если форма не валидна, выполняем скролл к началу формы
+  if (!isValid) {
+    if (formRef && formRef.current) {
+      const topPosition =
+        formRef.current.getBoundingClientRect().top + window.scrollY;
+      window.scrollTo({ top: topPosition - 70, behavior: "smooth" });
+    }
+    return false;
+  }
 
   // Формирование данных формы
   const formData = {

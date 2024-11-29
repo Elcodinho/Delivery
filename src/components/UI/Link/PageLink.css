@@ -45,6 +45,12 @@
   width: 50%;
 }
 
+/* Стили для Not-fond */
+
+.not-found__link {
+  font-size: 1.1rem;
+}
+
 /* Media */
 @media (max-width: 768px) {
   .link {

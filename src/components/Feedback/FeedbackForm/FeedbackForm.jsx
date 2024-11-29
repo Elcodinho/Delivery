@@ -8,6 +8,7 @@ import { addProposition, clearError } from "@store/propositionsSlice";
 import { validateEmail } from "@utils/validateEmail";
 import { getCssClass } from "@utils/getClasses/getCssClass";
 import { handleChange } from "@utils/formUtils/handleChange";
+import { handlePhoneChange } from "@utils/formUtils/handlePhoneChange";
 import { handleEmailChange } from "@utils/formUtils/handleEmailChange";
 import { Button } from "@components/UI/Button/Button";
 import { WarningForm } from "@components/UI/Warnings/WarningForm/WarningForm";
@@ -34,9 +35,10 @@ export function FeedbackForm(props) {
     setFeedbackCity,
     setShowForm,
   } = props;
-  const [nameError, setNameError] = useState(null); // состояние ошибки валидации имени
+  const [nameError, setNameError] = useState(null); // состояние ошибки имени
   const [emailError, setEmailError] = useState(null); // состояние ошибки валидации email
-  const [textError, setTextError] = useState(null); // состояние ошибки валидации текста отзыва
+  const [phoneError, setPhoneError] = useState(null); // состояние ошибки валидации номера телефона
+  const [textError, setTextError] = useState(null); // состояние ошибки текста отзыва
   const [rating, setRating] = useState(1); // Состояние рейтинга
   const { status: proposStatus, error: proposError } = useSelector(
     (state) => state.propositions
@@ -59,13 +61,19 @@ export function FeedbackForm(props) {
     e.preventDefault();
     if (name.trim() === "") setNameError(true);
     if (text.trim() === "") setTextError(true);
+    if (phone.length > 0 && phone.length < 16) {
+      setPhoneError(true);
+      return;
+    }
     if (email.trim() !== "" && !validateEmail(email)) {
       setEmailError(true);
       return;
     } else if (
-      (email.trim() === "" || validateEmail(email)) &&
-      name.trim() !== "" &&
-      text.trim() !== ""
+      phone.length < 1 ||
+      (phone.length > 15 &&
+        (email.trim() === "" || validateEmail(email)) &&
+        name.trim() !== "" &&
+        text.trim() !== "")
     ) {
       const formattedDate = format(new Date(), "EEE, d MMM yyyy 'г.', HH:mm", {
         locale: ru,
@@ -157,7 +165,7 @@ export function FeedbackForm(props) {
                   className={getCssClass(
                     nameError,
                     "feedback-form__item",
-                    "input-border--warning ",
+                    "input-border--warning",
                     name,
                     60
                   )}
@@ -181,19 +189,27 @@ export function FeedbackForm(props) {
             <div className="feedback-form__group-container">
               <div className="feedback-form__group">
                 <input
-                  className="feedback-form__item"
+                  className={clsx("feedback-form__item", {
+                    "input-border--warning":
+                      phone.length > 0 && phone.length < 16,
+                  })}
                   type="tel"
                   name="phone"
                   id="phone"
                   aria-label="номер телефона"
                   placeholder=""
                   value={phone}
-                  onChange={(e) => setPhone(e.target.value)}
+                  onChange={(e) =>
+                    handlePhoneChange(e, phoneError, setPhoneError, setPhone)
+                  }
                 />
                 <label className="feedback-form__label" htmlFor="phone">
                   Телефон
                 </label>
               </div>
+              {phone.length > 0 && phone.length < 16 && (
+                <WarningForm text="Убедитесь, что вы ввели номер полностью" />
+              )}
             </div>
             {/*  */}
             <div className="feedback-form__group-container">
@@ -201,7 +217,7 @@ export function FeedbackForm(props) {
                 <input
                   className={getCssClassEmail(
                     "feedback-form__item",
-                    "input-border--warning "
+                    "input-border--warning"
                   )}
                   type="email"
                   id="email"
@@ -225,7 +241,7 @@ export function FeedbackForm(props) {
                   className={getCssClass(
                     null,
                     "feedback-form__item",
-                    "input-border--warning ",
+                    "input-border--warning",
                     title,
                     80
                   )}

@@ -1,4 +1,4 @@
-import { phoneFormatter } from "@utils/phoneFormatter";
+import { phoneFormatter } from "@utils/formatters/phoneFormatter";
 import { PHONE, EMAIL, SCHEDULE } from "@constants/constants";
 import "./ContactsItem.css";
 

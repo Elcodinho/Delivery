@@ -1,9 +1,10 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useRef } from "react";
 import clsx from "clsx";
 import { getCssClass } from "@utils/getClasses/getCssClass";
 import { validateEmail } from "@utils/validateEmail";
 import { validateOrderForm } from "@utils/formUtils/validateOrderForm";
 import { handleChange } from "@utils/formUtils/handleChange";
+import { handlePhoneChange } from "@utils/formUtils/handlePhoneChange";
 import { handleEmailChange } from "@utils/formUtils/handleEmailChange";
 import { OrderTotal } from "@components/Order/OrderTotal/OrderTotal";
 import { OrderFormToggle } from "./OrderFormToggle/OrderFormToggle";
@@ -13,6 +14,8 @@ import { WarningForm } from "@components/UI/Warnings/WarningForm/WarningForm";
 import "./OrderForm.css";
 
 export function OrderForm() {
+  const formRef = useRef(null); // Референс на форму
+
   const [buildingType, setBuildingType] = useState("flat"); // Состояние типа дома (квартирный или частный)
   const [pickupPoint, setPickupPoint] = useState(""); // Состояния точки самовывоза
   const [name, setName] = useState(""); // Имя
@@ -73,6 +76,7 @@ export function OrderForm() {
     setDeliveryType("delivery");
   }
 
+  // Функция полной очистки формы (поля и ошибки полей)
   function clearOrderForm() {
     resetFormErrors();
     resetFormStates();
@@ -113,11 +117,12 @@ export function OrderForm() {
       setHouseError,
       setFlatNumError,
       setPickupPointError,
+      formRef,
     });
   }
 
   return (
-    <section className="order-form">
+    <section className="order-form" ref={formRef}>
       <div className="container">
         <div className="form__wrapper">
           <form className="form">
@@ -156,12 +161,10 @@ export function OrderForm() {
               <div className="form__group-container">
                 <div className="form__group">
                   <input
-                    className={getCssClass(
-                      phoneError,
-                      "form__item",
-                      "input-border--warning ",
-                      phone
-                    )}
+                    className={clsx("form__item", {
+                      "input-border--warning":
+                        phone.length > 0 && phone.length < 16,
+                    })}
                     type="tel"
                     name="phone"
                     id="phone"
@@ -169,7 +172,7 @@ export function OrderForm() {
                     placeholder=""
                     value={phone}
                     onChange={(e) =>
-                      handleChange(e, setPhone, phoneError, setPhoneError)
+                      handlePhoneChange(e, phoneError, setPhoneError, setPhone)
                     }
                     required
                   />
@@ -177,8 +180,8 @@ export function OrderForm() {
                     Телефон
                   </label>
                 </div>
-                {phoneError && (
-                  <WarningForm text="Введите номер телефона для связи" />
+                {phone.length > 0 && phone.length < 16 && (
+                  <WarningForm text="Убедитесь, что вы ввели номер полностью" />
                 )}
               </div>
               {/*  */}

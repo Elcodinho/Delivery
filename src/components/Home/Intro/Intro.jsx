@@ -1,7 +1,7 @@
 import { useState } from "react";
 import clsx from "clsx";
 import { PHONE } from "@constants/constants";
-import { phoneFormatter } from "@utils/phoneFormatter";
+import { phoneFormatter } from "@utils/formatters/phoneFormatter";
 import { Button } from "@components/UI/Button/Button";
 import "./Intro.css";
 

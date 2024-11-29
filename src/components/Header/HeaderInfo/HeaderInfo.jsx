@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { PHONE, ADRESS, SCHEDULE } from "@constants/constants";
-import { phoneFormatter } from "@utils/phoneFormatter";
+import { phoneFormatter } from "@utils/formatters/phoneFormatter";
 import logo from "@assets/images/logo54.webp";
 import { FiMapPin } from "react-icons/fi";
 import { IoEnterOutline } from "react-icons/io5";

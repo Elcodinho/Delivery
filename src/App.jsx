@@ -15,6 +15,7 @@ import { PrivacyPage } from "@pages/PrivacyPage";
 import { MenuPage } from "@pages/MenuPage";
 import { ProductPage } from "@pages/ProductPage";
 import { OrderPage } from "@pages/OrderPage";
+import { NotFoundpage } from "@pages/NotFoundPage";
 function App() {
   const dispatch = useDispatch();
 
@@ -45,6 +46,7 @@ function App() {
           <Route path="/menu/:category/:type?" element={<MenuPage />} />
           <Route path="/product/:slug" element={<ProductPage />} />
           <Route path="/order" element={<OrderPage />} />
+          <Route path="*" element={<NotFoundpage />} />
         </Route>
       </Routes>
     </>
