@@ -1,0 +1,21 @@
+.auth__mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 0 10px;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 10;
+}
+
+.auth__container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: auto;
+  max-width: 400px;
+  min-height: 100%;
+  margin: 40px auto;
+  pointer-events: none;
+}

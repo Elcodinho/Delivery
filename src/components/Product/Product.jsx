@@ -4,10 +4,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectMenu, getMenu } from "@store/menuSlice";
 import { getInitialSize } from "@utils/getInitialSize";
 import { addProductToCart } from "@utils/addProductToCart";
+import { addPopup } from "@utils/addPopup";
 import { ProductSupplements } from "./ProductSupplements/ProductSupplements";
 import { Button } from "@components/UI/Button/Button";
 import { Toggle } from "@components/UI/Toggles/Toggle/Toggle";
 import { Loader } from "@components/UI/Loader/Loader";
+import { AddedPopup } from "@components/UI/Popups/AddedPopup/AddedPopup";
 import "./Product.css";
 
 export function Product() {
@@ -30,6 +32,7 @@ export function Product() {
     (state) => state.menu
   ); // Состояние статуса и ошибки получения продукта
 
+  const [popups, setPopups] = useState([]); // Хранение активных уведомлений
   const [selectedAmount, setSelectedAmount] = useState(null); // Состояние для выбранного количества товара или его размер
   const [productPrice, setProductPrice] = useState(
     typeof price === "object" ? price.large : price // Используем цену сразу, если это число
@@ -93,6 +96,7 @@ export function Product() {
       isPizzaOrRolli: toggleShow, // Проверка на роллы или классическую пиццу
       selectedAmount, // Передаем текущий размер товара
     });
+    addPopup(name, setPopups); // Передаём имя товара в массив popups
   });
 
   return (
@@ -100,6 +104,10 @@ export function Product() {
       <div className="container">
         {productStatus === "loading" && <Loader />}
         {productError && <p className="text--error">{productError}</p>}
+        {popups.length >= 1 &&
+          popups.map((name, index) => (
+            <AddedPopup key={index} text={name} position={index} />
+          ))}
         {productStatus === "resolved" && !isClassicPizza && (
           <div className="product__wrapper">
             <div className="product__img-container">

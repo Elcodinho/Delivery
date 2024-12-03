@@ -1,0 +1,89 @@
+.auth__wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+  pointer-events: auto;
+  padding: 30px;
+  border-radius: 20px;
+  background-color: white;
+  z-index: 11;
+}
+
+.auth__title {
+  font-size: 2rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+.auth__text {
+  margin-bottom: 30px;
+  font-size: 1.2rem;
+  text-align: center;
+}
+
+.auth__close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  font-weight: 800;
+  cursor: pointer;
+  color: #000;
+  transition: color 0.3s;
+}
+
+.auth__close-btn:hover {
+  color: red;
+}
+
+.auth__form {
+  width: 100%;
+}
+
+.auth__form__group-container {
+  width: 100% !important;
+  margin-bottom: 30px;
+}
+
+.auth-form__item {
+  padding: 25px 10.5px 5px !important;
+}
+
+.auth__form-btn-container {
+  display: flex;
+  justify-content: center;
+}
+
+.auth--pass {
+  margin-top: -10px;
+}
+
+.eye-icon {
+  position: absolute;
+  right: 5%;
+  top: 40%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+.auth-type__text {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+
+.auth-type__button {
+  display: block;
+  color: blue;
+  transition: color 0.2s linear;
+}
+
+.auth-type__button:hover,
+.auth-type__button:active {
+  color: rgb(0, 0, 140);
+}

@@ -3,10 +3,12 @@ import { useDispatch, useSelector } from "react-redux";
 import clsx from "clsx";
 import { getSupplement, selectSupplement } from "@store/supplementSlice";
 import { addProductToCart } from "@utils/addProductToCart";
+import { addPopup } from "@utils/addPopup";
 import { ProductSupplementsItem } from "./ProductSupplementsItem/ProductSupplementsItem";
 import { Toggle } from "@components/UI/Toggles/Toggle/Toggle";
 import { Button } from "@components/UI/Button/Button";
 import { Loader } from "@components/UI/Loader/Loader";
+import { AddedPopup } from "@components/UI/Popups/AddedPopup/AddedPopup";
 import { FaInfoCircle } from "react-icons/fa";
 import "./ProductSupplements.css";
 
@@ -29,6 +31,7 @@ export function ProductSupplements(props) {
   const { status: supStatus, error: supError } = useSelector(
     (state) => state.supplement
   );
+  const [popups, setPopups] = useState([]); // Хранение активных уведомлений
   const [totalPrice, setTotalPrice] = useState(productPrice); // Состояние для отслеживания общей цены
   const [selectedSupplements, setSelectedSupplements] = useState([]); // Для отслеживания выбранных добавок
   const [resetCheck, setResetCheck] = useState(null); // Состояние для сброса всех отмеченых добавок
@@ -92,6 +95,7 @@ export function ProductSupplements(props) {
       selectedAmount, // Передаем текущий размер товара
       supplements, // Массив добавок
     });
+    addPopup(name, setPopups); // Передаём имя товара в массив popups
     setSelectedSupplements([]); // Очищаем массив добавок
     setTotalPrice(productPrice); // В totalPrice устанавливаем только цену самого товара(без добавок)
     setResetCheck(true); // Сбрасываем отмченные добавки
@@ -107,6 +111,10 @@ export function ProductSupplements(props) {
   return (
     <div className="supplements-items__container">
       <div className="supplements__wrapper">
+        {popups.length >= 1 &&
+          popups.map((name, index) => (
+            <AddedPopup key={index} text={name} position={index} />
+          ))}
         <div className="supplements__info">
           <div className="supplements__info-img-container">
             <img className="supplements__info-img" src={img} alt={name} />

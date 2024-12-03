@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setCart } from "@store/cartSlice";
+import { setUser, startLoading, removeUser } from "@store/userSlice";
 
 // Pages
 import { Layout } from "@components/Layout/Layout";
@@ -15,6 +16,7 @@ import { PrivacyPage } from "@pages/PrivacyPage";
 import { MenuPage } from "@pages/MenuPage";
 import { ProductPage } from "@pages/ProductPage";
 import { OrderPage } from "@pages/OrderPage";
+import { CabinetPage } from "@pages/CabinetPage";
 import { NotFoundpage } from "@pages/NotFoundPage";
 function App() {
   const dispatch = useDispatch();
@@ -32,6 +34,18 @@ function App() {
       window.removeEventListener("storage", handleStorageChange);
     };
   }, [dispatch]);
+
+  // Установка user при загрузке приложения
+  useEffect(() => {
+    dispatch(startLoading()); // Устанавливаем флаг загрузки
+    const userData = JSON.parse(localStorage.getItem("user"));
+    if (userData) {
+      dispatch(setUser(userData)); // Устанавливаем пользователя
+    } else {
+      dispatch(removeUser()); // Если данных нет, сбрасываем пользователя
+    }
+  }, [dispatch]);
+
   return (
     <>
       <Routes>
@@ -46,6 +60,7 @@ function App() {
           <Route path="/menu/:category/:type?" element={<MenuPage />} />
           <Route path="/product/:slug" element={<ProductPage />} />
           <Route path="/order" element={<OrderPage />} />
+          <Route path="/cabinet" element={<CabinetPage />} />
           <Route path="*" element={<NotFoundpage />} />
         </Route>
       </Routes>

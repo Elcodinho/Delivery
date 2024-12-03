@@ -32,14 +32,6 @@ export function Menu() {
     dispatch(getMenu(params));
   }, [category, type, dispatch]);
 
-  // Добавляем popup с именем
-  function addPopup(name) {
-    setPopups((prev) => [...prev, name]); // Добавляем имя в массив
-    setTimeout(() => {
-      setPopups((prev) => prev.slice(1)); // Удаляем первый через 2 секунды
-    }, 3000);
-  }
-
   return (
     <section className="menu">
       <div className="container">
@@ -66,7 +58,7 @@ export function Menu() {
                   {...(item.type && { type: item.type })} // Тип передается при наличии
                   slug={item.slug}
                   {...(item.size && { size: item.size })} // Size передается при наличии
-                  addPopup={addPopup}
+                  setPopups={setPopups}
                 />
               ))}
             </ul>

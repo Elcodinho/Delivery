@@ -103,8 +103,30 @@
   color: var(--my-gr-color);
   opacity: 0.8;
 }
+/* Header-user */
 
-/* to login */
+.header-info__icon-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+
+.header-info__icon-link div {
+  width: 35px;
+  height: 35px;
+  padding: 5px;
+  border-radius: 50%;
+  background-color: var(--my-gr-color);
+  overflow: hidden;
+}
+
+.header-info__icon {
+  width: 100%;
+  height: 100%;
+}
+
+/* Show Login */
 .header-info__login-btn {
   display: flex;
   flex-direction: column;

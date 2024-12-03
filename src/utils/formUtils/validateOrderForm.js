@@ -1,4 +1,4 @@
-import { validateEmail } from "@utils/validateEmail";
+import { validateEmail } from "@utils/formUtils/validateEmail";
 
 // Функция валидации формы заказа
 export function validateOrderForm({
@@ -77,21 +77,23 @@ export function validateOrderForm({
   // Формирование данных формы
   const formData = {
     name: name.trim(),
-    phone: phone.trim(),
+    phone: phone.replace(/\s+/g, "").trim(),
     ...(email.trim() && { email: email.trim() }),
     ...(comment.trim() && { comment: comment.trim() }),
     deliveryType,
     ...(deliveryType === "pickup" && { point: pickupPoint }),
     ...(deliveryType === "delivery" && {
-      street: street.trim(),
-      house: house.trim(),
-      buildingType,
-      ...(buildingType === "flat" && {
-        flatNum: flatNum.trim(),
-        ...(entrance.trim() && { entrance: entrance.trim() }),
-        ...(floor.trim() && { floor: floor.trim() }),
-        ...(intercom.trim() && { intercom: intercom.trim() }),
-      }),
+      adress: {
+        street: street.trim(),
+        house: house.trim(),
+        buildingType,
+        ...(buildingType === "flat" && {
+          flatNum: flatNum.trim(),
+          ...(entrance.trim() && { entrance: entrance.trim() }),
+          ...(floor.trim() && { floor: floor.trim() }),
+          ...(intercom.trim() && { intercom: intercom.trim() }),
+        }),
+      },
     }),
   };
 

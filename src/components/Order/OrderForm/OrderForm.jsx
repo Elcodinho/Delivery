@@ -1,7 +1,7 @@
 import { useState, useCallback, useRef } from "react";
 import clsx from "clsx";
 import { getCssClass } from "@utils/getClasses/getCssClass";
-import { validateEmail } from "@utils/validateEmail";
+import { validateEmail } from "@utils/formUtils/validateEmail";
 import { validateOrderForm } from "@utils/formUtils/validateOrderForm";
 import { handleChange } from "@utils/formUtils/handleChange";
 import { handlePhoneChange } from "@utils/formUtils/handlePhoneChange";

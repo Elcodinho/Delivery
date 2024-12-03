@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import LazyLoad from "react-lazyload";
 import { getInitialSize } from "@utils/getInitialSize";
 import { addProductToCart } from "@utils/addProductToCart";
+import { addPopup } from "@utils/addPopup";
 import { Toggle } from "@components/UI/Toggles/Toggle/Toggle";
 import { Button } from "@components/UI/Button/Button";
 import { ImageLoader } from "@components/UI/ImageLoader/ImageLoader";
@@ -22,7 +23,7 @@ export const Card = React.memo(function Card(props) {
     type,
     slug,
     size,
-    addPopup,
+    setPopups,
   } = props;
   const dispatch = useDispatch();
   // Устанавливаем начальное значение размера в зависимости от категории
@@ -80,7 +81,7 @@ export const Card = React.memo(function Card(props) {
       isPizzaOrRolli: toggleShow, // Проверка на роллы или классическую пиццу
       selectedAmount, // Передаем текущий размер товара
     });
-    addPopup(name); // Передаём имя товара в массив popups
+    addPopup(name, setPopups); // Передаём имя товара в массив popups
   });
 
   return (

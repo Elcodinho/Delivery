@@ -5,6 +5,7 @@ import menuReducer from "@store/menuSlice";
 import supplementReducer from "@store/supplementSlice";
 import cartReducer from "@store/cartSlice";
 import orderReducer from "@store/orderSlice";
+import userReducer from "@store/userSlice";
 
 export default configureStore({
   reducer: {
@@ -14,5 +15,6 @@ export default configureStore({
     supplement: supplementReducer,
     cart: cartReducer,
     order: orderReducer,
+    user: userReducer,
   },
 });

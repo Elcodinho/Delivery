@@ -5,7 +5,7 @@ import { format } from "date-fns";
 import { ru } from "date-fns/locale";
 import clsx from "clsx";
 import { addProposition, clearError } from "@store/propositionsSlice";
-import { validateEmail } from "@utils/validateEmail";
+import { validateEmail } from "@utils/formUtils/validateEmail";
 import { getCssClass } from "@utils/getClasses/getCssClass";
 import { handleChange } from "@utils/formUtils/handleChange";
 import { handlePhoneChange } from "@utils/formUtils/handlePhoneChange";
@@ -158,7 +158,7 @@ export function FeedbackForm(props) {
             Напишите нам. Мы обязательно рассмотрим ваше обращение.
           </p>
           <form className="feedback-form" onSubmit={handleSubmit}>
-            {/*  */}
+            {/* Name */}
             <div className="feedback-form__group-container">
               <div className="feedback-form__group">
                 <input
@@ -186,6 +186,7 @@ export function FeedbackForm(props) {
               </div>
               {(name.length > 60 || nameError) && <WarningForm symbols="60" />}
             </div>
+            {/* Phone */}
             <div className="feedback-form__group-container">
               <div className="feedback-form__group">
                 <input
@@ -211,8 +212,8 @@ export function FeedbackForm(props) {
                 <WarningForm text="Убедитесь, что вы ввели номер полностью" />
               )}
             </div>
-            {/*  */}
-            <div className="feedback-form__group-container">
+            {/*  Email*/}
+            <div className="feedback-form__group-container login__form__group-container">
               <div className="feedback-form__group">
                 <input
                   className={getCssClassEmail(
@@ -234,7 +235,7 @@ export function FeedbackForm(props) {
                 <WarningForm text="Пожалуйста, введите корректный адрес электронной почты" />
               )}
             </div>
-            {/*  */}
+            {/* Title */}
             <div className="feedback-form__group-container">
               <div className="feedback-form__group">
                 <input
@@ -261,7 +262,7 @@ export function FeedbackForm(props) {
                 {title.length > 80 && <WarningForm symbols="80" />}
               </div>
             </div>
-            {/*  */}
+            {/* About select */}
             <div className="feedback-form__group-container">
               <div className="feedback-form__group">
                 <select
@@ -283,7 +284,7 @@ export function FeedbackForm(props) {
                 </label>
               </div>
             </div>
-            {/*  */}
+            {/* City select */}
             <div className="feedback-form__group-container">
               <div className="feedback-form__group">
                 <select
@@ -318,7 +319,7 @@ export function FeedbackForm(props) {
                 />
               ))}
             </div>
-            {/*  */}
+            {/* Form text */}
             <div className="feedback-form__group feedback-form__group--textarea">
               <textarea
                 className={getCssClass(
