@@ -82,7 +82,7 @@ export function FeedbackForm(props) {
         id: new Date().toISOString(),
         date: formattedDate,
         name: name.trim(),
-        phone,
+        phone: phone.replace(/\s+/g, "").trim(),
         email: email.trim(),
         title: title.trim(),
         feedbackAbout,

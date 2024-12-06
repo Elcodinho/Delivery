@@ -10,7 +10,8 @@
       "@utils/*": ["utils/*"],
       "@hooks/*": ["hooks/*"],
       "@styles/*": ["styles/*"],
-      "@assets/*": ["assets/*"]
+      "@assets/*": ["assets/*"],
+      "@context/*": ["context/*"]
     }
   },
   "include": ["src"] // Включение директории, где ты работаешь

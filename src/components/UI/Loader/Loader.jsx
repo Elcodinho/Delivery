@@ -1,9 +1,9 @@
 import "./Loader.css";
 
-export function Loader() {
+export function Loader({ cssClass = "" }) {
   return (
     <div className="overlay">
-      <div className="spinner"></div>
+      <div className={`spinner ${cssClass}`}></div>
     </div>
   );
 }

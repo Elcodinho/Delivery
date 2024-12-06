@@ -1,18 +1,20 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useNavigate } from "react-router";
 import { useDispatch } from "react-redux";
 import { setUser } from "@store/userSlice";
-import { loginUser } from "@utils/auth/loginUser";
-import { registerUser } from "@utils/auth/registerUser";
+import { loginUser } from "@utils/firebase/loginUser.js";
+import { registerUser } from "@utils/firebase/registerUser.js";
 import { validateEmail } from "@utils/formUtils/validateEmail";
 import { validatePassword } from "@utils/formUtils/validatePassword";
+import { LoginContext } from "@context/LoginContext.jsx";
 import { auth } from "../../../firebase.js";
 import { AuthForm } from "@components/Auth/AuthForm/AuthForm";
 import { Loader } from "@components/UI/Loader/Loader";
 import { WarningError } from "@components/UI/Warnings/WarningError/WarningError";
 import "./Auth.css";
 
-export function Auth({ setShowLogin }) {
+export function Auth() {
+  const { setShowLogin } = useContext(LoginContext); // Состояния показа popup логина
   const [authType, setAuthType] = useState("login");
   const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState(null);

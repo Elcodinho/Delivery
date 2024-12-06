@@ -1,8 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { NavLink, Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { PHONE, ADRESS, SCHEDULE } from "@constants/constants";
 import { phoneFormatter } from "@utils/formatters/phoneFormatter";
+import { getUserData } from "@utils/firebase/getUserData";
+import { LoginContext } from "@context/LoginContext";
 import logo from "@assets/images/logo54.webp";
 import { FiMapPin } from "react-icons/fi";
 import { IoEnterOutline } from "react-icons/io5";
@@ -11,12 +13,29 @@ import userImg from "@assets/images/user-icon.svg";
 import "./HeaderInfo.css";
 
 export function HeaderInfo() {
-  const [showLogin, setShowLogin] = useState(false); // Состояния показа формы логина
+  const { showLogin, setShowLogin } = useContext(LoginContext); // Состояния показа popup логина
   const [selectedOption, setSelectedOption] = useState("delivery"); // Состояние для отслеживания выбранной опции доставки
   const [toggleText, setToggleText] = useState("Время доставки ~"); // Состояние для установки текста при переключении радиокнопки
   const [toggleTime, setToggleTime] = useState("60"); // Состояние для установки времени при переключении радиокнопки
+  const [userName, setUserName] = useState("");
 
-  const user = useSelector((state) => state.user.email);
+  const uid = useSelector((state) => state.user.id);
+
+  // Получения имя пользователя
+  useEffect(() => {
+    async function fetchUserData() {
+      if (uid) {
+        try {
+          const data = await getUserData(uid);
+          setUserName(data.name || "Пользователь");
+        } catch (error) {
+          console.error("Ошибка при получении данных пользователя:", error);
+        }
+      }
+    }
+
+    fetchUserData();
+  }, [uid]);
 
   // Функция переключения радиокнопок доставки
   function handleChangeOption(e) {
@@ -101,7 +120,7 @@ export function HeaderInfo() {
         </section>
 
         {/* Login button */}
-        {user && (
+        {userName && (
           <div>
             <Link className="header-info__icon-link" to="/cabinet">
               <div>
@@ -111,11 +130,11 @@ export function HeaderInfo() {
                   alt="Пользователь"
                 />
               </div>
-              {user}
+              {userName}
             </Link>
           </div>
         )}
-        {!user && (
+        {!userName && (
           <button
             className="header-info__login-btn"
             onClick={() => setShowLogin(true)}
@@ -125,7 +144,7 @@ export function HeaderInfo() {
           </button>
         )}
       </div>
-      {showLogin && <Auth setShowLogin={setShowLogin} />}
+      {showLogin && <Auth />}
     </section>
   );
 }

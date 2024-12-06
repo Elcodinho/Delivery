@@ -75,6 +75,7 @@ export const FormDelivery = React.memo(function FormDelivery(props) {
     },
   ];
 
+  // Переключения радиокнопок
   function handleHouseChange(e) {
     setBuildingType(e.target.value);
   }
@@ -94,7 +95,7 @@ export const FormDelivery = React.memo(function FormDelivery(props) {
               )}
               type="text"
               name="street"
-              id="street"
+              id="street-order"
               aria-label="Улица"
               placeholder=""
               value={street}
@@ -103,7 +104,7 @@ export const FormDelivery = React.memo(function FormDelivery(props) {
               }
               required
             />
-            <label className="form__label required" htmlFor="street">
+            <label className="form__label required" htmlFor="street-order">
               Улица
             </label>
           </div>
@@ -121,7 +122,7 @@ export const FormDelivery = React.memo(function FormDelivery(props) {
                 10
               )}
               type="text"
-              name="house"
+              name="house-order"
               id="house"
               aria-label="Номер дома"
               placeholder=""
@@ -131,7 +132,7 @@ export const FormDelivery = React.memo(function FormDelivery(props) {
               }
               required
             />
-            <label className="form__label required" htmlFor="house">
+            <label className="form__label required" htmlFor="house-order">
               Дом
             </label>
           </div>
@@ -147,23 +148,23 @@ export const FormDelivery = React.memo(function FormDelivery(props) {
             <input
               type="radio"
               name="building"
-              id="flat"
+              id="flat-order"
               checked={buildingType === "flat"}
               value="flat"
               onChange={handleHouseChange}
             />
-            <label htmlFor="flat">Квартирный дом</label>
+            <label htmlFor="flat-order">Квартирный дом</label>
           </div>
           <div className="form-delivery__radio">
             <input
               type="radio"
               name="building"
-              id="house-radio"
+              id="house-radio-order"
               checked={buildingType === "house"}
               value="house"
               onChange={handleHouseChange}
             />
-            <label htmlFor="house-radio">Частный дом</label>
+            <label htmlFor="house-radio-order">Частный дом</label>
           </div>
         </div>
         {/* Flat Info */}

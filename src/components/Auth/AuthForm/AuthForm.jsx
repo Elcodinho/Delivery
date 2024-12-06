@@ -60,13 +60,13 @@ export function AuthForm(props) {
                 "input-border--warning"
               )}
               type="email"
-              id="email"
+              id="email-auth"
               aria-label="Электронная почта"
               placeholder=""
               value={email}
               onChange={(e) => handleEmailChange(e, setEmail)}
             />
-            <label className="feedback-form__label" htmlFor="email">
+            <label className="feedback-form__label" htmlFor="email-auth">
               Эл. почта
             </label>
           </div>
@@ -86,13 +86,13 @@ export function AuthForm(props) {
                 }
               )}
               type={showPassword ? "text" : "password"} // Меняем тип в зависимости от состояния показа пароля
-              id="password"
+              id="password-auth"
               aria-label="Пароль"
               placeholder=""
               value={pass}
               onChange={(e) => setPass(e.target.value)}
             />
-            <label className="feedback-form__label" htmlFor="password">
+            <label className="feedback-form__label" htmlFor="password-auth">
               Пароль
             </label>
             {!showPassword && (

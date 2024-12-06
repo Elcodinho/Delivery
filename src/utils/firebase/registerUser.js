@@ -1,5 +1,7 @@
 // Функция регистрации нового юзера
 import { createUserWithEmailAndPassword } from "firebase/auth";
+import { doc, setDoc } from "firebase/firestore";
+import { db } from "../../firebase.js";
 
 export async function registerUser(auth, email, password) {
   try {
@@ -8,6 +10,12 @@ export async function registerUser(auth, email, password) {
       email,
       password
     );
+
+    // Сохранение пользователя в Firestore
+    await setDoc(doc(db, "users", user.uid), {
+      email: user.email,
+      createdAt: new Date().toISOString(),
+    });
 
     return {
       email: user.email,

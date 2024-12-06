@@ -140,7 +140,7 @@ export function OrderForm() {
                     )}
                     type="text"
                     name="name"
-                    id="name"
+                    id="name-order"
                     aria-label="Имя"
                     placeholder=""
                     value={name}
@@ -149,7 +149,7 @@ export function OrderForm() {
                     }
                     required
                   />
-                  <label className="form__label required" htmlFor="name">
+                  <label className="form__label required" htmlFor="name-order">
                     Имя
                   </label>
                 </div>
@@ -166,7 +166,7 @@ export function OrderForm() {
                         phone.length > 0 && phone.length < 16,
                     })}
                     type="tel"
-                    name="phone"
+                    name="phone-order"
                     id="phone"
                     aria-label="номер телефона"
                     placeholder=""
@@ -176,7 +176,7 @@ export function OrderForm() {
                     }
                     required
                   />
-                  <label className="form__label required" htmlFor="phone">
+                  <label className="form__label required" htmlFor="phone-order">
                     Телефон
                   </label>
                 </div>
@@ -193,13 +193,13 @@ export function OrderForm() {
                       "input-border--warning "
                     )}
                     type="email"
-                    id="email"
+                    id="email-order"
                     aria-label="электронная почта"
                     placeholder=""
                     value={email}
                     onChange={(e) => handleEmailChange(e, setEmail)}
                   />
-                  <label className="form__label" htmlFor="email">
+                  <label className="form__label" htmlFor="email-order">
                     Эл. почта
                   </label>
                 </div>

@@ -18,6 +18,7 @@ import { ProductPage } from "@pages/ProductPage";
 import { OrderPage } from "@pages/OrderPage";
 import { CabinetPage } from "@pages/CabinetPage";
 import { NotFoundpage } from "@pages/NotFoundPage";
+import { ProtectedRoutes } from "@components/ProtectedRoutes/ProtectedRoutes";
 function App() {
   const dispatch = useDispatch();
 
@@ -60,7 +61,11 @@ function App() {
           <Route path="/menu/:category/:type?" element={<MenuPage />} />
           <Route path="/product/:slug" element={<ProductPage />} />
           <Route path="/order" element={<OrderPage />} />
-          <Route path="/cabinet" element={<CabinetPage />} />
+          {/* Группа страниц доступна только авторизованным пользователям */}
+          <Route element={<ProtectedRoutes />}>
+            <Route path="/cabinet" element={<CabinetPage />} />
+          </Route>
+          {/*  */}
           <Route path="*" element={<NotFoundpage />} />
         </Route>
       </Routes>
