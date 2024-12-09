@@ -1,15 +1,19 @@
 import { createPortal } from "react-dom";
-import { useDispatch } from "react-redux";
 import "./Success.css";
 
 export function Success(props) {
-  const { text, clearStatus, setShowForm = () => {} } = props;
-  const dispatch = useDispatch();
+  const {
+    text,
+    clearStatus = () => {},
+    setShowForm = () => {},
+    reload = () => {},
+  } = props;
 
   // Закрываем модалку сбросив статус запроса
   function handleCloseModal() {
-    dispatch(clearStatus());
+    clearStatus();
     setShowForm(false);
+    reload();
   }
 
   return createPortal(

@@ -1,4 +1,5 @@
-import { useState, useCallback, useRef } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
+import { useSelector } from "react-redux";
 import clsx from "clsx";
 import { getCssClass } from "@utils/getClasses/getCssClass";
 import { validateEmail } from "@utils/formUtils/validateEmail";
@@ -6,6 +7,8 @@ import { validateOrderForm } from "@utils/formUtils/validateOrderForm";
 import { handleChange } from "@utils/formUtils/handleChange";
 import { handlePhoneChange } from "@utils/formUtils/handlePhoneChange";
 import { handleEmailChange } from "@utils/formUtils/handleEmailChange";
+import { phoneFormatter } from "@utils/formatters/phoneFormatter";
+import { getUserData } from "@utils/firebase/getUserData";
 import { OrderTotal } from "@components/Order/OrderTotal/OrderTotal";
 import { OrderFormToggle } from "./OrderFormToggle/OrderFormToggle";
 import { FormPickup } from "./FormPickup/FormPickup";
@@ -15,6 +18,7 @@ import "./OrderForm.css";
 
 export function OrderForm() {
   const formRef = useRef(null); // Референс на форму
+  const uid = useSelector((state) => state.user.id); // uid полтзователя
 
   const [buildingType, setBuildingType] = useState("flat"); // Состояние типа дома (квартирный или частный)
   const [pickupPoint, setPickupPoint] = useState(""); // Состояния точки самовывоза
@@ -43,6 +47,24 @@ export function OrderForm() {
   const [floorError, setFloorError] = useState(null); // Состояние ошибки этажа
   const [intercomError, setIntercomError] = useState(null); // Состояние ошибки домофона
   const [commentError, setCommentError] = useState(null); // Состояние ошибки комментария
+
+  // Получения данных пользователя
+  useEffect(() => {
+    async function fetchUserData() {
+      if (uid) {
+        try {
+          const data = await getUserData(uid);
+          setName(data.name || "");
+          data.phone ? setPhone(phoneFormatter(data.phone)) : setPhone("");
+          setEmail(data.email || "");
+        } catch {
+          // В случае ошибки мы просто оставляем поля с начальными значениями
+        }
+      }
+    }
+
+    fetchUserData();
+  }, [uid]);
 
   // Функция для сброса ошибок после отправки формы
   function resetFormErrors() {

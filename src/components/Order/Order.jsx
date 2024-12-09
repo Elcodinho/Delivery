@@ -23,15 +23,17 @@ export function Order() {
     }
   }, [orderError, dispatch]);
 
+  // Фукнция сброса статуса запроса
+  function resetStatus() {
+    dispatch(clearOrderStatus());
+  }
+
   return (
     <section style={{ marginBottom: "50px" }}>
       {orderError && <WarningError warning={orderError} />}
       {orderStatus === "loading" && <Loader />}
       {orderStatus === "resolved" && !orderError && (
-        <Success
-          text="Заказ успешно отправлен"
-          clearStatus={clearOrderStatus}
-        />
+        <Success text="Заказ успешно отправлен" clearStatus={resetStatus} />
       )}
       <Cart />
       <OrderForm />

@@ -21,6 +21,7 @@ export function Confirmation(props) {
   function handleCloseModal() {
     handleAnimate();
   }
+
   return createPortal(
     <div
       className={clsx("confirmation-mask", {

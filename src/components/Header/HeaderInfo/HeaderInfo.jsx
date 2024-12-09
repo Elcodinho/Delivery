@@ -19,7 +19,10 @@ export function HeaderInfo() {
   const [toggleTime, setToggleTime] = useState("60"); // Состояние для установки времени при переключении радиокнопки
   const [userName, setUserName] = useState("");
 
+  const [userDataError, setUserDataError] = useState(null);
+
   const uid = useSelector((state) => state.user.id);
+  const user = useSelector((state) => state.user.email);
 
   // Получения имя пользователя
   useEffect(() => {
@@ -28,8 +31,11 @@ export function HeaderInfo() {
         try {
           const data = await getUserData(uid);
           setUserName(data.name || "Пользователь");
+          setUserDataError(null);
         } catch (error) {
-          console.error("Ошибка при получении данных пользователя:", error);
+          setUserDataError(
+            "Ошибка! Не удалось загрузить данные пользователя. Попробуйте позже..."
+          );
         }
       }
     }
@@ -120,7 +126,7 @@ export function HeaderInfo() {
         </section>
 
         {/* Login button */}
-        {userName && (
+        {user && (
           <div>
             <Link className="header-info__icon-link" to="/cabinet">
               <div>
@@ -130,11 +136,11 @@ export function HeaderInfo() {
                   alt="Пользователь"
                 />
               </div>
-              {userName}
+              {userDataError ? "Пользователь" : userName}
             </Link>
           </div>
         )}
-        {!userName && (
+        {!user && (
           <button
             className="header-info__login-btn"
             onClick={() => setShowLogin(true)}

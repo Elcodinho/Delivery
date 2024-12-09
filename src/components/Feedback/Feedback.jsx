@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { getFeedback } from "@store/feedbackSlice";
 import { selectFeedback } from "@store/feedbackSlice";
 import { clearStatus } from "@store/propositionsSlice";
+import { phoneFormatter } from "@utils/formatters/phoneFormatter";
+import { getUserData } from "@utils/firebase/getUserData";
 import { Button } from "@components/UI/Button/Button";
 import { FeedbackList } from "./FeedBackList/FeedbackList";
 import { FeedbackForm } from "./FeedbackForm/FeedbackForm";
@@ -25,6 +27,7 @@ export function Feedback() {
   const [feedbackCity, setFeedbackCity] = useState("1");
 
   const dispatch = useDispatch();
+  const uid = useSelector((state) => state.user.id); // uid полтзователя
 
   const feedbackData = useSelector(selectFeedback); // Список отзывов
   const { status: feedbackStatus, error: feedbackError } = useSelector(
@@ -42,6 +45,29 @@ export function Feedback() {
   // Логика для перехода на следующую/предыдущую страницу
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
+  // Фукнция сброса статуса запроса
+  function resetStatus() {
+    dispatch(clearStatus());
+  }
+
+  // Получения данных пользователя
+  useEffect(() => {
+    async function fetchUserData() {
+      if (uid) {
+        try {
+          const data = await getUserData(uid);
+          setName(data.name || "");
+          data.phone ? setPhone(phoneFormatter(data.phone)) : setPhone("");
+          setEmail(data.email || "");
+        } catch {
+          // В случае ошибки мы просто оставляем поля с начальными значениями
+        }
+      }
+    }
+
+    fetchUserData();
+  }, [uid]);
+
   return (
     <section className="feedback">
       <div className="container">
@@ -50,7 +76,7 @@ export function Feedback() {
             <Success
               text="Отзыв успешно отправлен"
               setShowForm={setShowForm}
-              clearStatus={clearStatus}
+              clearStatus={resetStatus}
             />
           )}
           <div className="feedback-title-btn__wrapper">

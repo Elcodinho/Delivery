@@ -11,6 +11,18 @@
       "feedbackCity": "1",
       "rating": 1,
       "text": "тест"
+    },
+    {
+      "id": "2024-12-09T12:29:27.590Z",
+      "date": "пнд, 9 дек. 2024 г., 15:29",
+      "name": "Иван",
+      "phone": "",
+      "email": "",
+      "title": "",
+      "feedbackAbout": "О Ресторане",
+      "feedbackCity": "1",
+      "rating": 1,
+      "text": "Все отлично"
     }
   ]
 }

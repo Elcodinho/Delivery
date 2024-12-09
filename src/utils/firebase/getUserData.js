@@ -14,9 +14,9 @@ export async function getUserData(uid) {
       // Если документ существует, возвращаем его данные
       return userSnapshot.data();
     } else {
-      throw new Error("Пользователь с данным UID не найден.");
+      throw new Error("Ошибка! Не удалось загрузить данные пользователя");
     }
   } catch (error) {
-    throw error; // Перехватываем и передаем ошибки для обработки
+    throw error;
   }
 }
