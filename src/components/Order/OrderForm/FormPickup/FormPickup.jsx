@@ -17,7 +17,7 @@ export const FormPickup = React.memo(function FormPickup(props) {
           "input-border--warning ",
           pickupPoint
         )}
-        defaultValue=""
+        defaultValue={pickupPoint}
         onChange={(e) =>
           handleChange(e, setPickupPoint, pickupPointError, setPickupPointError)
         }

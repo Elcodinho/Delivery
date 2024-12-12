@@ -2,8 +2,18 @@ export const PHONE = "79990001133";
 export const EMAIL = "call54@eda.ru";
 export const ADRESS = "просп. Победы 20";
 export const SCHEDULE = "Пн-Вс 9:00- 23:30";
-export const EXPRESSDELIVERYCOST = 200;
-export const TIPS = 50;
+export const EXPRESSDELIVERYCOST = 200; // Стоимость экспресс доставки
+export const TIPS = 50; // размер чаевых
+
+export const PIZZASIZE = {
+  small: 30,
+  large: 54,
+};
+export const ROLLIAMOUNT = {
+  small: 4,
+  large: 8,
+};
+
 export const POINTSADRESS = [
   {
     adress: "г. Симферополь, проспект Победы 20",

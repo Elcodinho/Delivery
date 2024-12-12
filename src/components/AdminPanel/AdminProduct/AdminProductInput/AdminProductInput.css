@@ -1,0 +1,20 @@
+.admin__input-group {
+  width: calc(50% - 7.5px);
+}
+
+.admin__input-info {
+  margin: 5px 0px 0px 10px;
+  font-size: 0.7rem;
+  color: #4c4c4c;
+}
+
+.admin__input {
+  padding-bottom: 12px;
+}
+
+/* Media */
+@media (max-width: 768px) {
+  .admin__input-group {
+    width: 100%;
+  }
+}

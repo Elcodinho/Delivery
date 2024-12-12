@@ -1,0 +1,23 @@
+.weight-price__container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.weight-price__container:first-child {
+  margin-bottom: 10px;
+}
+
+.weight-price__title {
+  margin-bottom: 5px;
+  font-style: italic;
+  color: red;
+}
+
+.weight-price {
+  display: flex;
+  align-items: stretch;
+  flex-wrap: wrap;
+  gap: 15px;
+  width: 100%;
+}

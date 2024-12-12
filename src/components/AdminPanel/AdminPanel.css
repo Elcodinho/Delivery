@@ -1,3 +1,16 @@
 .admin {
   margin-bottom: 50px;
 }
+
+.admin__wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.admin__buttons-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 30px;
+}

@@ -12,9 +12,9 @@ import { Button } from "@components/UI/Button/Button";
 import { Loader } from "@components/UI/Loader/Loader";
 import { Success } from "@components/UI/Popups/Success/Success";
 import { WarningError } from "@components/UI/Warnings/WarningError/WarningError";
-import "./AdminForm.css";
+import "./AdminFeedback.css";
 
-export function AdminForm() {
+export function AdminFeedback() {
   const [name, setName] = useState("");
   const [title, setTitle] = useState("");
   const [text, setText] = useState("");

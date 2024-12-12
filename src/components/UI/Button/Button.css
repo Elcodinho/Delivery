@@ -107,4 +107,9 @@
   .product-btn--size {
     font-weight: 500;
   }
+
+  /* Стиль для добавления товара в админке */
+  .admin-product--add {
+    width: 100%;
+  }
 }
