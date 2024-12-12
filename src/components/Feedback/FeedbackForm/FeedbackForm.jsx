@@ -3,19 +3,22 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { format } from "date-fns";
 import { ru } from "date-fns/locale";
-import clsx from "clsx";
 import { addProposition, clearError } from "@store/propositionsSlice";
 import { validateEmail } from "@utils/formUtils/validateEmail";
-import { getCssClass } from "@utils/getClasses/getCssClass";
-import { handleChange } from "@utils/formUtils/handleChange";
-import { handlePhoneChange } from "@utils/formUtils/handlePhoneChange";
-import { handleEmailChange } from "@utils/formUtils/handleEmailChange";
+import { useClearError } from "@hooks/useClearError";
 import { Button } from "@components/UI/Button/Button";
-import { WarningForm } from "@components/UI/Warnings/WarningForm/WarningForm";
 import { WarningError } from "@components/UI/Warnings/WarningError/WarningError";
 import { Loader } from "@components/UI/Loader/Loader";
-import { FaStar } from "react-icons/fa";
 import "./FeedbackForm.css";
+//
+import { InputName } from "../../FormFields/InputName";
+import { InputPhone } from "../../FormFields/InputPhone";
+import { InputEmail } from "../../FormFields/InputEmail";
+import { InputTitle } from "../../FormFields/InputTitle";
+import { AboutSelect } from "../../FormFields/AboutSelect";
+import { CitySelect } from "../../FormFields/CitySelect";
+import { FormStars } from "../../FormFields/FormStars";
+import { InputText } from "../../FormFields/InputText";
 
 export function FeedbackForm(props) {
   const {
@@ -45,17 +48,6 @@ export function FeedbackForm(props) {
   ); // Состояние статуса и ошибки запроса при отправке отзыва(addProposition)
   const dispatch = useDispatch();
 
-  // Функция, автоматически изменяющая высоту textarea
-  function autoResize(textarea) {
-    textarea.style.height = "auto"; // Сбросить высоту
-    textarea.style.height = `${textarea.scrollHeight}px`; // Установить высоту в зависимости от содержимого
-  }
-
-  // Обновляем рейтинг
-  const handleStarClick = (newIndex) => {
-    setRating(newIndex + 1);
-  };
-
   // Отправка формы
   function handleSubmit(e) {
     e.preventDefault();
@@ -75,9 +67,13 @@ export function FeedbackForm(props) {
         name.trim() !== "" &&
         text.trim() !== "")
     ) {
-      const formattedDate = format(new Date(), "EEE, d MMM yyyy 'г.', HH:mm", {
+      let formattedDate = format(new Date(), "EEE, d MMM yyyy 'г.', HH:mm", {
         locale: ru,
       });
+      // Сокращаем день недели до первых двух букв
+      formattedDate = formattedDate.replace(/^[а-я]{3}/, (match) =>
+        match.slice(0, 2)
+      );
       const data = {
         id: new Date().toISOString(),
         date: formattedDate,
@@ -92,13 +88,6 @@ export function FeedbackForm(props) {
       };
       dispatch(addProposition(data));
     }
-  }
-
-  // Функция переключения класса ошибки для email
-  function getCssClassEmail(baseClass, errorClass) {
-    return clsx(baseClass, {
-      [errorClass]: emailError || (email.length > 0 && !validateEmail(email)),
-    });
   }
 
   // Функция очистки формы
@@ -122,16 +111,8 @@ export function FeedbackForm(props) {
     }
   }, [proposStatus]);
 
-  // Сброс ошибки запроса через 8 секунд
-  useEffect(() => {
-    if (proposError) {
-      const timer = setTimeout(() => {
-        dispatch(clearError());
-      }, 8000);
-
-      return () => clearTimeout(timer); // Очистка таймера при размонтировании компонента
-    }
-  }, [proposError, dispatch]);
+  // Сброс ошибки запроса через время
+  useClearError(proposError, clearError, 6000);
 
   return (
     <div className="feedback-form__mask" onClick={() => setShowForm(false)}>
@@ -146,6 +127,7 @@ export function FeedbackForm(props) {
           <button
             type="button"
             className="feedback-form__close-btn"
+            aria-label="Закрыть форму"
             onClick={() => setShowForm(false)}
           >
             &#10005;
@@ -159,196 +141,57 @@ export function FeedbackForm(props) {
           </p>
           <form className="feedback-form" onSubmit={handleSubmit}>
             {/* Name */}
-            <div className="feedback-form__group-container">
-              <div className="feedback-form__group">
-                <input
-                  className={getCssClass(
-                    nameError,
-                    "feedback-form__item",
-                    "input-border--warning",
-                    name,
-                    60
-                  )}
-                  type="text"
-                  name="name"
-                  id="name"
-                  aria-label="Имя"
-                  placeholder=""
-                  value={name}
-                  onChange={(e) =>
-                    handleChange(e, setName, nameError, setNameError)
-                  }
-                  required
-                />
-                <label className="feedback-form__label required" htmlFor="name">
-                  Имя
-                </label>
-              </div>
-              {(name.length > 60 || nameError) && <WarningForm symbols="60" />}
-            </div>
+            <InputName
+              id="name"
+              name={name}
+              setName={setName}
+              nameError={nameError}
+              setNameError={setNameError}
+            />
             {/* Phone */}
-            <div className="feedback-form__group-container">
-              <div className="feedback-form__group">
-                <input
-                  className={clsx("feedback-form__item", {
-                    "input-border--warning":
-                      phone.length > 0 && phone.length < 16,
-                  })}
-                  type="tel"
-                  name="phone"
-                  id="phone"
-                  aria-label="номер телефона"
-                  placeholder=""
-                  value={phone}
-                  onChange={(e) =>
-                    handlePhoneChange(e, phoneError, setPhoneError, setPhone)
-                  }
-                />
-                <label className="feedback-form__label" htmlFor="phone">
-                  Телефон
-                </label>
-              </div>
-              {phone.length > 0 && phone.length < 16 && (
-                <WarningForm text="Убедитесь, что вы ввели номер полностью" />
-              )}
-            </div>
+            <InputPhone
+              id="phone"
+              phone={phone}
+              setPhone={setPhone}
+              phoneError={phoneError}
+              setPhoneError={setPhoneError}
+            />
             {/*  Email*/}
-            <div className="feedback-form__group-container login__form__group-container">
-              <div className="feedback-form__group">
-                <input
-                  className={getCssClassEmail(
-                    "feedback-form__item",
-                    "input-border--warning"
-                  )}
-                  type="email"
-                  id="email"
-                  aria-label="электронная почта"
-                  placeholder=""
-                  value={email}
-                  onChange={(e) => handleEmailChange(e, setEmail)}
-                />
-                <label className="feedback-form__label" htmlFor="email">
-                  Эл. почта
-                </label>
-              </div>
-              {email.length > 0 && !validateEmail(email) && (
-                <WarningForm text="Пожалуйста, введите корректный адрес электронной почты" />
-              )}
-            </div>
+            <InputEmail
+              id="email"
+              email={email}
+              setEmail={setEmail}
+              emailError={emailError}
+            />
             {/* Title */}
-            <div className="feedback-form__group-container">
-              <div className="feedback-form__group">
-                <input
-                  className={getCssClass(
-                    null,
-                    "feedback-form__item",
-                    "input-border--warning",
-                    title,
-                    80
-                  )}
-                  type="text"
-                  id="feedback-form__title"
-                  aria-label="заголовок отзыва"
-                  placeholder=""
-                  value={title}
-                  onChange={(e) => setTitle(e.target.value)}
-                />
-                <label
-                  className="feedback-form__label"
-                  htmlFor="feedback-form__title"
-                >
-                  Заголовок отзыва
-                </label>
-                {title.length > 80 && <WarningForm symbols="80" />}
-              </div>
-            </div>
+            <InputTitle
+              id="feedback-form__title"
+              title={title}
+              setTitle={setTitle}
+            />
+
             {/* About select */}
-            <div className="feedback-form__group-container">
-              <div className="feedback-form__group">
-                <select
-                  className="feedback-form__item feedback-form__item--select"
-                  name="feedback-about"
-                  id="feedback-about"
-                  value={feedbackAbout}
-                  onChange={(e) => setFeedbackAbout(e.target.value)}
-                  required
-                >
-                  <option value="О Ресторане">О Ресторане</option>
-                  <option value="О службе доставки">О службе доставки</option>
-                </select>
-                <label
-                  className="feedback-form__label feedback-form__label--select required"
-                  htmlFor="feedback-about"
-                >
-                  Тема
-                </label>
-              </div>
-            </div>
+            <AboutSelect
+              id="feedback-about"
+              feedbackAbout={feedbackAbout}
+              setFeedbackAbout={setFeedbackAbout}
+            />
             {/* City select */}
-            <div className="feedback-form__group-container">
-              <div className="feedback-form__group">
-                <select
-                  className="feedback-form__item feedback-form__item--select"
-                  name="feedback-city"
-                  id="feedback-city"
-                  value={feedbackCity}
-                  onChange={(e) => setFeedbackCity(e.target.value)}
-                  required
-                >
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4">4</option>
-                  <option value="5">5</option>
-                </select>
-                <label
-                  className="feedback-form__label feedback-form__label--select required"
-                  htmlFor="feedback-city"
-                >
-                  Город
-                </label>
-              </div>
-            </div>
+            <CitySelect
+              id="feedback-city"
+              feedbackCity={feedbackCity}
+              setFeedbackCity={setFeedbackCity}
+            />
             {/* Stars */}
-            <div className="feedback-form__stars">
-              {[...Array(5)].map((_, index) => (
-                <FaStar
-                  key={index}
-                  className={clsx("form__star", { filled: index < rating })}
-                  onClick={() => handleStarClick(index)}
-                />
-              ))}
-            </div>
+            <FormStars rating={rating} setRating={setRating} />
             {/* Form text */}
-            <div className="feedback-form__group feedback-form__group--textarea">
-              <textarea
-                className={getCssClass(
-                  textError,
-                  "feedback-form__item feedback-form__text-area",
-                  "input-border--warning ",
-                  text,
-                  500
-                )}
-                name="feedback-text"
-                id="feedback-text"
-                placeholder=""
-                required
-                value={text}
-                onChange={(e) =>
-                  handleChange(e, setText, textError, setTextError)
-                }
-                onInput={(e) => autoResize(e.target)}
-              ></textarea>
-              <label
-                className="feedback-form__label feedback-form__label--textarea required"
-                htmlFor="feedback-text"
-              >
-                Текст отзыва
-              </label>
-              {(text.length > 500 || textError) && (
-                <WarningForm symbols="500" />
-              )}
-            </div>
+            <InputText
+              id="feedback-text"
+              text={text}
+              setText={setText}
+              textError={textError}
+              setTextError={setTextError}
+            />
             {/*  */}
             <p className="policy">
               Предоставляя свои персональные данные, Вы соглашаетесь с{" "}

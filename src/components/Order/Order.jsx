@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { clearOrderStatus, clearOrderError } from "@store/orderSlice";
+import { useClearError } from "@hooks/useClearError";
 import { Cart } from "./Cart/Cart";
 import { OrderForm } from "@components/Order/OrderForm/OrderForm";
 import { Loader } from "@components/UI/Loader/Loader";
@@ -13,15 +14,7 @@ export function Order() {
   ); // Состояние статуса и ошибки запроса отправки формы
 
   // Сброс ошибки запроса через 8 секунд
-  useEffect(() => {
-    if (orderError) {
-      const timer = setTimeout(() => {
-        dispatch(clearOrderError());
-      }, 8000);
-
-      return () => clearTimeout(timer); // Очистка таймера при размонтировании компонента
-    }
-  }, [orderError, dispatch]);
+  useClearError(orderError, clearOrderError, 8000);
 
   // Фукнция сброса статуса запроса
   function resetStatus() {

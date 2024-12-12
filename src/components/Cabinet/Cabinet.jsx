@@ -5,6 +5,7 @@ import { removeUser } from "@store/userSlice";
 import { getUserData } from "@utils/firebase/getUserData";
 import { updateUserData } from "@utils/firebase/updateUserData";
 import { phoneFormatter } from "@utils/formatters/phoneFormatter.js";
+import { useResetWarning } from "@hooks/useResetWarning";
 import { db } from "../../firebase.js";
 import { CabinetForm } from "./CabinetForm/CabinetForm";
 import { Loader } from "@components/UI/Loader/Loader.jsx";
@@ -116,15 +117,7 @@ export function Cabinet() {
   }
 
   // Сбрасываем ошибку через время
-  useEffect(() => {
-    if (sendUserError) {
-      const timer = setTimeout(() => {
-        setSendUserError(null);
-      }, 6000);
-
-      return () => clearTimeout(timer); // Очистка таймера при размонтировании компонента
-    }
-  }, [sendUserError]);
+  useResetWarning(sendUserError, setSendUserError, 6000);
 
   // Функция перезагрузки страницы
   function reloadPage() {

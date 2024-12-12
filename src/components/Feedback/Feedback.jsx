@@ -1,16 +1,22 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getFeedback } from "@store/feedbackSlice";
-import { selectFeedback } from "@store/feedbackSlice";
+import {
+  selectFeedback,
+  clearDeleteFeedbackError,
+  clearDeleteFeedbackStatus,
+} from "@store/feedbackSlice";
 import { clearStatus } from "@store/propositionsSlice";
 import { phoneFormatter } from "@utils/formatters/phoneFormatter";
 import { getUserData } from "@utils/firebase/getUserData";
+import { useClearError } from "@hooks/useClearError";
 import { Button } from "@components/UI/Button/Button";
 import { FeedbackList } from "./FeedBackList/FeedbackList";
 import { FeedbackForm } from "./FeedbackForm/FeedbackForm";
 import { Loader } from "@components/UI/Loader/Loader";
 import { Success } from "@components/UI/Popups/Success/Success";
 import { Pagination } from "@components/UI/Pagination/Pagination";
+import { WarningError } from "@components/UI/Warnings/WarningError/WarningError";
 import "./Feedback.css";
 
 export function Feedback() {
@@ -36,6 +42,10 @@ export function Feedback() {
   const { status: proposStatus, error: proposError } = useSelector(
     (state) => state.propositions
   ); // Состояние статуса и ошибки запроса при отправке отзыва(addProposition)
+  const {
+    deleteStatus: deleteFeedbackStatus,
+    deleteError: deleteFeedbackError,
+  } = useSelector((state) => state.feedback); // Состояния статуса и ошибки удаления отзыва
 
   // Получаем посты
   useEffect(() => {
@@ -48,6 +58,10 @@ export function Feedback() {
   // Фукнция сброса статуса запроса
   function resetStatus() {
     dispatch(clearStatus());
+  }
+  // Очистка статуса удаления отзыва
+  function resetDeletFeedStatus() {
+    dispatch(clearDeleteFeedbackStatus());
   }
 
   // Получения данных пользователя
@@ -68,10 +82,28 @@ export function Feedback() {
     fetchUserData();
   }, [uid]);
 
+  // Сброс ошибки удаления отзыва
+  useClearError(deleteFeedbackError, clearDeleteFeedbackError, 6000);
+
+  // Функция перезагрузки страницы
+  function reloadPage() {
+    window.location.reload();
+  }
+
   return (
     <section className="feedback">
       <div className="container">
         <div className="feedback__wrapper">
+          {deleteFeedbackError && (
+            <WarningError warning={deleteFeedbackError} />
+          )}
+          {deleteFeedbackStatus === "resolved" && !deleteFeedbackError && (
+            <Success
+              text="Отзыв успешно удален"
+              clearStatus={resetDeletFeedStatus}
+              reload={reloadPage}
+            />
+          )}
           {proposStatus === "resolved" && !proposError && (
             <Success
               text="Отзыв успешно отправлен"

@@ -23,18 +23,63 @@ export const getFeedback = createAsyncThunk(
 // Функция добавления отзывовов
 export const addFeedback = createAsyncThunk(
   "feedback/addFeedback",
-  async function () {}
+  async function (data, { rejectWithValue }) {
+    try {
+      const response = await fetch(FEEDBACKURL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+      if (!response.ok) {
+        return rejectWithValue(
+          "Ошибка! Не удалось добавить отзыв, попробуйте еще раз"
+        );
+      }
+    } catch (error) {
+      if (error.message === "Failed to fetch") {
+        return rejectWithValue(
+          "Ошибка! Не удалось добавить отзыв, попробуйте еще раз"
+        );
+      }
+    }
+  }
 );
 // Функция удаления отзывов
 export const deleteFeedback = createAsyncThunk(
   "feedback/deleteFeedback",
-  async function () {}
+  async function (id, { rejectWithValue }) {
+    try {
+      const response = await fetch(`${FEEDBACKURL}/${id}`, {
+        method: "DELETE",
+      });
+      if (!response.ok) {
+        return rejectWithValue(
+          "Ошибка! Не удалось удалить отзыв, попробуйте еще раз"
+        );
+      }
+    } catch (error) {
+      if (error.message === "Failed to fetch") {
+        return rejectWithValue(
+          "Ошибка! Не удалось удалить отзыв, попробуйте еще раз"
+        );
+      }
+    }
+  }
 );
-// Функция редактирования отзывов
-export const editFeedback = createAsyncThunk(
-  "feedback/editFeedback",
-  async function () {}
-);
+
+// Универсальная функция обработки статуса
+const handlePending = (state) => {
+  state.status = "loading";
+  state.error = null;
+};
+
+// Универсальная функция обработки успешного отзыва
+const handleFulfilled = (state) => {
+  state.status = "resolved";
+  state.error = null;
+};
 
 // Универсальная функция обработки ошибок
 const handleRejected = (builder, asyncThunk) => {
@@ -49,26 +94,59 @@ const initialState = {
   feedback: [],
   status: null,
   error: null,
+  deleteStatus: null,
+  deleteError: null,
 };
 
 const feedbackSlice = createSlice({
   name: "feedback",
   initialState,
-  reducers: {},
+  reducers: {
+    clearFeedbackError: (state) => {
+      state.error = null; // Сбрасываем ошибку
+    },
+    clearFeedbackStatus: (state) => {
+      state.status = null; // Сбрасываем статус
+    },
+    clearDeleteFeedbackError: (state) => {
+      state.deleteError = null; // Сбрасываем ошибку
+    },
+    clearDeleteFeedbackStatus: (state) => {
+      state.deleteStatus = null; // Сбрасываем статус
+    },
+  },
   extraReducers: (builder) => {
     builder
-      .addCase(getFeedback.pending, (state) => {
-        state.status = "loading";
-        state.error = null;
-      })
+      .addCase(getFeedback.pending, handlePending)
       .addCase(getFeedback.fulfilled, (state, action) => {
         state.status = "resolved";
         state.error = null;
         state.feedback = action.payload;
+      })
+      .addCase(addFeedback.pending, handlePending)
+      .addCase(addFeedback.fulfilled, handleFulfilled)
+      .addCase(deleteFeedback.pending, (state) => {
+        state.deleteError = null;
+        state.deleteStatus = "loading";
+      })
+      .addCase(deleteFeedback.fulfilled, (state) => {
+        state.deleteError = null;
+        state.deleteStatus = "resolved";
+      })
+      .addCase(deleteFeedback.rejected, (state, action) => {
+        state.deleteStatus = "rejected";
+        state.deleteError = action.payload || action.error.message;
       });
     handleRejected(builder, getFeedback);
+    handleRejected(builder, addFeedback);
   },
 });
 
+export const {
+  clearFeedbackError,
+  clearFeedbackStatus,
+  clearDeleteFeedbackError,
+  clearDeleteFeedbackStatus,
+} = feedbackSlice.actions;
 export const selectFeedback = (state) => state.feedback.feedback;
 export default feedbackSlice.reducer;

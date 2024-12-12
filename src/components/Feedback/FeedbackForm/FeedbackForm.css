@@ -58,97 +58,6 @@
   padding: 5px;
 }
 
-.feedback-form__group-container {
-  width: calc(50% - 20px);
-}
-
-.feedback-form__group {
-  position: relative;
-  width: 100%;
-}
-
-.feedback-form__group--textarea {
-  width: 100%;
-}
-
-.feedback-form__item {
-  width: 100%;
-  padding: 20px 10.5px 5px;
-
-  border: none;
-  border-radius: 20px;
-  background-color: #f9f9fb;
-  color: #575757;
-  box-shadow: var(--my-box-shadow);
-}
-
-.feedback-form__item--select {
-  width: 100%;
-
-  appearance: none;
-  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="yellow" stroke="yellow" stroke-width="2"><polygon points="6,9 12,15 18,9" /></svg>'); /* Стрелка вниз */
-  background-repeat: no-repeat;
-  background-position: right 10px center;
-  background-size: 17px;
-}
-
-/* Поворот стрелки вверх, когда селект активен */
-.feedback-form__item--select:focus {
-  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="yellow" stroke="yellow" stroke-width="2"><polygon points="6,15 12,9 18,15" /></svg>'); /* Стрелка вверх */
-}
-
-.feedback-form__item:focus {
-  outline: none;
-}
-
-.feedback-form__label {
-  position: absolute;
-  top: 50%;
-  left: 10px;
-  transform: translateY(-50%);
-  font-size: 0.9rem;
-  opacity: 0.6;
-  transition: all 0.3s linear;
-}
-
-.feedback-form__item:focus + .feedback-form__label {
-  top: 8.5px;
-  font-size: 0.7rem;
-}
-
-.feedback-form__item:not(:placeholder-shown) + .feedback-form__label {
-  top: 8.5px;
-  font-size: 0.7rem;
-}
-
-.feedback-form__label--select {
-  top: 7px;
-  font-size: 0.7rem;
-}
-
-.feedback-form__text-area {
-  overflow: hidden;
-  /*  */
-  width: 100%;
-  padding: 20px 10px 0;
-  resize: none;
-}
-
-.feedback-form__text-area:focus + .feedback-form__label--textarea {
-  top: 11px;
-  left: 10px;
-}
-
-.feedback-form__text-area:not(:placeholder-shown)
-  + .feedback-form__label--textarea {
-  top: 11px;
-  left: 10px;
-}
-
-.input-border--warning {
-  border: 1px solid rgb(254, 155, 25);
-}
-
 .policy-link {
   color: blue;
   transition: color 0.2s linear;
@@ -162,27 +71,6 @@
   display: flex;
   justify-content: flex-end;
   width: 100%;
-}
-
-.required::after {
-  content: "*";
-  height: 5px;
-  margin-left: 3px;
-  color: red;
-}
-
-.feedback-form__stars {
-  margin: 15px 0;
-}
-
-.form__star {
-  width: 34px;
-  height: 34px;
-  cursor: pointer;
-}
-
-.form__star.filled {
-  color: var(--my-yel-color); /* цвет активных звезд */
 }
 
 .feedback-form__close-btn {
@@ -200,11 +88,4 @@
 
 .feedback-form__close-btn:hover {
   color: red;
-}
-
-/* Media */
-@media (max-width: 991px) {
-  .feedback-form__group-container {
-    width: 100%;
-  }
 }

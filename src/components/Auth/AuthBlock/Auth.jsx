@@ -29,19 +29,34 @@ export function Auth() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  // Функция сброса ошибок формы
+  function resetErrors() {
+    setEmailError("");
+    setPassError("");
+    setFetchError(null);
+  }
+
   // Функция переключения окон регистрация и авторизации
   function authTypeToggle() {
     authType === "login" ? setAuthType("register") : setAuthType("login");
+    resetErrors(); // Сброс ошибок
   }
 
   // Функция отравки формы
   async function handleSubmit(e) {
     e.preventDefault();
-    if (
-      !validateEmail(email, setEmailError) ||
-      !validatePassword(pass, setPassError)
-    ) {
-      return; // Останавливаем отправку формы, если пароль не прошел валидацию
+    if (authType === "register") {
+      if (
+        !validateEmail(email, setEmailError) ||
+        !validatePassword(pass, setPassError)
+      ) {
+        return;
+      }
+    }
+    if (authType === "login") {
+      if (!validateEmail(email, setEmailError) || pass.trim() === "") {
+        return;
+      }
     }
     try {
       let userData;
@@ -56,7 +71,6 @@ export function Auth() {
       }
       dispatch(setUser(userData));
       localStorage.setItem("user", JSON.stringify(userData));
-
       setEmail("");
       setPass("");
       setFetchError(null);
@@ -88,9 +102,13 @@ export function Auth() {
           email={email}
           setEmail={setEmail}
           emailError={emailError}
+          setEmailError={setEmailError}
           pass={pass}
           setPass={setPass}
           passError={passError}
+          setPassError={setPassError}
+          fetchError={fetchError}
+          setFetchError={setFetchError}
           authType={authType}
           formTitle={authType === "login" ? "Войти" : "Регистрация"}
           formText="Введите номер телефона и пароль"

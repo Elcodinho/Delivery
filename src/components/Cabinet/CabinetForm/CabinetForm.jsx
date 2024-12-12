@@ -45,6 +45,7 @@ export function CabinetForm(props) {
           <button
             type="button"
             className="cabinet-form__close-btn"
+            aria-label="Закрыть форму"
             onClick={() => setShowForm(false)}
           >
             &#10005;
@@ -53,12 +54,12 @@ export function CabinetForm(props) {
 
           <form className="cabinet-form" onSubmit={handleSubmit}>
             {/* Name */}
-            <div className="feedback-form__group-container  cabinet-form__group-container">
-              <div className="feedback-form__group">
+            <div className="common-form__group-container  cabinet-form__group-container">
+              <div className="common-form__group">
                 <input
                   className={getCssClass(
                     nameError,
-                    "feedback-form__item",
+                    "common-form__item",
                     "input-border--warning",
                     name,
                     60
@@ -75,7 +76,7 @@ export function CabinetForm(props) {
                   required
                 />
                 <label
-                  className="feedback-form__label required"
+                  className="common-form__label required"
                   htmlFor="name-cab"
                 >
                   Имя
@@ -85,10 +86,10 @@ export function CabinetForm(props) {
             </div>
 
             {/* Phone */}
-            <div className="feedback-form__group-container cabinet-form__group-container">
-              <div className="feedback-form__group">
+            <div className="common-form__group-container cabinet-form__group-container">
+              <div className="common-form__group">
                 <input
-                  className={clsx("feedback-form__item", {
+                  className={clsx("common-form__item", {
                     "input-border--warning":
                       phone.length > 0 && phone.length < 16,
                   })}
@@ -102,7 +103,7 @@ export function CabinetForm(props) {
                     handlePhoneChange(e, phoneError, setPhoneError, setPhone)
                   }
                 />
-                <label className="feedback-form__label" htmlFor="phone">
+                <label className="common-form__label" htmlFor="phone">
                   Телефон
                 </label>
               </div>

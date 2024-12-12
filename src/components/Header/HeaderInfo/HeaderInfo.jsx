@@ -136,7 +136,9 @@ export function HeaderInfo() {
                   alt="Пользователь"
                 />
               </div>
-              {userDataError ? "Пользователь" : userName}
+              {uid && userDataError && "Пользователь"}
+              {uid && !userDataError && userName}
+              {!uid && !userDataError && ""}
             </Link>
           </div>
         )}

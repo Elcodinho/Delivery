@@ -23,6 +23,18 @@
       "feedbackCity": "1",
       "rating": 1,
       "text": "Все отлично"
+    },
+    {
+      "id": "2024-12-10T10:08:20.408Z",
+      "date": "втр, 10 дек. 2024 г., 13:08",
+      "name": "Витя",
+      "phone": "",
+      "email": "test3@mail.com",
+      "title": "",
+      "feedbackAbout": "О Ресторане",
+      "feedbackCity": "1",
+      "rating": 1,
+      "text": "Все отлично"
     }
   ]
 }

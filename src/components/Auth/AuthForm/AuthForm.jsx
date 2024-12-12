@@ -13,9 +13,13 @@ export function AuthForm(props) {
     email,
     setEmail,
     emailError,
+    setEmailError,
     pass,
     setPass,
     passError,
+    setPassError,
+    fetchError,
+    setFetchError,
     authType,
     formTitle,
     formText,
@@ -38,12 +42,33 @@ export function AuthForm(props) {
     setShowPassword((prev) => !prev); // Переключаем видимость пароля
   };
 
+  // Функция изменения Email
+  function handleMailChange(e) {
+    if (emailError) {
+      setEmailError(null);
+    } else if (fetchError) {
+      setFetchError(null);
+    }
+    handleEmailChange(e, setEmail);
+  }
+
+  // Функция изменения пароля
+  function passWordChange(e) {
+    if (passError) {
+      setPassError(null);
+    } else if (fetchError) {
+      setFetchError(null);
+    }
+    setPass(e.target.value);
+  }
+
   return (
     <div className="auth__wrapper">
       {/* Крестик для закрытия формы */}
       <button
         type="button"
         className="auth__close-btn"
+        aria-label="Закрыть форму"
         onClick={() => setShowLogin(false)}
       >
         &#10005;
@@ -52,11 +77,11 @@ export function AuthForm(props) {
       <p className="auth__text">{formText}</p>
       <form className="auth__form" onSubmit={handleSubmit}>
         {/*  Email*/}
-        <div className="feedback-form__group-container auth__form__group-container">
-          <div className="feedback-form__group">
+        <div className="common-form__group-container auth__form__group-container">
+          <div className="common-form__group">
             <input
               className={getCssClassEmail(
-                "feedback-form__item auth-form__item",
+                "common-form__item auth-form__item",
                 "input-border--warning"
               )}
               type="email"
@@ -64,9 +89,9 @@ export function AuthForm(props) {
               aria-label="Электронная почта"
               placeholder=""
               value={email}
-              onChange={(e) => handleEmailChange(e, setEmail)}
+              onChange={handleMailChange}
             />
-            <label className="feedback-form__label" htmlFor="email-auth">
+            <label className="common-form__label" htmlFor="email-auth">
               Эл. почта
             </label>
           </div>
@@ -76,23 +101,20 @@ export function AuthForm(props) {
         </div>
 
         {/* Password */}
-        <div className="feedback-form__group-container auth__form__group-container">
-          <div className="feedback-form__group">
+        <div className="common-form__group-container auth__form__group-container">
+          <div className="common-form__group">
             <input
-              className={clsx(
-                "feedback-form__item auth-form__item auth--pass",
-                {
-                  "input-border--warning": passError,
-                }
-              )}
+              className={clsx("common-form__item auth-form__item auth--pass", {
+                "input-border--warning": passError,
+              })}
               type={showPassword ? "text" : "password"} // Меняем тип в зависимости от состояния показа пароля
               id="password-auth"
               aria-label="Пароль"
               placeholder=""
               value={pass}
-              onChange={(e) => setPass(e.target.value)}
+              onChange={passWordChange}
             />
-            <label className="feedback-form__label" htmlFor="password-auth">
+            <label className="common-form__label" htmlFor="password-auth">
               Пароль
             </label>
             {!showPassword && (
