@@ -2,6 +2,10 @@
   width: calc(50% - 7.5px);
 }
 
+.admin__input-group--w {
+  width: calc(70% - 7.5px);
+}
+
 .admin__input-info {
   margin: 5px 0px 0px 10px;
   font-size: 0.7rem;
@@ -16,5 +20,9 @@
 @media (max-width: 768px) {
   .admin__input-group {
     width: 100%;
+  }
+
+  .admin__input-group--w {
+    width: calc(100%);
   }
 }

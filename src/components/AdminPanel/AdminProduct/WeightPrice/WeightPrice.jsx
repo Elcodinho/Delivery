@@ -4,6 +4,8 @@ import "./WeightPrice.css";
 
 export const WeightPrice = React.memo(function WeightPrice(props) {
   const {
+    idPrice,
+    idWeight,
     weight,
     setWeight,
     price,
@@ -20,7 +22,7 @@ export const WeightPrice = React.memo(function WeightPrice(props) {
       {title && <p className="weight-price__title">{title}</p>}
       <div className="weight-price">
         <AdminProductInput
-          id="admin-weight"
+          id={idWeight}
           value={weight}
           setValue={setWeight}
           valueError={weightError}
@@ -32,7 +34,7 @@ export const WeightPrice = React.memo(function WeightPrice(props) {
           info="Укажите вес товара в граммах (только числа)"
         />
         <AdminProductInput
-          id="admin-price"
+          id={idPrice}
           value={price}
           setValue={setPrice}
           valueError={priceError}

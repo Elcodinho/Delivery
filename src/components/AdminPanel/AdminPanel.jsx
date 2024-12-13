@@ -6,7 +6,7 @@ import "./AdminPanel.css";
 
 const adminButtons = [
   { text: "Добавить отзыв", value: "feedback" },
-  { text: "Добавить товар", value: "product" },
+  { text: "Добавить или удалить товар", value: "product" },
 ];
 
 export function AdminPanel() {

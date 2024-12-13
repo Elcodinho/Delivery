@@ -562,6 +562,27 @@
       "weight": 430,
       "image": "https://res.cloudinary.com/dynzztjct/image/upload/v1731659746/rimskaya-sirniy-tsiplenok_g6bf2p.webp",
       "description": "Тесто для римской пиццы, соус сливочный, куриное филе, сыр моцарелла, помидоры черри, масло чесночное, зелень"
+    },
+    {
+      "id": "0402",
+      "name": "Сочная говядина",
+      "category": "pizza",
+      "slug": "sochnaya-govyadina-pizza",
+      "image": "https://res.cloudinary.com/dynzztjct/image/upload/v1734098491/sochnaya-govyadina_c7k7gj.webp",
+      "description": "итальянская мука, соус томатный, сыр моцарелла, бекон, маринованная телятина , грибы шампиньоны, сыр сливочный, орегано, базилик",
+      "weight": {
+        "small": 560,
+        "large": 1020
+      },
+      "price": {
+        "small": 640,
+        "large": 1030
+      },
+      "type": "classic",
+      "size": {
+        "small": 30,
+        "large": 54
+      }
     }
   ]
 }

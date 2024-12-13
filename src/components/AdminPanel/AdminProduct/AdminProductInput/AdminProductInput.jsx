@@ -16,11 +16,14 @@ export const AdminProductInput = React.memo(function AdminProductInput(props) {
     ariaLabel,
     valueLength,
     info,
+    cssClass = "",
     handleInputChange = handleChange,
   } = props;
 
   return (
-    <div className="common-form__group-container admin__input-group">
+    <div
+      className={`common-form__group-container admin__input-group ${cssClass}`}
+    >
       <div className="common-form__group">
         <input
           className={getCssClass(

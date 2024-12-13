@@ -1,6 +1,10 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { URL } from "@constants/constants";
-
+import {
+  handlePending,
+  handleFulfilled,
+  handleRejected,
+} from "@utils/redux/reduxUtils";
 const { SUGGESTIONSURL } = URL;
 
 // Функция отправки новых отзывов и предложений(propositions)
@@ -27,14 +31,6 @@ export const addProposition = createAsyncThunk(
   }
 );
 
-// Универсальная функция обработки ошибок
-const handleRejected = (builder, asyncThunk) => {
-  builder.addCase(asyncThunk.rejected, (state, action) => {
-    state.status = "rejected";
-    state.error = action.payload || action.error.message;
-  });
-};
-
 // Начальное стостояние массива
 const initialState = {
   propositions: [],
@@ -55,14 +51,8 @@ export const propositionsSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(addProposition.pending, (state) => {
-        state.status = "loading";
-        state.error = null;
-      })
-      .addCase(addProposition.fulfilled, (state) => {
-        state.status = "resolved";
-        state.error = null;
-      });
+      .addCase(addProposition.pending, handlePending)
+      .addCase(addProposition.fulfilled, handleFulfilled);
     handleRejected(builder, addProposition);
   },
 });

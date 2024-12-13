@@ -1,10 +1,18 @@
 import { useState, useCallback, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import clsx from "clsx";
+import { addMenuItem } from "@store/menuSlice";
+import { clearMenuError, clearMenuStatus } from "@store/menuSlice";
+import { useClearError } from "@hooks/useClearError";
+import { submitAdminProduct } from "@utils/formUtils/submitAdminProduct";
 import { PIZZASIZE, ROLLIAMOUNT } from "@constants/constants";
+import { AdminDeleteProduct } from "./AdminDeleteProduct/AdminDeleteProduct";
 import { AdminProductSelect } from "./AdminProductSelect/AdminProductSelect";
 import { AdminProductInput } from "./AdminProductInput/AdminProductInput";
 import { WeightPrice } from "./WeightPrice/WeightPrice";
 import { Button } from "@components/UI/Button/Button";
+import { Loader } from "@components/UI/Loader/Loader";
+import { Success } from "@components/UI/Popups/Success/Success";
 import { WarningError } from "@components/UI/Warnings/WarningError/WarningError";
 import "./AdminProduct.css";
 
@@ -37,6 +45,12 @@ export function AdminProduct() {
   const pizzaTitle = `Укажите вес и цену для пиццы размером ${pizzaSize}см`;
   const pizzaLargeTitle = `Укажите вес и цену для пиццы размером ${largePizzaSize}см`;
 
+  const dispatch = useDispatch();
+  const { status: addMenuStatus, error: addMenuError } = useSelector(
+    (state) => state.menu
+  ); // Статус и ошибка запроса добавления товара
+
+  const [name, setName] = useState(""); // Название товара
   const [category, setCategory] = useState(""); // Категоря товара
   const [subCat, setSubCat] = useState(""); // Подкатегория товара
   const [type, setType] = useState(""); // Тип товара
@@ -49,6 +63,7 @@ export function AdminProduct() {
   const [largePrice, setLargePrice] = useState("");
 
   // Состояние ошибок
+  const [nameError, setNameError] = useState(null);
   const [categoryError, setCategoryError] = useState(null);
   const [subCatError, setSubCatError] = useState(null);
   const [typeError, setTypeError] = useState(null);
@@ -79,10 +94,95 @@ export function AdminProduct() {
     setType(""); // Сбрасываем тип товара
   }, [category]);
 
+  // Функция отправки формы
+  function handleSubmit(e) {
+    e.preventDefault();
+    submitAdminProduct({
+      name,
+      category,
+      subCat,
+      type,
+      slug,
+      img,
+      description,
+      weight,
+      price,
+      largeWeight,
+      largePrice,
+      pizzaSize,
+      largePizzaSize,
+      rolliSize,
+      largeRolliSize,
+      setNameError,
+      setCategoryError,
+      setSubCatError,
+      setTypeError,
+      setSlugError,
+      setImgError,
+      setDescriptionError,
+      setWeightError,
+      setPriceError,
+      setLargeWeightError,
+      setLargePriceError,
+      isRolli,
+      isClassicPizza,
+      dispatch,
+      addMenuItem,
+    });
+  }
+
+  // Функция сброса ошибо всех полей
+  function resetError() {
+    setNameError(null);
+    setCategoryError(null);
+    setSubCatError(null);
+    setTypeError(null);
+    setSlugError(null);
+    setImgError(null);
+    setDescriptionError(null);
+    setWeightError(null);
+    setPriceError(null);
+    setLargeWeightError(null);
+    setLargePriceError(null);
+  }
+
+  // Функция очистки формы
+  function clearForm() {
+    setName("");
+    setCategory("");
+    setSubCat("");
+    setType("");
+    setSlug("");
+    setImg("");
+    setDescription("");
+    setWeight("");
+    setPrice("");
+    setLargePrice("");
+    setLargeWeight("");
+  }
+
+  useEffect(() => {
+    if (addMenuStatus === "resolved") {
+      resetError();
+      clearForm();
+    }
+  }, [addMenuStatus]);
+
+  // Очистка статуса запроса отправки отзыва
+  function clearStatus() {
+    dispatch(clearMenuStatus());
+  }
+  useClearError(addMenuError, clearMenuError, 6000);
+
   return (
     <div className="admin-product__wrapper">
+      {addMenuStatus === "loading" && <Loader />}
+      {addMenuStatus === "resolved" && (
+        <Success text="Товар успешно добавлен" clearStatus={clearStatus} />
+      )}
+      {addMenuError && <WarningError warning={addMenuError} />}
       <h3 className="admin-product__title title--3">Добавить новый товар</h3>
-      <form className="admin-product__form">
+      <form className="admin-product__form" onSubmit={handleSubmit}>
         <AdminProductSelect
           value={category}
           setValue={setCategory}
@@ -115,6 +215,18 @@ export function AdminProduct() {
           />
         )}
         <div className="admin-product__inputs-wrapper">
+          <AdminProductInput
+            id="admin-name"
+            value={name}
+            setValue={setName}
+            valueError={nameError}
+            setValueError={setNameError}
+            type="text"
+            label="Название товара"
+            ariaLabel="Название товара"
+            valueLength={60}
+            info="Введите название товара"
+          />
           <AdminProductInput
             id="admin-slug"
             value={slug}
@@ -160,6 +272,8 @@ export function AdminProduct() {
           })}
         >
           <WeightPrice
+            idPrice="admin-price"
+            idWeight="admin-weight"
             weight={weight}
             setWeight={setWeight}
             price={price}
@@ -172,6 +286,8 @@ export function AdminProduct() {
           />
           {(isRolli || isClassicPizza) && (
             <WeightPrice
+              idPrice="admin-price-large"
+              idWeight="admin-weight-large"
               weight={largeWeight}
               setWeight={setLargeWeight}
               price={largePrice}
@@ -185,9 +301,15 @@ export function AdminProduct() {
           )}
         </div>
         <div className="admin-product__buttons-wrapper">
-          <Button text="Добавить товар" cssClass="admin-product--add" />
+          <Button
+            text="Добавить товар"
+            cssClass="admin-product--add"
+            type="submit"
+          />
         </div>
       </form>
+      <h3 className="admin-product__title title--3">Удалить товар</h3>
+      <AdminDeleteProduct allowedChars={allowedSlugChars} />
     </div>
   );
 }

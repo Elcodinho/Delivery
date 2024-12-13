@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { handlePending, handleRejected } from "@utils/redux/reduxUtils";
 import { URL } from "@constants/constants";
 const SUPPLEMENTSURL = URL.SUPPLEMENTSURL;
 
@@ -21,14 +22,6 @@ export const getSupplement = createAsyncThunk(
   }
 );
 
-// Универсальная функция обработки ошибок
-const handleRejected = (builder, asyncThunk) => {
-  builder.addCase(asyncThunk.rejected, (state, action) => {
-    state.status = "rejected";
-    state.error = action.payload || action.error.message;
-  });
-};
-
 const initialState = {
   supplement: [],
   status: null,
@@ -41,10 +34,7 @@ const supplementSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(getSupplement.pending, (state) => {
-        state.status = "loading";
-        state.error = null;
-      })
+      .addCase(getSupplement.pending, handlePending)
       .addCase(getSupplement.fulfilled, (state, action) => {
         state.status = "resolved";
         state.error = null;

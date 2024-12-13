@@ -101,6 +101,11 @@
   font-weight: 600;
 }
 
+/* Стили для удаления товара в админке */
+.admin-product--delete {
+  width: 100%;
+}
+
 /* Media */
 
 @media (max-width: 768px) {

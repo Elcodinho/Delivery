@@ -1,6 +1,10 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { URL } from "@constants/constants";
-
+import {
+  handlePending,
+  handleFulfilled,
+  handleRejected,
+} from "@utils/redux/reduxUtils";
 const { FEEDBACKURL } = URL;
 
 //Функция получения отзывов
@@ -68,26 +72,6 @@ export const deleteFeedback = createAsyncThunk(
     }
   }
 );
-
-// Универсальная функция обработки статуса
-const handlePending = (state) => {
-  state.status = "loading";
-  state.error = null;
-};
-
-// Универсальная функция обработки успешного отзыва
-const handleFulfilled = (state) => {
-  state.status = "resolved";
-  state.error = null;
-};
-
-// Универсальная функция обработки ошибок
-const handleRejected = (builder, asyncThunk) => {
-  builder.addCase(asyncThunk.rejected, (state, action) => {
-    state.status = "rejected";
-    state.error = action.payload || action.error.message;
-  });
-};
 
 // Начальное заначение массива отзывов
 const initialState = {

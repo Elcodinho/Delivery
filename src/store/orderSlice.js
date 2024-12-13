@@ -1,4 +1,9 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import {
+  handlePending,
+  handleFulfilled,
+  handleRejected,
+} from "@utils/redux/reduxUtils";
 import { URL } from "@constants/constants";
 const { ORDERSURL } = URL;
 
@@ -27,14 +32,6 @@ export const addOrder = createAsyncThunk(
   }
 );
 
-// Универсальная функция обработки ошибок
-const handleRejected = (builder, asyncThunk) => {
-  builder.addCase(asyncThunk.rejected, (state, action) => {
-    state.status = "rejected";
-    state.error = action.payload || action.error.message;
-  });
-};
-
 const initialState = {
   orders: [],
   status: null,
@@ -54,14 +51,8 @@ const orderSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(addOrder.pending, (state) => {
-        state.status = "loading";
-        state.error = null;
-      })
-      .addCase(addOrder.fulfilled, (state) => {
-        state.status = "resolved";
-        state.error = null;
-      });
+      .addCase(addOrder.pending, handlePending)
+      .addCase(addOrder.fulfilled, handleFulfilled);
     handleRejected(builder, addOrder);
   },
 });

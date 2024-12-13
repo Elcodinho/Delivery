@@ -1,4 +1,9 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import {
+  handlePending,
+  handleFulfilled,
+  handleRejected,
+} from "@utils/redux/reduxUtils";
 import { URL } from "@constants/constants";
 const { MENUURL } = URL;
 
@@ -30,37 +35,138 @@ export const getMenu = createAsyncThunk(
   }
 );
 
-// Универсальная функция обработки ошибок
-const handleRejected = (builder, asyncThunk) => {
-  builder.addCase(asyncThunk.rejected, (state, action) => {
-    state.status = "rejected";
-    state.error = action.payload || action.error.message;
-  });
-};
+// Функция проверки уникальности slug
+export const checkSlugUnique = createAsyncThunk(
+  "menu/checkSlugUnique",
+  async (slug, { rejectWithValue }) => {
+    try {
+      const response = await fetch(`${MENUURL}?slug=${slug}`);
+      const data = await response.json();
+      if (data.length > 0) {
+        return rejectWithValue("Этот slug уже используется");
+      }
+      return "Уникальный slug";
+    } catch (error) {
+      return rejectWithValue("Ошибка проверки slug");
+    }
+  }
+);
+
+// Функция добавления товара в меню
+export const addMenuItem = createAsyncThunk(
+  "menu/addMenuItem",
+  async (item, { rejectWithValue, dispatch }) => {
+    try {
+      // Проверяем уникальность slug
+      await dispatch(checkSlugUnique(item.slug)).unwrap();
+
+      // Если slug уникален, добавляем товар
+      const response = await fetch(MENUURL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(item),
+      });
+      if (!response.ok) {
+        return rejectWithValue(
+          "Ошибка добавления, товар с таким slug уже существует"
+        );
+      }
+    } catch (error) {
+      return rejectWithValue(
+        "Ошибка добавления, товар с таким slug уже существует"
+      );
+    }
+  }
+);
+
+// Функция удаления товара из меню
+export const deleteMenuItem = createAsyncThunk(
+  "menu/deleteMenuItem",
+  async (slug, { rejectWithValue }) => {
+    try {
+      // Сначала находим товар по slug
+      const response = await fetch(`${MENUURL}?slug=${slug}`);
+      if (!response.ok) {
+        return rejectWithValue("Ошибка при поиске товара по slug");
+      }
+
+      const data = await response.json();
+      const item = data.find((product) => product.slug === slug);
+
+      if (!item) {
+        return rejectWithValue("Товар с таким slug не найден.");
+      }
+
+      // Если товар найден, удаляем его по id
+      const deleteResponse = await fetch(`${MENUURL}/${item.id}`, {
+        method: "DELETE",
+      });
+
+      if (!deleteResponse.ok) {
+        return rejectWithValue("Ошибка! Ну удалось удалить товар.");
+      }
+    } catch (error) {
+      return rejectWithValue("Ошибка! Ну удалось удалить товар.");
+    }
+  }
+);
 
 const initialState = {
   menu: [],
   status: null,
   error: null,
+  deleteStatus: null,
+  deleteError: null,
 };
 
 export const menuSlice = createSlice({
   name: "menu",
   initialState,
-  reducers: {},
+  reducers: {
+    clearMenuError: (state) => {
+      state.error = null; // Сбрасываем ошибку
+    },
+    clearMenuStatus: (state) => {
+      state.status = null; // Сбрасываем статус
+    },
+    clearDeleteMenuStatus: (state) => {
+      state.deleteStatus = null; // Сбрасываем статус
+    },
+    clearDeleteMenuError: (state) => {
+      state.deleteError = null; // Сбрасываем статус
+    },
+  },
   extraReducers: (builder) => {
     builder
-      .addCase(getMenu.pending, (state) => {
-        state.status = "loading";
-        state.error = null;
-      })
+      .addCase(getMenu.pending, handlePending)
       .addCase(getMenu.fulfilled, (state, action) => {
         state.status = "resolved";
         state.error = null;
         state.menu = action.payload;
+      })
+      .addCase(addMenuItem.pending, handlePending)
+      .addCase(addMenuItem.fulfilled, handleFulfilled)
+      .addCase(deleteMenuItem.pending, (state) => {
+        state.deleteStatus = "loading";
+        state.deleteError = null;
+      })
+      .addCase(deleteMenuItem.fulfilled, (state) => {
+        state.deleteStatus = "resolved";
+        state.deleteError = null;
+      })
+      .addCase(deleteMenuItem.rejected, (state, action) => {
+        state.deleteStatus = "rejected";
+        state.deleteError = action.payload || action.error.message;
       });
     handleRejected(builder, getMenu);
+    handleRejected(builder, addMenuItem);
   },
 });
+export const {
+  clearMenuError,
+  clearMenuStatus,
+  clearDeleteMenuError,
+  clearDeleteMenuStatus,
+} = menuSlice.actions;
 export const selectMenu = (state) => state.menu.menu;
 export default menuSlice.reducer;

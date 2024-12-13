@@ -1,0 +1,17 @@
+.admin-product__form-delete {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.admin-product-delete__btn-container {
+  width: calc(30% - 7.5px);
+}
+
+/* Media */
+@media (max-width: 768px) {
+  .admin-product-delete__btn-container {
+    width: calc(100%);
+  }
+}
