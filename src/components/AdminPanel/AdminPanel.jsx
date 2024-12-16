@@ -1,12 +1,14 @@
 import { useState } from "react";
 import { AdminFeedback } from "./AdminFeedback/AdminFeedback";
 import { AdminProduct } from "./AdminProduct/AdminProduct";
+import { AdminStopList } from "./AdminStopList/AdminStopList";
 import { Button } from "@components/UI/Button/Button";
 import "./AdminPanel.css";
 
 const adminButtons = [
   { text: "Добавить отзыв", value: "feedback" },
   { text: "Добавить или удалить товар", value: "product" },
+  { text: "Стоп лист товаров", value: "stop-list" },
 ];
 
 export function AdminPanel() {
@@ -28,6 +30,7 @@ export function AdminPanel() {
           </div>
           {shownPage === "feedback" && <AdminFeedback />}
           {shownPage === "product" && <AdminProduct />}
+          {shownPage === "stop-list" && <AdminStopList />}
         </div>
       </div>
     </section>

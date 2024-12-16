@@ -53,3 +53,5 @@ export const SECONDARYNAV = {
     { name: "Политика обработки персональных данных", path: "/personaldata" },
   ],
 }; // Массивы для вторичной навигации страниц
+
+export const allowedSlugChars = /^[a-zA-Z_-]*$/;

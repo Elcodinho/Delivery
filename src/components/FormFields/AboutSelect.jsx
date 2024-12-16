@@ -3,6 +3,7 @@ import "./FormFields.css";
 
 export const AboutSelect = React.memo(function AboutSelect(props) {
   const { id, feedbackAbout, setFeedbackAbout } = props;
+
   return (
     <div className="common-form__group-container">
       <div className="common-form__group">
@@ -14,8 +15,8 @@ export const AboutSelect = React.memo(function AboutSelect(props) {
           onChange={(e) => setFeedbackAbout(e.target.value)}
           required
         >
-          <option value="О Ресторане">О Ресторане</option>
-          <option value="О службе доставки">О службе доставки</option>
+          <option value="о ресторане">О Ресторане</option>
+          <option value="о службе доставки">О службе доставки</option>
         </select>
         <label
           className="common-form__label common-form__label--select required"

@@ -5,6 +5,7 @@ import { selectMenu, getMenu } from "@store/menuSlice";
 import { getInitialSize } from "@utils/getInitialSize";
 import { addProductToCart } from "@utils/addProductToCart";
 import { addPopup } from "@utils/addPopup";
+import { capitalizeFirstLetter } from "@utils/capitalizeFirstLetter";
 import { ProductSupplements } from "./ProductSupplements/ProductSupplements";
 import { Button } from "@components/UI/Button/Button";
 import { Toggle } from "@components/UI/Toggles/Toggle/Toggle";
@@ -18,7 +19,7 @@ export function Product() {
   const product = item[0];
   const dispatch = useDispatch();
   const {
-    name,
+    name: rawName,
     description,
     image: img,
     price,
@@ -28,6 +29,7 @@ export function Product() {
     size,
     weight,
   } = product || {}; // Свойства объекта продукта
+  const name = capitalizeFirstLetter(rawName) || "";
   const { status: productStatus, error: productError } = useSelector(
     (state) => state.menu
   ); // Состояние статуса и ошибки получения продукта

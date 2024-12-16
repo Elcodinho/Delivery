@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { allowedSlugChars } from "@constants/constants";
 import { useClearError } from "@hooks/useClearError";
 import {
   deleteMenuItem,
@@ -14,7 +15,7 @@ import { Loader } from "@components/UI/Loader/Loader";
 import { Success } from "@components/UI/Popups/Success/Success";
 import "./AdminDeleteProduct.css";
 
-export function AdminDeleteProduct({ allowedChars }) {
+export function AdminDeleteProduct() {
   const [slug, setSlug] = useState("");
   const [slugError, setSlugError] = useState(null);
   const [showConfirm, setShowConfirm] = useState(false);
@@ -26,15 +27,15 @@ export function AdminDeleteProduct({ allowedChars }) {
   // Фукнция изменения slug
   function handleSlugChange(e) {
     const inputValue = e.target.value;
-    if (allowedChars.test(inputValue)) {
+    if (allowedSlugChars.test(inputValue)) {
       setSlug(inputValue);
       setIsDeleteValid(inputValue.trim() !== "");
     }
   }
 
   // Функция удаления товара из меню
-  function test() {
-    const data = slug.trim();
+  function handleSubmit() {
+    const data = slug.trim().toLowerCase();
     dispatch(deleteMenuItem(data));
   }
 
@@ -58,15 +59,15 @@ export function AdminDeleteProduct({ allowedChars }) {
         <Success text="Товар успешно удален" clearStatus={clearStatus} />
       )}
       {deleteError && <WarningError warning={deleteError} />}
+      {showConfirm && (
+        <Confirmation
+          title="Внимание!"
+          text="Вы действительно хотите удалить товар?"
+          setShowConfirm={setShowConfirm}
+          handleClear={handleSubmit}
+        />
+      )}
       <form className="admin-product__form-delete">
-        {showConfirm && (
-          <Confirmation
-            title="Внимание!"
-            text="Вы действительно хотите удалить товар?"
-            setShowConfirm={setShowConfirm}
-            handleClear={test}
-          />
-        )}
         <AdminProductInput
           id="admin-delete-slug"
           value={slug}

@@ -1,3 +1,27 @@
 {
-  "orders": []
+  "orders": [
+    {
+      "id": "8068",
+      "time": "14 декабря 2024, 19:06",
+      "order": {
+        "0": {
+          "name": "Пицца '4 сыра Mazeratti'",
+          "amount": 1,
+          "size": 30
+        }
+      },
+      "personalData": {
+        "name": "витя",
+        "phone": "+79223333333",
+        "deliveryType": "pickup",
+        "point": "г. симферополь, ул. ленина, д. 113"
+      },
+      "sum": 600,
+      "tips": false,
+      "express": false,
+      "totalSum": 600,
+      "recall": false,
+      "payMethod": "card_online"
+    }
+  ]
 }

@@ -24,3 +24,12 @@
   border-color: black;
   background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="yellow" stroke="yellow" stroke-width="2"><polygon points="6,15 12,9 18,15" /></svg>'); /* Стрелка вверх */
 }
+
+/* Media */
+
+@media (max-width: 340px) {
+  .admin-product__select {
+    background-position: right 0px center;
+    background-size: 15px;
+  }
+}

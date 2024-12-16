@@ -76,22 +76,22 @@ export function validateOrderForm({
 
   // Формирование данных формы
   const formData = {
-    name: name.trim(),
+    name: name.trim().toLowerCase(),
     phone: phone.replace(/\s+/g, "").trim(),
-    ...(email.trim() && { email: email.trim() }),
-    ...(comment.trim() && { comment: comment.trim() }),
+    ...(email.trim() && { email: email.trim().toLowerCase() }),
+    ...(comment.trim() && { comment: comment.trim().toLowerCase() }),
     deliveryType,
-    ...(deliveryType === "pickup" && { point: pickupPoint }),
+    ...(deliveryType === "pickup" && { point: pickupPoint.toLowerCase() }),
     ...(deliveryType === "delivery" && {
       adress: {
-        street: street.trim(),
-        house: house.trim(),
+        street: street.trim().toLowerCase(),
+        house: house.trim().toLowerCase(),
         buildingType,
         ...(buildingType === "flat" && {
-          flatNum: flatNum.trim(),
-          ...(entrance.trim() && { entrance: entrance.trim() }),
-          ...(floor.trim() && { floor: floor.trim() }),
-          ...(intercom.trim() && { intercom: intercom.trim() }),
+          flatNum: flatNum.trim().toLowerCase(),
+          ...(entrance.trim() && { entrance: entrance.trim().toLowerCase() }),
+          ...(floor.trim() && { floor: floor.trim().toLowerCase() }),
+          ...(intercom.trim() && { intercom: intercom.trim().toLowerCase() }),
         }),
       },
     }),

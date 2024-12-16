@@ -1,4 +1,5 @@
 .card {
+  position: relative;
   display: flex;
   flex-direction: column;
   flex: 0 0 calc(25% - 11.25px);
@@ -7,6 +8,24 @@
   overflow: hidden;
   border-radius: 20px;
   box-shadow: 2px 4px 5px rgba(0, 0, 0, 0.2);
+}
+
+.card--disabled {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+
+  text-align: center;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 3;
 }
 
 .card__img {

@@ -37,15 +37,18 @@ export function AdminFeedback() {
       let formattedDate = format(new Date(), "EEE, d MMM yyyy 'г.', HH:mm", {
         locale: ru,
       });
-      // Сокращаем день недели до первых двух букв
-      formattedDate = formattedDate.replace(/^[а-я]{3}/, (match) =>
-        match.slice(0, 2)
-      );
+      // Проверяем, начинаются ли первые три буквы даты с "суб"
+      if (!formattedDate.toLowerCase().startsWith("суб")) {
+        // Сокращаем день недели до первых двух букв, если это не "суб"
+        formattedDate = formattedDate.replace(/^[а-я]{3}/, (match) =>
+          match.slice(0, 2)
+        );
+      }
       const data = {
         date: formattedDate,
-        author: name.trim(),
-        title: title.trim(),
-        body: text.trim(),
+        author: name.trim().toLowerCase(),
+        title: title.trim().toLowerCase(),
+        body: text.trim().toLowerCase(),
         stars: rating,
       };
       dispatch(addFeedback(data));
@@ -86,54 +89,59 @@ export function AdminFeedback() {
   }
 
   return (
-    <div className="admin-form__container" onClick={(e) => e.stopPropagation()}>
-      <div className="admin-form__wrapper">
-        {feedbackSendStatus === "loading" && <Loader />}
-        {feedbackSendStatus === "resolved" && (
-          <Success text="Отзыв успешно добавлен" clearStatus={clearStatus} />
-        )}
-        {feedbackSendError && <WarningError warning={feedbackSendError} />}
-        <h5 className="admin-form__title">Добавить отзыв</h5>
-        <p className="admin-form__text">
-          Форма для добавления отзывов на странице
-        </p>
-        <form className="admin-form" onSubmit={handleSubmit}>
-          {/* Name */}
-          <InputName
-            id="name"
-            name={name}
-            setName={setName}
-            nameError={nameError}
-            setNameError={setNameError}
-          />
-          {/* Title */}
-          <InputTitle
-            id="admin-form__title"
-            title={title}
-            setTitle={setTitle}
-            required={true}
-          />
-          {/* Form text */}
-          <InputText
-            id="admin-text"
-            text={text}
-            setText={setText}
-            textError={textError}
-            setTextError={setTextError}
-          />
-          {/* Stars */}
-          <FormStars rating={rating} setRating={setRating} />
-          {/*  */}
-
-          <div className="admin-form__btn-wrapper">
-            <Button
-              text="Добавить"
-              cssClass="button--fedback-form-send"
-              type="submit"
+    <>
+      <h3 className="admin__main-title title--3">Добавить отзыв</h3>
+      <div
+        className="admin-form__container"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <div className="admin-form__wrapper">
+          {feedbackSendStatus === "loading" && <Loader />}
+          {feedbackSendStatus === "resolved" && (
+            <Success text="Отзыв успешно добавлен" clearStatus={clearStatus} />
+          )}
+          {feedbackSendError && <WarningError warning={feedbackSendError} />}
+          <p className="admin-form__text">
+            Форма для добавления отзывов на странице
+          </p>
+          <form className="admin-form" onSubmit={handleSubmit}>
+            {/* Name */}
+            <InputName
+              id="name"
+              name={name}
+              setName={setName}
+              nameError={nameError}
+              setNameError={setNameError}
             />
-          </div>
-        </form>
+            {/* Title */}
+            <InputTitle
+              id="admin-form__title"
+              title={title}
+              setTitle={setTitle}
+              required={true}
+            />
+            {/* Form text */}
+            <InputText
+              id="admin-text"
+              text={text}
+              setText={setText}
+              textError={textError}
+              setTextError={setTextError}
+            />
+            {/* Stars */}
+            <FormStars rating={rating} setRating={setRating} />
+            {/*  */}
+
+            <div className="admin-form__btn-wrapper">
+              <Button
+                text="Добавить"
+                cssClass="button--fedback-form-send"
+                type="submit"
+              />
+            </div>
+          </form>
+        </div>
       </div>
-    </div>
+    </>
   );
 }

@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import clsx from "clsx";
 import { addMenuItem } from "@store/menuSlice";
 import { clearMenuError, clearMenuStatus } from "@store/menuSlice";
+import { allowedSlugChars } from "@constants/constants";
 import { useClearError } from "@hooks/useClearError";
 import { submitAdminProduct } from "@utils/formUtils/submitAdminProduct";
 import { PIZZASIZE, ROLLIAMOUNT } from "@constants/constants";
@@ -77,8 +78,6 @@ export function AdminProduct() {
 
   const isRolli = subCat === "rolli";
   const isClassicPizza = category === "pizza" && type === "classic";
-
-  const allowedSlugChars = /^[a-zA-Z_-]*$/;
 
   // Фукнция изменения slug
   const handleSlugChange = useCallback((e) => {
@@ -181,7 +180,7 @@ export function AdminProduct() {
         <Success text="Товар успешно добавлен" clearStatus={clearStatus} />
       )}
       {addMenuError && <WarningError warning={addMenuError} />}
-      <h3 className="admin-product__title title--3">Добавить новый товар</h3>
+      <h3 className="admin__main-title title--3">Добавить новый товар</h3>
       <form className="admin-product__form" onSubmit={handleSubmit}>
         <AdminProductSelect
           value={category}

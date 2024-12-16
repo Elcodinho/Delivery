@@ -90,11 +90,11 @@ export function submitAdminProduct({
   if (!isValid) return;
 
   const item = {
-    name: name.trim(),
-    category: category.trim(),
-    slug: slug.trim(),
+    name: name.trim().toLowerCase(),
+    category: category.trim().toLowerCase(),
+    slug: slug.trim().toLowerCase(),
     image: img.trim(),
-    description: description.trim(),
+    description: description.trim().toLowerCase(),
     ...(isRolli || isClassicPizza
       ? {
           weight: {
@@ -110,12 +110,15 @@ export function submitAdminProduct({
           price: parseFloat(price.trim()),
           weight: parseFloat(weight.trim()),
         }),
-    ...(category === "sushi-i-rolli" && { subCat: subCat.trim() }),
+    ...(category === "sushi-i-rolli" && {
+      subCat: subCat.trim().toLowerCase(),
+    }),
     ...((isRolli || category === "pizza") && { type: type.trim() }),
     ...(isRolli && { size: { small: rolliSize, large: largeRolliSize } }),
     ...(category === "pizza" && {
       size: { small: pizzaSize, large: largePizzaSize },
     }),
+    disabled: false,
   };
 
   dispatch(addMenuItem(item));

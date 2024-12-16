@@ -29,7 +29,7 @@ export function Feedback() {
   const [email, setEmail] = useState("");
   const [title, setTitle] = useState("");
   const [text, setText] = useState("");
-  const [feedbackAbout, setFeedbackAbout] = useState("О Ресторане");
+  const [feedbackAbout, setFeedbackAbout] = useState("о ресторане");
   const [feedbackCity, setFeedbackCity] = useState("1");
 
   const dispatch = useDispatch();

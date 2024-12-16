@@ -19,6 +19,7 @@ export const Card = React.memo(function Card(props) {
     price,
     weight,
     category,
+    disabled,
     subCat,
     type,
     slug,
@@ -86,6 +87,7 @@ export const Card = React.memo(function Card(props) {
 
   return (
     <li className="card">
+      {disabled && <div className="card--disabled">Временно недоступно</div>}
       <LazyLoad height={200} offset={100} placeholder={<ImageLoader />}>
         <img className="card__img" src={img} alt={name} />
       </LazyLoad>

@@ -1,6 +1,7 @@
 import { useState, useEffect, useMemo } from "react";
 import { useSelector } from "react-redux";
 import { selectFeedback } from "@store/feedbackSlice";
+import { capitalizeFirstLetter } from "@utils/capitalizeFirstLetter";
 import { FeedbackItem } from "./FeedbackItem/FeedbackItem";
 import "./FeedbackList.css";
 
@@ -29,11 +30,11 @@ export function FeedbackList(props) {
         <FeedbackItem
           key={item.id}
           id={item.id}
-          title={item.title}
+          title={capitalizeFirstLetter(item.title)}
           stars={item.stars}
           date={item.date}
-          author={item.author}
-          body={item.body}
+          author={capitalizeFirstLetter(item.author)}
+          body={capitalizeFirstLetter(item.body)}
         />
       ))}
     </ul>

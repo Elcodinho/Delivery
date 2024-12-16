@@ -38,7 +38,7 @@ export const getMenu = createAsyncThunk(
 // Функция проверки уникальности slug
 export const checkSlugUnique = createAsyncThunk(
   "menu/checkSlugUnique",
-  async (slug, { rejectWithValue }) => {
+  async function (slug, { rejectWithValue }) {
     try {
       const response = await fetch(`${MENUURL}?slug=${slug}`);
       const data = await response.json();
@@ -55,7 +55,7 @@ export const checkSlugUnique = createAsyncThunk(
 // Функция добавления товара в меню
 export const addMenuItem = createAsyncThunk(
   "menu/addMenuItem",
-  async (item, { rejectWithValue, dispatch }) => {
+  async function (item, { rejectWithValue, dispatch }) {
     try {
       // Проверяем уникальность slug
       await dispatch(checkSlugUnique(item.slug)).unwrap();
@@ -82,7 +82,7 @@ export const addMenuItem = createAsyncThunk(
 // Функция удаления товара из меню
 export const deleteMenuItem = createAsyncThunk(
   "menu/deleteMenuItem",
-  async (slug, { rejectWithValue }) => {
+  async function (slug, { rejectWithValue }) {
     try {
       // Сначала находим товар по slug
       const response = await fetch(`${MENUURL}?slug=${slug}`);
@@ -107,6 +107,52 @@ export const deleteMenuItem = createAsyncThunk(
       }
     } catch (error) {
       return rejectWithValue("Ошибка! Ну удалось удалить товар.");
+    }
+  }
+);
+
+export const editMenuItem = createAsyncThunk(
+  "menu/editMenuItem",
+  async function ({ slug, value }, { rejectWithValue }) {
+    try {
+      // Шаг 1: Получить товар по slug
+      const responseGet = await fetch(`${MENUURL}?slug=${slug}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (!responseGet.ok) {
+        if (responseGet.status === 404) {
+          return rejectWithValue("Ошибка! Товар с таким slug не найден.");
+        }
+        return rejectWithValue("Ошибка! Не удалось найти товар по slug.");
+      }
+
+      const [product] = await responseGet.json(); // Предполагаем, что сервер возвращает массив товаров
+      if (!product || !product.id) {
+        return rejectWithValue("Ошибка! Товар с таким slug не найден.");
+      }
+
+      const { id } = product;
+
+      // Шаг 2: Обновить статус товара по id
+      const responsePatch = await fetch(`${MENUURL}/${id}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ disabled: value }),
+      });
+
+      if (!responsePatch.ok) {
+        return rejectWithValue("Ошибка! Не удалось изменить статус товара.");
+      }
+
+      return { id, disabled: value }; // Возвращаем данные для успешного результата
+    } catch (error) {
+      return rejectWithValue("Ошибка! Не удалось изменить статус товара.");
     }
   }
 );
@@ -157,9 +203,12 @@ export const menuSlice = createSlice({
       .addCase(deleteMenuItem.rejected, (state, action) => {
         state.deleteStatus = "rejected";
         state.deleteError = action.payload || action.error.message;
-      });
+      })
+      .addCase(editMenuItem.pending, handlePending)
+      .addCase(editMenuItem.fulfilled, handleFulfilled);
     handleRejected(builder, getMenu);
     handleRejected(builder, addMenuItem);
+    handleRejected(builder, editMenuItem);
   },
 });
 export const {

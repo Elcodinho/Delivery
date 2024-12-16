@@ -1,0 +1,98 @@
+.stop-list__form {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  padding: 20px 40px;
+  border-radius: 20px;
+
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+}
+
+.stop-list__radio-wrapper {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 20px;
+  width: calc(50% - 7.5px);
+}
+
+.stop-list__radio {
+  display: flex;
+  align-items: center;
+  font-size: 1rem;
+  color: #4c4c4c;
+}
+
+.stop-list__radio input[type="radio"] {
+  display: none; /* Скрываем стандартный радиобатон */
+}
+
+.stop-list__radio label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+  padding-left: 30px; /* Отступ для радиокружка */
+}
+
+.stop-list__radio label::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  border: 2px solid black;
+  border-radius: 50%;
+  background-color: white;
+  box-sizing: border-box;
+}
+
+.stop-list__radio input[type="radio"]:checked + label::before {
+  border-color: var(--my-yel-color);
+}
+
+.stop-list__radio input[type="radio"]:checked + label::after {
+  content: "";
+  position: absolute;
+  left: 2.5%;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 10px;
+  height: 10px;
+  background-color: var(--my-yel-color);
+  border-radius: 50%;
+}
+
+.stop-list__btn-container {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  margin-top: -10px;
+}
+
+/* Media */
+
+@media (max-width: 768px) {
+  .stop-list__radio-wrapper {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .stop-list__form {
+    gap: 25px;
+  }
+}
+
+@media (max-width: 580px) {
+  .stop-list__radio-wrapper {
+    justify-content: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .stop-list__form {
+    padding: 20px 10px;
+  }
+}

@@ -70,21 +70,24 @@ export function FeedbackForm(props) {
       let formattedDate = format(new Date(), "EEE, d MMM yyyy 'г.', HH:mm", {
         locale: ru,
       });
-      // Сокращаем день недели до первых двух букв
-      formattedDate = formattedDate.replace(/^[а-я]{3}/, (match) =>
-        match.slice(0, 2)
-      );
+      // Проверяем, начинаются ли первые три буквы даты с "суб"
+      if (!formattedDate.toLowerCase().startsWith("суб")) {
+        // Сокращаем день недели до первых двух букв, если это не "суб"
+        formattedDate = formattedDate.replace(/^[а-я]{3}/, (match) =>
+          match.slice(0, 2)
+        );
+      }
       const data = {
         id: new Date().toISOString(),
         date: formattedDate,
-        name: name.trim(),
+        name: name.trim().toLowerCase(),
         phone: phone.replace(/\s+/g, "").trim(),
-        email: email.trim(),
-        title: title.trim(),
+        email: email.trim().toLowerCase(),
+        title: title.trim().toLowerCase(),
         feedbackAbout,
         feedbackCity,
         rating: rating,
-        text: text.trim(),
+        text: text.trim().toLowerCase(),
       };
       dispatch(addProposition(data));
     }

@@ -5,7 +5,7 @@
   width: auto;
   max-width: 600px;
   min-height: 100%;
-  margin: 40px auto;
+  margin: 0 auto;
   border-radius: 20px;
 
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
@@ -16,20 +16,14 @@
   flex-direction: column;
   width: 100%;
   pointer-events: auto;
-  padding: 30px;
+  padding: 20px;
   border-radius: 20px;
   background-color: white;
   z-index: 11;
 }
 
-.admin-form__title {
-  margin-bottom: 10px;
-  font-size: 1.5rem;
-  text-align: center;
-}
-
 .admin-form__text {
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   font-size: 1rem;
   text-align: center;
 }
@@ -41,11 +35,17 @@
   flex-wrap: wrap;
   gap: 20px;
   height: auto;
-  padding: 5px;
 }
 
 .admin-form__btn-wrapper {
   display: flex;
   justify-content: flex-end;
   width: 100%;
+}
+
+/* Media */
+@media (max-width: 580px) {
+  .admin-form__wrapper {
+    padding: 20px 10px;
+  }
 }

@@ -2,7 +2,7 @@
   "menu": [
     {
       "id": "1",
-      "name": "Калифорния с краб миксом",
+      "name": "калифорния с краб миксом",
       "category": "sushi-i-rolli",
       "subCat": "rolli",
       "type": "classic",
@@ -20,11 +20,12 @@
         "large": 280
       },
       "image": "https://res.cloudinary.com/dynzztjct/image/upload/v1731659883/california-crab_zwfltz.webp",
-      "description": "рис, нори, крабовый микс, сливочный сыр, свежий огурец, икра масаго, кунжут"
+      "description": "рис, нори, крабовый микс, сливочный сыр, свежий огурец, икра масаго, кунжут",
+      "disabled": false
     },
     {
       "id": "2",
-      "name": "Калифорния с лососем",
+      "name": "калифорния с лососем",
       "category": "sushi-i-rolli",
       "subCat": "rolli",
       "type": "classic",
@@ -42,11 +43,12 @@
         "large": 280
       },
       "image": "https://res.cloudinary.com/dynzztjct/image/upload/v1731659884/california-losos_or20bk.webp",
-      "description": "рис, нори, сливочный сыр, филе лосося слабой соли, икра масаго, свежий огурец"
+      "description": "рис, нори, сливочный сыр, филе лосося слабой соли, икра масаго, свежий огурец",
+      "disabled": false
     },
     {
       "id": "3",
-      "name": "Калифорния окунь",
+      "name": "калифорния окунь",
       "category": "sushi-i-rolli",
       "subCat": "rolli",
       "type": "classic",
@@ -64,11 +66,12 @@
         "large": 280
       },
       "image": "https://res.cloudinary.com/dynzztjct/image/upload/v1731659885/california-okun_tx4njk.webp",
-      "description": "рис, нори, сливочный сыр, филе окуня в кляре, икра масаго, свежий огурец, соус Унаги."
+      "description": "рис, нори, сливочный сыр, филе окуня в кляре, икра масаго, свежий огурец, соус Унаги.",
+      "disabled": false
     },
     {
       "id": "4",
-      "name": "Филадельфия классик",
+      "name": "филадельфия классик",
       "category": "sushi-i-rolli",
       "subCat": "rolli",
       "type": "classic",
@@ -86,11 +89,12 @@
         "large": 280
       },
       "image": "https://res.cloudinary.com/dynzztjct/image/upload/v1731659887/filadelfiya-classic_q1lf3w.webp",
-      "description": "рис, нори, сливочный сыр, свежий огурец, филе лосося слабой соли, майонез."
+      "description": "рис, нори, сливочный сыр, свежий огурец, филе лосося слабой соли, майонез.",
+      "disabled": false
     },
     {
       "id": "5",
-      "name": "Филадельфия с лососем",
+      "name": "филадельфия с лососем",
       "category": "sushi-i-rolli",
       "subCat": "rolli",
       "type": "classic",
@@ -108,11 +112,12 @@
         "large": 280
       },
       "image": "https://res.cloudinary.com/dynzztjct/image/upload/v1731659868/zhenskiy-roll_lq0ivj.webp",
-      "description": "рис, нори, сливочный сыр, свежий огурец, филе лосося слабой соли, майонез."
+      "description": "рис, нори, сливочный сыр, свежий огурец, филе лосося слабой соли, майонез.",
+      "disabled": false
     },
     {
       "id": "6",
-      "name": "Филадельфия с креветкой",
+      "name": "филадельфия с креветкой",
       "category": "sushi-i-rolli",
       "subCat": "rolli",
       "type": "classic",
@@ -130,11 +135,12 @@
         "large": 280
       },
       "image": "https://res.cloudinary.com/dynzztjct/image/upload/v1731659887/filadelfiya-krevetka_trupok.webp",
-      "description": "рис, нори, сливочный сыр, тигровая креветка, свежие огурцы, соус чесночный, крабовый микс."
+      "description": "рис, нори, сливочный сыр, тигровая креветка, свежие огурцы, соус чесночный, крабовый микс.",
+      "disabled": false
     },
     {
       "id": "7",
-      "name": "Филадельфия люкс",
+      "name": "филадельфия люкс",
       "category": "sushi-i-rolli",
       "subCat": "rolli",
       "type": "classic",
@@ -152,11 +158,12 @@
         "large": 280
       },
       "image": "https://res.cloudinary.com/dynzztjct/image/upload/v1731659867/filadelfiya-luks_w30ysv.webp",
-      "description": "рис, нори, сливочный сыр, свежий огурец, филе лосося слабой соли, икра лососевая, майонез"
+      "description": "рис, нори, сливочный сыр, свежий огурец, филе лосося слабой соли, икра лососевая, майонез",
+      "disabled": false
     },
     {
       "id": "8",
-      "name": "Женский ролл",
+      "name": "женский ролл",
       "category": "sushi-i-rolli",
       "subCat": "rolli",
       "type": "classic",
@@ -174,11 +181,12 @@
         "large": 280
       },
       "image": "https://res.cloudinary.com/dynzztjct/image/upload/v1731659868/zhenskiy-roll_lq0ivj.webp",
-      "description": "рис, нори, сливочный сыр, свежий огурец, женская креветка, икра лососевая, майонез"
+      "description": "рис, нори, сливочный сыр, свежий огурец, женская креветка, икра лососевая, майонез",
+      "disabled": false
     },
     {
       "id": "10",
-      "name": "Суши авокадо",
+      "name": "суши авокадо",
       "category": "sushi-i-rolli",
       "subCat": "sushi",
       "type": "sushi",
@@ -186,11 +194,12 @@
       "price": 75,
       "weight": 40,
       "image": "https://res.cloudinary.com/dynzztjct/image/upload/v1731660081/sushi-avocado_kf1mud.webp",
-      "description": "рис авокадо"
+      "description": "рис авокадо",
+      "disabled": false
     },
     {
       "id": "11",
-      "name": "Суши креветка",
+      "name": "суши креветка",
       "category": "sushi-i-rolli",
       "subCat": "sushi",
       "type": "sushi",
@@ -198,11 +207,12 @@
       "price": 100,
       "weight": 40,
       "image": "https://res.cloudinary.com/dynzztjct/image/upload/v1731660072/sushi-krevetka_fwucfo.webp",
-      "description": "рис, тигровая креветка"
+      "description": "рис, тигровая креветка",
+      "disabled": false
     },
     {
       "id": "12",
-      "name": "Суши лосось",
+      "name": "суши лосось",
       "category": "sushi-i-rolli",
       "subCat": "sushi",
       "type": "sushi",
@@ -210,11 +220,12 @@
       "price": 160,
       "weight": 40,
       "image": "https://res.cloudinary.com/dynzztjct/image/upload/v1731660073/sushi-losos_mgp3oq.webp",
-      "description": "рис, филе лосося слабой соли"
+      "description": "рис, филе лосося слабой соли",
+      "disabled": false
     },
     {
       "id": "13",
-      "name": "Запеченная Калифорния",
+      "name": "запеченная Калифорния",
       "category": "sushi-i-rolli",
       "subCat": "rolli",
       "type": "hot",
@@ -232,11 +243,12 @@
         "large": 320
       },
       "image": "https://res.cloudinary.com/dynzztjct/image/upload/v1731660170/california-hot_r1dmdl.webp",
-      "description": "рис, нори, свежий огурец, сыр сливочный и плавленый , икра масаго, крабовый микс, соус чесночный, майонез"
+      "description": "рис, нори, свежий огурец, сыр сливочный и плавленый , икра масаго, крабовый микс, соус чесночный, майонез",
+      "disabled": false
     },
     {
       "id": "14",
-      "name": "Креветка краб в кляре",
+      "name": "креветка краб в кляре",
       "category": "sushi-i-rolli",
       "subCat": "rolli",
       "type": "hot",
@@ -254,11 +266,12 @@
         "large": 260
       },
       "image": "https://res.cloudinary.com/dynzztjct/image/upload/v1731660171/crevetka-crab-hot_f9ilba.webp",
-      "description": "рис, нори, тигровые креветки, сливочный сыр, крабовый микс, кляр"
+      "description": "рис, нори, тигровые креветки, сливочный сыр, крабовый микс, кляр",
+      "disabled": false
     },
     {
       "id": "15",
-      "name": "Запеченная Филадельфия",
+      "name": "запеченная Филадельфия",
       "category": "sushi-i-rolli",
       "subCat": "rolli",
       "type": "hot",
@@ -276,11 +289,12 @@
         "large": 250
       },
       "image": "https://res.cloudinary.com/dynzztjct/image/upload/v1731660165/filadelfiya-hot_okhl1y.webp",
-      "description": "рис, нори, сливочный сыр, свежий огурец, лосось под сыром моцарелла"
+      "description": "рис, нори, сливочный сыр, свежий огурец, лосось под сыром моцарелла",
+      "disabled": false
     },
     {
       "id": "16",
-      "name": "Горячий лосось",
+      "name": "горячий лосось",
       "category": "sushi-i-rolli",
       "subCat": "rolli",
       "type": "hot",
@@ -298,11 +312,12 @@
         "large": 320
       },
       "image": "https://res.cloudinary.com/dynzztjct/image/upload/v1731660166/losos-hot_htb1dl.webp",
-      "description": "рис, нори, сливочный сыр, филе лосося слабой соли, соус чесночный, томаго, майонез"
+      "description": "рис, нори, сливочный сыр, филе лосося слабой соли, соус чесночный, томаго, майонез",
+      "disabled": false
     },
     {
       "id": "17",
-      "name": "Мидия лосось",
+      "name": "мидия лосось",
       "category": "sushi-i-rolli",
       "subCat": "rolli",
       "type": "hot",
@@ -320,11 +335,12 @@
         "large": 320
       },
       "image": "https://res.cloudinary.com/dynzztjct/image/upload/v1731660167/midiya-losos-hot_aqxznv.webp",
-      "description": "рис, нори, сливочный сыр, филе лосося в соусе спайси, мидии, омлет томаго, майонез"
+      "description": "рис, нори, сливочный сыр, филе лосося в соусе спайси, мидии, омлет томаго, майонез",
+      "disabled": false
     },
     {
       "id": "18",
-      "name": "Горячий окунь",
+      "name": "горячий окунь",
       "category": "sushi-i-rolli",
       "subCat": "rolli",
       "type": "hot",
@@ -342,71 +358,78 @@
         "large": 330
       },
       "image": "https://res.cloudinary.com/dynzztjct/image/upload/v1731660168/okun-hot_krku1f.webp",
-      "description": "рис, нори, свежий огурец, запеченый окунь, томаго, сливочный сыр"
+      "description": "рис, нори, свежий огурец, запеченый окунь, томаго, сливочный сыр",
+      "disabled": false
     },
     {
       "id": "19",
-      "name": "Бургер Чиз",
+      "name": "бургер Чиз",
       "category": "burgeri",
       "slug": "burger-chiz",
       "price": 570,
       "weight": 325,
       "image": "https://res.cloudinary.com/dynzztjct/image/upload/v1731659119/chiz_b5wgaj.webp",
-      "description": "нежный сырный соус, натуральная говяжья котлета, сыр чеддер, свежие овощи под булочкой бриошь"
+      "description": "нежный сырный соус, натуральная говяжья котлета, сыр чеддер, свежие овощи под булочкой бриошь",
+      "disabled": false
     },
     {
       "id": "20",
-      "name": "Бургер Спайси",
+      "name": "бургер Спайси",
       "category": "burgeri",
       "slug": "burger-spicy",
       "price": 490,
       "weight": 300,
       "image": "https://res.cloudinary.com/dynzztjct/image/upload/v1731659119/spicy_kgxgz7.webp",
-      "description": "острый соус спайси, зеленый перчик халапеньо в сочетании с овощами, сыром чеддер на булочке бриошь"
+      "description": "острый соус спайси, зеленый перчик халапеньо в сочетании с овощами, сыром чеддер на булочке бриошь",
+      "disabled": false
     },
     {
       "id": "21",
-      "name": "Бургер стрит",
+      "name": "бургер стрит",
       "category": "burgeri",
       "slug": "burger-street",
       "price": 205,
       "weight": 190,
       "image": "https://res.cloudinary.com/dynzztjct/image/upload/v1731659119/street_peu42l.webp",
-      "description": "настоящая классика: пшеничная булочка, котлета куриная в панировке, маринованные огурчики, томаты и соус ранч"
+      "description": "настоящая классика: пшеничная булочка, котлета куриная в панировке, маринованные огурчики, томаты и соус ранч",
+      "disabled": false
     },
     {
       "id": "22",
-      "name": "Бургер c яйцом",
+      "name": "бургер c яйцом",
       "category": "burgeri",
       "slug": "burger-yaitso",
       "price": 490,
       "weight": 240,
       "image": "https://res.cloudinary.com/dynzztjct/image/upload/v1731659119/yatso_xdzdsj.webp",
-      "description": "сытный микс из натуральной говяжьей котлеты, овощей, куриного яйца, обжаренным беконом с соусами сальса и ранч на воздушной булочке бриошь"
+      "description": "сытный микс из натуральной говяжьей котлеты, овощей, куриного яйца, обжаренным беконом с соусами сальса и ранч на воздушной булочке бриошь",
+      "disabled": false
     },
     {
       "id": "23",
-      "name": "Бургер Завтрак",
+      "name": "бургер Завтрак",
       "category": "burgeri",
       "slug": "burger-zavtrak",
       "price": 175,
       "weight": 170,
       "image": "https://res.cloudinary.com/dynzztjct/image/upload/v1731659119/zavtrak_wow2mn.webp",
-      "description": "булочка английский маффин, яйцо куриное, сыр чеддер, кетчуп, соус голландский"
+      "description": "булочка английский маффин, яйцо куриное, сыр чеддер, кетчуп, соус голландский",
+      "disabled": false
     },
     {
       "id": "24",
-      "name": "Бургер Завтрак Биф",
+      "name": "бургер Завтрак Биф",
       "category": "burgeri",
       "slug": "burger-zavtrak-beef",
       "price": 365,
       "weight": 180,
       "image": "https://res.cloudinary.com/dynzztjct/image/upload/v1731659119/zavtrak-beef_vczvwq.webp",
-      "description": "булочка английский маффин, котлета из телятины, яйцо куриное, сыр чеддер, микс салата, кетчуп, соус голландский"
+      "description": "булочка английский маффин, котлета из телятины, яйцо куриное, сыр чеддер, микс салата, кетчуп, соус голландский",
+      "disabled": false
     },
     {
       "id": "25",
-      "name": "Пицца '4 сыра Mazeratti'",
+      "name": "пицца '4 сыра Mazeratti'",
       "category": "pizza",
       "type": "classic",
       "slug": "syra-mazeratii-pizza",
@@ -423,11 +446,12 @@
         "large": 960
       },
       "image": "https://res.cloudinary.com/dynzztjct/image/upload/v1731659602/4-sira_gjmnx2.webp",
-      "description": "итальянская мука, сливочный соус и пикантные сыры: моцарелла, дорблю, эдам и молодой пармезан"
+      "description": "итальянская мука, сливочный соус и пикантные сыры: моцарелла, дорблю, эдам и молодой пармезан",
+      "disabled": false
     },
     {
       "id": "26",
-      "name": "Маргарита",
+      "name": "маргарита",
       "category": "pizza",
       "type": "classic",
       "slug": "margarita-pizza",
@@ -444,11 +468,12 @@
         "large": 920
       },
       "image": "https://res.cloudinary.com/dynzztjct/image/upload/v1731659601/margarita_ekzyht.webp",
-      "description": "итальянская мука, соус томатный, сыр моцарелла, помидоры, орегано, базилик"
+      "description": "итальянская мука, соус томатный, сыр моцарелла, помидоры, орегано, базилик",
+      "disabled": false
     },
     {
       "id": "27",
-      "name": "Пицца Море",
+      "name": "пицца Море",
       "category": "pizza",
       "type": "classic",
       "slug": "more-pizza",
@@ -465,11 +490,12 @@
         "large": 990
       },
       "image": "https://res.cloudinary.com/dynzztjct/image/upload/v1731659601/more_aagfpu.webp",
-      "description": "итальянская мука, соус томатный, сыр моцарелла, филе лосося, тигровая креветка, кальмар, мидии, помидоры черри, оливки, зелень"
+      "description": "итальянская мука, соус томатный, сыр моцарелла, филе лосося, тигровая креветка, кальмар, мидии, помидоры черри, оливки, зелень",
+      "disabled": false
     },
     {
       "id": "28",
-      "name": "Пепперони",
+      "name": "пепперони",
       "category": "pizza",
       "type": "classic",
       "slug": "pepperoni-pizza",
@@ -486,11 +512,12 @@
         "large": 960
       },
       "image": "https://res.cloudinary.com/dynzztjct/image/upload/v1731659601/peperoni_yeaswd.webp",
-      "description": "итальянская мука, соус томатный, сыр моцарелла, колбаса сырокопчёная"
+      "description": "итальянская мука, соус томатный, сыр моцарелла, колбаса сырокопчёная",
+      "disabled": false
     },
     {
       "id": "29",
-      "name": "Сырный Цыпленок",
+      "name": "сырный Цыпленок",
       "category": "pizza",
       "type": "classic",
       "slug": "syrniy-tsiplenok-pizza",
@@ -507,11 +534,12 @@
         "large": 1050
       },
       "image": "https://res.cloudinary.com/dynzztjct/image/upload/v1731659601/sirniy-tsiplenok_n1bnp5.webp",
-      "description": "итальянская мука, соус сливочный, куриное филе, сыр моцарелла, помидоры черри, масло чесночное, зелень"
+      "description": "итальянская мука, соус сливочный, куриное филе, сыр моцарелла, помидоры черри, масло чесночное, зелень",
+      "disabled": false
     },
     {
       "id": "30",
-      "name": "Пицца Ветчина грибы",
+      "name": "пицца Ветчина грибы",
       "category": "pizza",
       "type": "classic",
       "slug": "vetchina-gribi-pizza",
@@ -528,44 +556,48 @@
         "large": 1070
       },
       "image": "https://res.cloudinary.com/dynzztjct/image/upload/v1731659601/sirniy-tsiplenok_n1bnp5.webp",
-      "description": "итальянская мука, грибной соус, ветчина, шампиньоны, сыр моцарелла, зелень"
+      "description": "итальянская мука, грибной соус, ветчина, шампиньоны, сыр моцарелла, зелень",
+      "disabled": false
     },
     {
       "id": "31",
-      "name": "Пицца римская Пепперони",
+      "name": "пицца римская Пепперони",
       "category": "pizza",
       "type": "rimskaya",
       "slug": "pizza-rimskaya-pepperoni",
       "price": 540,
       "weight": 390,
       "image": "https://res.cloudinary.com/dynzztjct/image/upload/v1731659747/rimskaya-peperoni_of7psg.webp",
-      "description": "Тесто для римской пиццы, соус томатный, сыр моцарелла, колбаса сырокопчёная"
+      "description": "Тесто для римской пиццы, соус томатный, сыр моцарелла, колбаса сырокопчёная",
+      "disabled": false
     },
     {
       "id": "32",
-      "name": "Пицца римская По-деревенски",
+      "name": "пицца римская По-деревенски",
       "category": "pizza",
       "type": "rimskaya",
       "slug": "pizza-rimskaya-po-derevenski",
       "price": 620,
       "weight": 420,
       "image": "https://res.cloudinary.com/dynzztjct/image/upload/v1731659745/rimskaya-po-derevenski_wafvr7.webp",
-      "description": "Тесто для римской пиццы, соуса сливочный и медово-горчичный, сыр моцарелла, сервелат, бекон, охотничьи колбаски , грибы шампиньоны, картофельные дольки, лук зеленый"
+      "description": "тесто для римской пиццы, соуса сливочный и медово-горчичный, сыр моцарелла, сервелат, бекон, охотничьи колбаски , грибы шампиньоны, картофельные дольки, лук зеленый",
+      "disabled": false
     },
     {
       "id": "33",
-      "name": "Пицца римская Сырный Цыпленок",
+      "name": "пицца римская Сырный Цыпленок",
       "category": "pizza",
       "type": "rimskaya",
       "slug": "pizza-rimskaya-syrniy-tsiplenok",
       "price": 630,
       "weight": 430,
       "image": "https://res.cloudinary.com/dynzztjct/image/upload/v1731659746/rimskaya-sirniy-tsiplenok_g6bf2p.webp",
-      "description": "Тесто для римской пиццы, соус сливочный, куриное филе, сыр моцарелла, помидоры черри, масло чесночное, зелень"
+      "description": "тесто для римской пиццы, соус сливочный, куриное филе, сыр моцарелла, помидоры черри, масло чесночное, зелень",
+      "disabled": false
     },
     {
-      "id": "0402",
-      "name": "Сочная говядина",
+      "id": "a4a1",
+      "name": "сочная говядина",
       "category": "pizza",
       "slug": "sochnaya-govyadina-pizza",
       "image": "https://res.cloudinary.com/dynzztjct/image/upload/v1734098491/sochnaya-govyadina_c7k7gj.webp",
@@ -575,14 +607,15 @@
         "large": 1020
       },
       "price": {
-        "small": 640,
-        "large": 1030
+        "small": 650,
+        "large": 1100
       },
       "type": "classic",
       "size": {
         "small": 30,
         "large": 54
-      }
+      },
+      "disabled": true
     }
   ]
 }
