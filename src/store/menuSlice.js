@@ -43,11 +43,14 @@ export const checkSlugUnique = createAsyncThunk(
       const response = await fetch(`${MENUURL}?slug=${slug}`);
       const data = await response.json();
       if (data.length > 0) {
-        return rejectWithValue("Этот slug уже используется");
+        throw new Error("Этот slug уже используется");
       }
       return "Уникальный slug";
     } catch (error) {
-      return rejectWithValue("Ошибка проверки slug");
+      if (error.message === "Failed to fetch") {
+        return rejectWithValue("Ошибка проверки slug");
+      }
+      return rejectWithValue(error.message);
     }
   }
 );
@@ -87,14 +90,14 @@ export const deleteMenuItem = createAsyncThunk(
       // Сначала находим товар по slug
       const response = await fetch(`${MENUURL}?slug=${slug}`);
       if (!response.ok) {
-        return rejectWithValue("Ошибка при поиске товара по slug");
+        throw new Error("Ошибка при поиске товара по slug");
       }
 
       const data = await response.json();
       const item = data.find((product) => product.slug === slug);
 
       if (!item) {
-        return rejectWithValue("Товар с таким slug не найден.");
+        throw new Error("Товар с таким slug не найден.");
       }
 
       // Если товар найден, удаляем его по id
@@ -103,10 +106,13 @@ export const deleteMenuItem = createAsyncThunk(
       });
 
       if (!deleteResponse.ok) {
-        return rejectWithValue("Ошибка! Ну удалось удалить товар.");
+        throw new Error("Ошибка! Не удалось удалить товар.");
       }
     } catch (error) {
-      return rejectWithValue("Ошибка! Ну удалось удалить товар.");
+      if (error.message === "Failed to fetch") {
+        return rejectWithValue("Ошибка! Не удалось удалить товар.");
+      }
+      return rejectWithValue(error.message);
     }
   }
 );

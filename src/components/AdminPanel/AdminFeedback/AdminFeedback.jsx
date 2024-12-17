@@ -89,7 +89,7 @@ export function AdminFeedback() {
   }
 
   return (
-    <>
+    <div>
       <h3 className="admin__main-title title--3">Добавить отзыв</h3>
       <div
         className="admin-form__container"
@@ -142,6 +142,6 @@ export function AdminFeedback() {
           </form>
         </div>
       </div>
-    </>
+    </div>
   );
 }

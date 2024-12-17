@@ -42,11 +42,9 @@ export const addFeedback = createAsyncThunk(
         );
       }
     } catch (error) {
-      if (error.message === "Failed to fetch") {
-        return rejectWithValue(
-          "Ошибка! Не удалось добавить отзыв, попробуйте еще раз"
-        );
-      }
+      return rejectWithValue(
+        "Ошибка! Не удалось добавить отзыв, попробуйте еще раз"
+      );
     }
   }
 );

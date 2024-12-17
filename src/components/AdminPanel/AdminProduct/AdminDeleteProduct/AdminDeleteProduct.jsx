@@ -17,7 +17,6 @@ import "./AdminDeleteProduct.css";
 
 export function AdminDeleteProduct() {
   const [slug, setSlug] = useState("");
-  const [slugError, setSlugError] = useState(null);
   const [showConfirm, setShowConfirm] = useState(false);
   const [isDeleteValid, setIsDeleteValid] = useState(false);
 
@@ -48,7 +47,6 @@ export function AdminDeleteProduct() {
   useEffect(() => {
     if (deleteStatus === "resolved") {
       setSlug("");
-      setSlugError(null);
     }
   }, [deleteStatus]);
 
@@ -72,8 +70,6 @@ export function AdminDeleteProduct() {
           id="admin-delete-slug"
           value={slug}
           setValue={setSlug}
-          valueError={slugError}
-          setValueError={setSlugError}
           type="text"
           label="Slug"
           ariaLabel="Слаг товара"

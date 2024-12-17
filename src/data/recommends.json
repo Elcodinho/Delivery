@@ -1,0 +1,57 @@
+{
+  "recommends": [
+    {
+      "id": "33",
+      "name": "пицца римская Сырный Цыпленок",
+      "category": "pizza",
+      "type": "rimskaya",
+      "slug": "pizza-rimskaya-syrniy-tsiplenok",
+      "price": 630,
+      "weight": 430,
+      "image": "https://res.cloudinary.com/dynzztjct/image/upload/v1731659746/rimskaya-sirniy-tsiplenok_g6bf2p.webp",
+      "description": "тесто для римской пиццы, соус сливочный, куриное филе, сыр моцарелла, помидоры черри, масло чесночное, зелень"
+    },
+    {
+      "id": "21",
+      "name": "бургер стрит",
+      "category": "burgeri",
+      "slug": "burger-street",
+      "price": 205,
+      "weight": 190,
+      "image": "https://res.cloudinary.com/dynzztjct/image/upload/v1731659119/street_peu42l.webp",
+      "description": "настоящая классика: пшеничная булочка, котлета куриная в панировке, маринованные огурчики, томаты и соус ранч"
+    },
+    {
+      "id": "17",
+      "name": "мидия лосось",
+      "category": "sushi-i-rolli",
+      "subCat": "rolli",
+      "type": "hot",
+      "slug": "midiya-losos-hot",
+      "price": {
+        "small": 220,
+        "large": 400
+      },
+      "size": {
+        "small": 4,
+        "large": 8
+      },
+      "weight": {
+        "small": 160,
+        "large": 320
+      },
+      "image": "https://res.cloudinary.com/dynzztjct/image/upload/v1731660167/midiya-losos-hot_aqxznv.webp",
+      "description": "рис, нори, сливочный сыр, филе лосося в соусе спайси, мидии, омлет томаго, майонез"
+    },
+    {
+      "id": "19",
+      "name": "бургер Чиз",
+      "category": "burgeri",
+      "slug": "burger-chiz",
+      "price": 570,
+      "weight": 325,
+      "image": "https://res.cloudinary.com/dynzztjct/image/upload/v1731659119/chiz_b5wgaj.webp",
+      "description": "нежный сырный соус, натуральная говяжья котлета, сыр чеддер, свежие овощи под булочкой бриошь"
+    }
+  ]
+}

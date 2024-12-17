@@ -13,7 +13,8 @@
     "menu": "json-server --watch src/data/menu.json --port 3700",
     "supplements": "json-server --watch src/data/supplements.json --port 3800",
     "orders": "json-server --watch src/data/orders.json --port 3900",
-    "dev:full": "concurrently \"npm run dev\" \"npm run feedback\" \"npm run suggestions\" \"npm run menu\" \"npm run supplements\" \"npm run orders\""
+    "recommends": "json-server --watch src/data/recommends.json --port 4000",
+    "dev:full": "concurrently \"npm run dev\" \"npm run feedback\" \"npm run suggestions\" \"npm run menu\" \"npm run supplements\" \"npm run orders\" \"npm run recommends\""
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.3.0",

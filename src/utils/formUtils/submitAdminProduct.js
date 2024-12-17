@@ -90,7 +90,7 @@ export function submitAdminProduct({
   if (!isValid) return;
 
   const item = {
-    name: name.trim().toLowerCase(),
+    name: name.trim(),
     category: category.trim().toLowerCase(),
     slug: slug.trim().toLowerCase(),
     image: img.trim(),
