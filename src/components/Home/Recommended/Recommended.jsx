@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { recommendedItems, getRecommendItems } from "@store/recommendSLice";
+import { recommendedItems, getRecommendItems } from "@store/recommendSlice";
 import { capitalizeFirstLetter } from "@utils/capitalizeFirstLetter";
 import { Card } from "@components/Card/Card";
 import { Loader } from "@components/UI/Loader/Loader";

@@ -6,7 +6,7 @@ import supplementReducer from "@store/supplementSlice";
 import cartReducer from "@store/cartSlice";
 import orderReducer from "@store/orderSlice";
 import userReducer from "@store/userSlice";
-import recommendReducer from "@store/recommendSLice";
+import recommendReducer from "@store/recommendSlice";
 
 export default configureStore({
   reducer: {

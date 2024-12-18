@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import clsx from "clsx";
 import { getSupplement, selectSupplement } from "@store/supplementSlice";
+import { capitalizeFirstLetter } from "@utils/capitalizeFirstLetter";
 import { addProductToCart } from "@utils/addProductToCart";
 import { addPopup } from "@utils/addPopup";
 import { ProductSupplementsItem } from "./ProductSupplementsItem/ProductSupplementsItem";
@@ -162,7 +163,7 @@ export function ProductSupplements(props) {
               {supplements.map((item) => (
                 <ProductSupplementsItem
                   key={item.id}
-                  name={item.name}
+                  name={capitalizeFirstLetter(item.name)}
                   weight={item.weight}
                   price={item.price}
                   img={item.img}

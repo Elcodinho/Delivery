@@ -281,6 +281,7 @@ export function AdminProduct() {
             setWeightError={setWeightError}
             priceError={priceError}
             setPriceError={setPriceError}
+            extraLabel="товара"
             title={isRolli ? rolliTitle : isClassicPizza ? pizzaTitle : ""}
           />
           {(isRolli || isClassicPizza) && (
@@ -295,6 +296,7 @@ export function AdminProduct() {
               setWeightError={setLargeWeightError}
               priceError={largePriceError}
               setPriceError={setLargePriceError}
+              extraLabel="товара"
               title={isRolli ? rolliLargeTitle : pizzaLargeTitle}
             />
           )}

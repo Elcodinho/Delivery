@@ -94,7 +94,7 @@ const cartSlice = createSlice({
     },
 
     // Для инициализации корзины из localStorage при перезагрузке страницы
-    setCart: (action) => {
+    setCart: (_, action) => {
       return action.payload;
     },
   },

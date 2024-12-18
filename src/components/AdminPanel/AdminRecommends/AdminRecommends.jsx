@@ -7,7 +7,7 @@ import {
   clearRecommendStatus,
   clearDeleteRecommendError,
   clearDeleteRecommendStatus,
-} from "@store/recommendSLice";
+} from "@store/recommendSlice";
 import { useClearError } from "@hooks/useClearError";
 import { AdminProductInput } from "../AdminProduct/AdminProductInput/AdminProductInput";
 import { Button } from "@components/UI/Button/Button";
@@ -26,8 +26,9 @@ export function AdminRecommends() {
   const [deleteSlugValid, setDeleteSlugValid] = useState(false);
 
   const dispatch = useDispatch();
-  const { status, error } = useSelector((state) => state.recommend);
-  const { deleteStatus, deleteError } = useSelector((state) => state.recommend);
+  const { status, error, deleteStatus, deleteError } = useSelector(
+    (state) => state.recommend
+  );
 
   function handleListChange(e) {
     const inputValue = e.target.value;

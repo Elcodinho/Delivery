@@ -15,6 +15,7 @@ export const WeightPrice = React.memo(function WeightPrice(props) {
     priceError,
     setPriceError,
     title = "",
+    extraLabel,
   } = props;
 
   return (
@@ -28,10 +29,10 @@ export const WeightPrice = React.memo(function WeightPrice(props) {
           valueError={weightError}
           setValueError={setWeightError}
           type="number"
-          label="Вес товара"
-          ariaLabel="Вес товара"
+          label={`Вес ${extraLabel}`}
+          ariaLabel={`Вес ${extraLabel}`}
           valueLength={5}
-          info="Укажите вес товара в граммах (только числа)"
+          info={`Укажите вес ${extraLabel} в граммах (только числа)`}
         />
         <AdminProductInput
           id={idPrice}
@@ -40,10 +41,10 @@ export const WeightPrice = React.memo(function WeightPrice(props) {
           valueError={priceError}
           setValueError={setPriceError}
           type="number"
-          label="Цена товара"
-          ariaLabel="Цена товара"
+          label={`Цена ${extraLabel}`}
+          ariaLabel={`Цена ${extraLabel}`}
           valueLength={5}
-          info="Укажите цену товара в рублях (только числа)"
+          info={`Укажите цену ${extraLabel} в рублях (только числа)`}
         />
       </div>
     </div>

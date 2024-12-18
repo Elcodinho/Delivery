@@ -1,0 +1,33 @@
+.admin-supplements__form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+  margin-bottom: 40px;
+  padding: 20px 40px;
+
+  border-radius: 20px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+}
+
+.admin-supplements__inputs-wrapper {
+  display: flex;
+  align-items: stretch;
+  flex-wrap: wrap;
+  gap: 15px;
+  width: 100%;
+}
+
+.admin-supplements__buttons-wrapper {
+  margin-top: 20px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* Media */
+
+@media (max-width: 580px) {
+  .admin-supplements__form {
+    padding: 20px 10px;
+  }
+}

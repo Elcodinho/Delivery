@@ -41,19 +41,6 @@
   justify-content: flex-end;
 }
 
-/* Убираем стрелочки для Chrome, Safari, Edge, Opera */
-input[type="number"]::-webkit-inner-spin-button,
-input[type="number"]::-webkit-outer-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-
-/* Убираем стрелочки для Firefox */
-input[type="number"] {
-  appearance: textfield;
-  -moz-appearance: textfield;
-}
-
 /* Media */
 
 @media (max-width: 768px) {

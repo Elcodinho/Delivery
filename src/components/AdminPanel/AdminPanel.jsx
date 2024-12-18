@@ -3,6 +3,7 @@ import { AdminFeedback } from "./AdminFeedback/AdminFeedback";
 import { AdminProduct } from "./AdminProduct/AdminProduct";
 import { AdminStopList } from "./AdminStopList/AdminStopList";
 import { AdminRecommends } from "./AdminRecommends/AdminRecommends";
+import { AdminSupplements } from "./AdminSupplements/AdminSupplements";
 import { Button } from "@components/UI/Button/Button";
 import "./AdminPanel.css";
 
@@ -11,6 +12,7 @@ const adminButtons = [
   { text: "Добавить или удалить товар", value: "product" },
   { text: "Стоп лист товаров", value: "stop-list" },
   { text: "Рекомендованные товары", value: "recommends-list" },
+  { text: "Дополнительные ингредиенты", value: "supplements" },
 ];
 
 export function AdminPanel() {
@@ -34,6 +36,7 @@ export function AdminPanel() {
           {shownPage === "product" && <AdminProduct />}
           {shownPage === "stop-list" && <AdminStopList />}
           {shownPage === "recommends-list" && <AdminRecommends />}
+          {shownPage === "supplements" && <AdminSupplements />}
         </div>
       </div>
     </section>
