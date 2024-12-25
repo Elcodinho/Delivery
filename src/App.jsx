@@ -18,6 +18,7 @@ import { CabinetPage } from "@pages/CabinetPage";
 import { AdminPage } from "@pages/AdminPage";
 import { NotFoundpage } from "@pages/NotFoundPage";
 import { ProtectedRoutes } from "@components/ProtectedRoutes/ProtectedRoutes";
+import { AdminProtectedRoutes } from "@components/ProtectedRoutes/AdminProtectedRoutes";
 
 function App() {
   // Обновляем состтяние state для корзины при любом обновлении local storage
@@ -40,12 +41,16 @@ function App() {
           <Route path="/menu/:category/:type?" element={<MenuPage />} />
           <Route path="/product/:slug" element={<ProductPage />} />
           <Route path="/order" element={<OrderPage />} />
+
           {/* Группа страниц доступна только авторизованным пользователям */}
           <Route element={<ProtectedRoutes />}>
             <Route path="/cabinet" element={<CabinetPage />} />
           </Route>
-          <Route path="/admin" element={<AdminPage />} />
+          <Route element={<AdminProtectedRoutes />}>
+            <Route path="/admin" element={<AdminPage />} />
+          </Route>
           {/*  */}
+
           <Route path="*" element={<NotFoundpage />} />
         </Route>
       </Routes>

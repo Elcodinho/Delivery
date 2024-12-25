@@ -10,7 +10,7 @@ const navItems = [
 ];
 
 export function Nav(props) {
-  const { socText, adClass } = props;
+  const { socText, adClass = "" } = props;
   return (
     <nav className="nav">
       <ul className="nav__list">

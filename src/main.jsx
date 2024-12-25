@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Provider } from "react-redux";
 import store from "./store";
 import { LoginProvider } from "@context/LoginContext";
+import { MobileMenuProvider } from "@context/MobileMenuContext";
 
 import "./styles/normalize.css";
 import "./styles/common.css";
@@ -14,11 +15,13 @@ createRoot(document.getElementById("root")).render(
   <StrictMode>
     <Provider store={store}>
       <LoginProvider>
-        <Router>
-          <Routes>
-            <Route path="/*" element={<App />} />
-          </Routes>
-        </Router>
+        <MobileMenuProvider>
+          <Router>
+            <Routes>
+              <Route path="/*" element={<App />} />
+            </Routes>
+          </Router>
+        </MobileMenuProvider>
       </LoginProvider>
     </Provider>
   </StrictMode>

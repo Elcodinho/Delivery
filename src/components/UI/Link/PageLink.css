@@ -51,6 +51,11 @@
   font-size: 1.1rem;
 }
 
+/* Стили для ссылки перехода в админку */
+.to-admin__btn {
+  background-color: rgb(21, 243, 32);
+}
+
 /* Media */
 @media (max-width: 768px) {
   .link {

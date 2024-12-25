@@ -1,13 +1,16 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
+import { ADMINEMAIL } from "@constants/constants.js";
 import { removeUser } from "@store/userSlice";
 import { getUserData } from "@utils/firebase/getUserData";
 import { updateUserData } from "@utils/firebase/updateUserData";
 import { phoneFormatter } from "@utils/formatters/phoneFormatter.js";
 import { useResetWarning } from "@hooks/useResetWarning";
+import useAdminCheck from "@hooks/useAdminCheck.js";
 import { db } from "../../firebase.js";
 import { CabinetForm } from "./CabinetForm/CabinetForm";
+import { PageLink } from "@components/UI/Link/PageLink.jsx";
 import { Loader } from "@components/UI/Loader/Loader.jsx";
 import { WarningError } from "@components/UI/Warnings/WarningError/WarningError.jsx";
 import { Success } from "@components/UI/Popups/Success/Success.jsx";
@@ -18,6 +21,7 @@ import "./Cabinet.css";
 
 export function Cabinet() {
   const uid = useSelector((state) => state.user.id); // uid полтзователя
+  const isAdmin = useAdminCheck(ADMINEMAIL);
   const [showForm, setShowForm] = useState(false);
   const [userData, setUserData] = useState({}); // Данные пользователя
   const [loading, setLoading] = useState(true); // Загрузка данных пользоветля
@@ -161,13 +165,12 @@ export function Cabinet() {
                   <p className="cabinet__name">
                     {loading
                       ? loadingText
+                      : isAdmin
+                      ? "Администратор"
                       : userData.name
                       ? userData.name
                       : "Пользователь"}
                   </p>
-                  <button className="cabinet__button--delete" type="button">
-                    Удалить
-                  </button>
                 </div>
               </div>
               {/*  */}
@@ -243,10 +246,20 @@ export function Cabinet() {
                 </div>
               </div>
               {/* Cabinet-info-end */}
+              {/* To AdminPanel */}
+              {isAdmin && (
+                <div className="to-admin__wrapper">
+                  <PageLink
+                    text="Перейти в админ панель"
+                    adress="/admin"
+                    cssClass="to-admin__btn"
+                  />
+                </div>
+              )}
+              {/* To AdminPanel-end */}
               <button
                 className="cabinet__btn--exit"
                 type="button"
-                // onClick={handleLogout}
                 onClick={() => setShowConfirm(true)}
               >
                 Выйти

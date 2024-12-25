@@ -1,5 +1,6 @@
 import { NavLink, Link } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { useMediaQuery } from "@mui/material";
 import { selectCart } from "@store/cartSlice";
 import { countCartTotalSum } from "@utils/countCartTotalSum";
 import { SecondaryNav } from "@components/Navigations/SecondaryNav/SecondaryNav";
@@ -10,6 +11,7 @@ import "./HeaderMenuContent.css";
 export function HeaderMenuContent(props) {
   const { menuItems, showSecondaryNav, pizzaLinks, rolliLinks } = props;
   const cart = useSelector(selectCart);
+  const isMobile = useMediaQuery("(max-width:768px)");
 
   // Считаем общую сумму всех товаров в корзине
   const sum = countCartTotalSum(cart);
@@ -25,17 +27,19 @@ export function HeaderMenuContent(props) {
           ))}
         </ul>
 
-        <div className="header-menu__cart">
-          <Link to="/order" className="header-menu__cart-button">
-            <BsCart4 className="header-menu__cart-icon" />
-            <span className="header-menu__cart-divider"></span>
-            <span className="header-menu__cart-price">
-              {sum}
-              <span className="header-menu_currency-symbol">₽</span>
-            </span>
-          </Link>
-          <CartPopup />
-        </div>
+        {!isMobile && (
+          <div className="header-menu__cart">
+            <Link to="/order" className="header-menu__cart-button">
+              <BsCart4 className="header-menu__cart-icon" />
+              <span className="header-menu__cart-divider"></span>
+              <span className="header-menu__cart-price">
+                {sum}
+                <span className="header-menu_currency-symbol">₽</span>
+              </span>
+            </Link>
+            <CartPopup />
+          </div>
+        )}
       </div>
       {showSecondaryNav === "sushi-i-rolli" && (
         <SecondaryNav

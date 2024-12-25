@@ -2,6 +2,7 @@ import { useState, useContext } from "react";
 import { useNavigate } from "react-router";
 import { useDispatch } from "react-redux";
 import { setUser } from "@store/userSlice";
+import { ADMINEMAIL } from "@constants/constants.js";
 import { loginUser } from "@utils/firebase/loginUser.js";
 import { registerUser } from "@utils/firebase/registerUser.js";
 import { validateEmail } from "@utils/formUtils/validateEmail";
@@ -60,7 +61,7 @@ export function Auth() {
     }
     try {
       let userData;
-      const emailValid = email.trim();
+      const emailValid = email.trim().toLowerCase();
       const passValid = pass.trim();
       if (authType === "login") {
         // Вызов функции логина

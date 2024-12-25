@@ -43,13 +43,6 @@
   color: #4c4c4c;
 }
 
-.profile__button--delete {
-  display: block;
-  font-size: 0.9rem;
-  color: var(--my-grey-color);
-  cursor: pointer;
-}
-
 .cabinet__icon--edit {
   width: 25px;
   height: 25px;

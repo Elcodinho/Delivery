@@ -1,0 +1,35 @@
+.mobile-info__wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 10px 0;
+}
+
+.mobile-info__button {
+  display: block;
+  width: calc(15% - 5px);
+}
+
+.mobile-info__button-icon {
+  width: 40px;
+  height: 40px;
+  color: var(--my-gr-color);
+}
+
+.mobile-info__logo {
+  width: calc(85% - 5px);
+}
+
+.mobile-info__logo-link {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.mobile-info__logo-img {
+  display: block;
+  width: 100%;
+  height: 50px;
+}

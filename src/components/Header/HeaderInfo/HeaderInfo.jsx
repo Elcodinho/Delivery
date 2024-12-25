@@ -1,19 +1,20 @@
 import { useState, useEffect, useContext } from "react";
 import { NavLink, Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { PHONE, ADRESS, SCHEDULE } from "@constants/constants";
+import { useMediaQuery } from "@mui/material";
+import { PHONE, ADRESS, SCHEDULE, ADMINEMAIL } from "@constants/constants";
 import { phoneFormatter } from "@utils/formatters/phoneFormatter";
 import { getUserData } from "@utils/firebase/getUserData";
+import useAdminCheck from "@hooks/useAdminCheck";
 import { LoginContext } from "@context/LoginContext";
 import logo from "@assets/images/logo54.webp";
 import { FiMapPin } from "react-icons/fi";
 import { IoEnterOutline } from "react-icons/io5";
-import { Auth } from "@components/Auth/AuthBlock/Auth";
 import userImg from "@assets/images/user-icon.svg";
 import "./HeaderInfo.css";
 
 export function HeaderInfo() {
-  const { showLogin, setShowLogin } = useContext(LoginContext); // Состояния показа popup логина
+  const { setShowLogin } = useContext(LoginContext); // Состояния показа popup логина
   const [selectedOption, setSelectedOption] = useState("delivery"); // Состояние для отслеживания выбранной опции доставки
   const [toggleText, setToggleText] = useState("Время доставки ~"); // Состояние для установки текста при переключении радиокнопки
   const [toggleTime, setToggleTime] = useState("60"); // Состояние для установки времени при переключении радиокнопки
@@ -23,7 +24,8 @@ export function HeaderInfo() {
 
   const uid = useSelector((state) => state.user.id);
   const user = useSelector((state) => state.user.email);
-
+  const isTablet = useMediaQuery("(max-width:786px)");
+  const isAdmin = useAdminCheck(ADMINEMAIL);
   // Получения имя пользователя
   useEffect(() => {
     async function fetchUserData() {
@@ -94,36 +96,38 @@ export function HeaderInfo() {
           </span>
         </address>
         {/* delivery */}
-        <section className="header-info__delivery">
-          <div className="header-info__delivery-toggle">
-            <input
-              className="header-info__delivery-input"
-              type="radio"
-              id="delivery"
-              name="toggle"
-              checked={selectedOption === "delivery"}
-              onChange={handleChangeOption}
-            />
-            <label className="header-info__delivery-label" htmlFor="delivery">
-              Доставка курьером
-            </label>
+        {!isTablet && (
+          <section className="header-info__delivery">
+            <div className="header-info__delivery-toggle">
+              <input
+                className="header-info__delivery-input"
+                type="radio"
+                id="delivery"
+                name="toggle"
+                checked={selectedOption === "delivery"}
+                onChange={handleChangeOption}
+              />
+              <label className="header-info__delivery-label" htmlFor="delivery">
+                Доставка курьером
+              </label>
 
-            <input
-              className="header-info__delivery-input"
-              type="radio"
-              id="pickup"
-              name="toggle"
-              checked={selectedOption === "pickup"}
-              onChange={handleChangeOption}
-            />
-            <label className="header-info__delivery-label" htmlFor="pickup">
-              Самовывоз
-            </label>
-          </div>
-          <p className="header-info__delivery-time">
-            {toggleText} <strong>{toggleTime} мин</strong>
-          </p>
-        </section>
+              <input
+                className="header-info__delivery-input"
+                type="radio"
+                id="pickup"
+                name="toggle"
+                checked={selectedOption === "pickup"}
+                onChange={handleChangeOption}
+              />
+              <label className="header-info__delivery-label" htmlFor="pickup">
+                Самовывоз
+              </label>
+            </div>
+            <p className="header-info__delivery-time">
+              {toggleText} <strong>{toggleTime} мин</strong>
+            </p>
+          </section>
+        )}
 
         {/* Login button */}
         {user && (
@@ -136,8 +140,9 @@ export function HeaderInfo() {
                   alt="Пользователь"
                 />
               </div>
-              {uid && userDataError && "Пользователь"}
-              {uid && !userDataError && userName}
+              {uid && userDataError && isAdmin && "Пользователь"}
+              {uid && !userDataError && !isAdmin && userName}
+              {uid && isAdmin && "Администратор"}
               {!uid && !userDataError && ""}
             </Link>
           </div>
@@ -152,7 +157,6 @@ export function HeaderInfo() {
           </button>
         )}
       </div>
-      {showLogin && <Auth />}
     </section>
   );
 }

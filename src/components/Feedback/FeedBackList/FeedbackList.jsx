@@ -1,14 +1,19 @@
 import { useState, useEffect, useMemo } from "react";
-import { useSelector } from "react-redux";
-import { selectFeedback } from "@store/feedbackSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { selectFeedback, deleteFeedback } from "@store/feedbackSlice";
 import { capitalizeFirstLetter } from "@utils/capitalizeFirstLetter";
 import { FeedbackItem } from "./FeedbackItem/FeedbackItem";
+import { Confirmation } from "@components/UI/Popups/Confirmation/Confirmation";
 import "./FeedbackList.css";
 
 export function FeedbackList(props) {
   const { currentPage, reviewsPerPage } = props;
+  const dispatch = useDispatch();
+
   const [currentReviews, setCurrentReviews] = useState([]);
   const feedbackData = useSelector(selectFeedback); // Список отзывов
+  const [showConfirm, setShowConfirm] = useState(false);
+  const [idDelete, setIdDelete] = useState(""); // id отзыва для удаления
 
   // Используем useMemo для вычисления перевернутого списка
   const reversedFeedbackData = useMemo(() => {
@@ -24,8 +29,21 @@ export function FeedbackList(props) {
     );
   }, [feedbackData, currentPage]);
 
+  // Функция удаления отзыва
+  function handleRemove() {
+    dispatch(deleteFeedback(idDelete));
+  }
+
   return (
     <ul className="feedback__list">
+      {showConfirm && (
+        <Confirmation
+          title="Внимание"
+          text="Вы действительно хотите удалить отзыв?"
+          setShowConfirm={setShowConfirm}
+          handleClear={handleRemove}
+        />
+      )}
       {currentReviews.map((item) => (
         <FeedbackItem
           key={item.id}
@@ -35,6 +53,8 @@ export function FeedbackList(props) {
           date={item.date}
           author={capitalizeFirstLetter(item.author)}
           body={capitalizeFirstLetter(item.body)}
+          setShowConfirm={setShowConfirm}
+          setIdDelete={setIdDelete}
         />
       ))}
     </ul>

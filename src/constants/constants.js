@@ -4,6 +4,7 @@ export const ADRESS = "просп. Победы 20";
 export const SCHEDULE = "Пн-Вс 9:00- 23:30";
 export const EXPRESSDELIVERYCOST = 200; // Стоимость экспресс доставки
 export const TIPS = 50; // размер чаевых
+export const ADMINEMAIL = "admin@mail.com";
 
 export const PIZZASIZE = {
   small: 30,

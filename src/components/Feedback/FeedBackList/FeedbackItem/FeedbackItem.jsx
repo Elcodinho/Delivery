@@ -1,19 +1,14 @@
 import React from "react";
-import { useDispatch } from "react-redux";
-import { deleteFeedback } from "@store/feedbackSlice";
+import useAdminCheck from "@hooks/useAdminCheck";
+import { ADMINEMAIL } from "@constants/constants";
 import { FaStar } from "react-icons/fa";
 import { FaRegStar } from "react-icons/fa6";
 import "./FeedbackItem.css";
 
 export const FeedbackItem = React.memo(function FeedbackItem(props) {
-  const { id, title, stars, date, author, body } = props;
-
-  const dispatch = useDispatch();
-
-  // Функция удаления отзыва
-  function handleRemove(id) {
-    dispatch(deleteFeedback(id));
-  }
+  const { id, title, stars, date, author, body, setShowConfirm, setIdDelete } =
+    props;
+  const isAdmin = useAdminCheck(ADMINEMAIL);
 
   return (
     <li className="feedback__item">
@@ -32,13 +27,18 @@ export const FeedbackItem = React.memo(function FeedbackItem(props) {
         <span>написал(а) {author}</span>
       </div>
       <p className="feedback__item-body">{body}</p>
-      <button
-        type="button"
-        className="feedback__item--remove"
-        onClick={() => handleRemove(id)}
-      >
-        Удалить
-      </button>
+      {isAdmin && (
+        <button
+          type="button"
+          className="feedback__item--remove"
+          onClick={() => {
+            setIdDelete(id);
+            setShowConfirm(true);
+          }}
+        >
+          Удалить
+        </button>
+      )}
     </li>
   );
 });

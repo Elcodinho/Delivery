@@ -68,3 +68,17 @@
   margin-left: 5px;
   font-size: 1.2rem;
 }
+
+/* Media*/
+
+@media (max-width: 768px) {
+  .header-menu__item {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 580px) {
+  .header-menu__item {
+    font-size: 1rem;
+  }
+}
