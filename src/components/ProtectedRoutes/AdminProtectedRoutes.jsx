@@ -19,7 +19,7 @@ export const AdminProtectedRoutes = () => {
 
   // Проверка на наличие токена и роли администратора
   if (!user.token || user.email !== ADMINEMAIL) {
-    return <Navigate to="/" />;
+    return <Navigate to="*" />;
   }
 
   // Показываем вложенные маршруты

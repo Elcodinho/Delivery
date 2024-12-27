@@ -15,6 +15,7 @@ export function MobileHeaderInfo() {
         <button
           className="mobile-info__button"
           type="button"
+          aria-label="Открыть мобильное меню"
           onClick={() => setShowMobileMenu(true)}
         >
           <IoMenu className="mobile-info__button-icon" />

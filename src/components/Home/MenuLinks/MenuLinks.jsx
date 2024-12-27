@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import LazyLoad from "react-lazyload";
 import pizzaBig from "@assets/images/menuPictures/pizza363.avif";
 import rolliBig from "@assets/images/menuPictures/rolli363.avif";
 import burgerBig from "@assets/images/menuPictures/burger363.avif";

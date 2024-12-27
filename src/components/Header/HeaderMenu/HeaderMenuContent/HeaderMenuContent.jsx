@@ -11,7 +11,7 @@ import "./HeaderMenuContent.css";
 export function HeaderMenuContent(props) {
   const { menuItems, showSecondaryNav, pizzaLinks, rolliLinks } = props;
   const cart = useSelector(selectCart);
-  const isMobile = useMediaQuery("(max-width:768px)");
+  const isMobile = useMediaQuery("(max-width:580px)");
 
   // Считаем общую сумму всех товаров в корзине
   const sum = countCartTotalSum(cart);

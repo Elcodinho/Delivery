@@ -34,6 +34,7 @@ export const Card = React.memo(function Card(props) {
   );
 
   const [selectedAmount, setSelectedAmount] = useState(initialSize); // Состояние для выбранного количества товара или его размер
+  const [imgError, setImgError] = useState(false); // Стейт для отслеживания ошибки загрузки
   const [productPrice, setProductPrice] = useState(
     typeof price === "object" ? price.large : price // Используем цену сразу, если это число
   );
@@ -85,11 +86,28 @@ export const Card = React.memo(function Card(props) {
     addPopup(name, setPopups); // Передаём имя товара в массив popups
   });
 
+  // Обработчик ошибки загрузки
+  function handleError() {
+    setImgError(true); // Включаем ошибку при неудачной загрузке
+  }
+
   return (
     <li className="card">
       {disabled && <div className="card--disabled">Временно недоступно</div>}
-      <LazyLoad height={200} offset={100} placeholder={<ImageLoader />}>
-        <img className="card__img" src={img} alt={name} />
+      <LazyLoad height={300} offset={500} placeholder={<ImageLoader />} once>
+        {!imgError ? (
+          <img
+            className="card__img"
+            src={img}
+            alt={name}
+            loading="lazy"
+            onError={handleError} // При ошибке загрузки вызывается обработчик
+          />
+        ) : (
+          <div className="img--error">
+            <p>Ошибка загрузки изображения</p> {/* Показываем div с ошибкой */}
+          </div>
+        )}
       </LazyLoad>
       <div className="card__text-block">
         <Link

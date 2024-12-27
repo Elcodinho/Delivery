@@ -1,0 +1,20 @@
+.up-btn {
+  position: fixed;
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+
+  padding: 12px 25px;
+
+  font-size: 1rem;
+  background-color: #fff;
+  box-shadow: var(--my-box-shadow);
+  border-radius: 20px;
+  opacity: 0.9;
+  z-index: 30;
+}

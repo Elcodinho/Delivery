@@ -130,16 +130,6 @@ img {
   color: red;
 }
 
-/* .loading {
-  font-size: 40px;
-  font-weight: 800;
-  text-align: center;
-}
-
-.hidden {
-  display: none;
-} */
-
 /* Media */
 
 @media (max-width: 768px) {

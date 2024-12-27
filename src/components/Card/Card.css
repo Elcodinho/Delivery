@@ -30,10 +30,18 @@
 
 .card__img {
   display: block;
-  max-width: 100%;
   width: 100%;
-  height: auto;
+  width: 100%;
+  height: 310px;
   object-fit: cover;
+}
+
+.img--error {
+  height: 310px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f0f0f0;
 }
 
 .card__text-block {
