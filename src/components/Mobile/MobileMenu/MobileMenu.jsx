@@ -4,7 +4,7 @@ import { phoneFormatter } from "@utils/formatters/phoneFormatter";
 import { PHONE, ADRESS, SCHEDULE } from "@constants/constants";
 import { Nav } from "@components/Navigations/Nav/Nav";
 import { AppBlock } from "@components/AppBlock/AppBlock";
-import logo from "@assets/images/logo54.webp";
+import logo from "@assets/images/logo.png";
 import { FiMapPin } from "react-icons/fi";
 import "./MobileMenu.css";
 

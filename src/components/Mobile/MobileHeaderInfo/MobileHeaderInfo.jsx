@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { MobileMenuContext } from "@context/MobileMenuContext";
-import logo from "@assets/images/logo54.webp";
+import logo from "@assets/images/logo.png";
 import { IoMenu } from "react-icons/io5";
 import "./MobileHeaderInfo.css";
 
@@ -22,7 +22,11 @@ export function MobileHeaderInfo() {
         </button>
         {/* Logo */}
         <div className="mobile-info__logo">
-          <Link to="/" className="mobile-info__logo-link">
+          <Link
+            to="/"
+            className="mobile-info__logo-link"
+            aria-label="Перейти на главную страницу"
+          >
             <img
               src={logo}
               alt="Логотип главной страницы"

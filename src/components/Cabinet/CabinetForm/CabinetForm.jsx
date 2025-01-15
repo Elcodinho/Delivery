@@ -2,6 +2,7 @@ import clsx from "clsx";
 import { getCssClass } from "@utils/getClasses/getCssClass";
 import { handleChange } from "@utils/formUtils/handleChange";
 import { handlePhoneChange } from "@utils/formUtils/handlePhoneChange";
+import { capitalizeFirstLetter } from "@utils/capitalizeFirstLetter";
 import { WarningForm } from "@components/UI/Warnings/WarningForm/WarningForm";
 import { Button } from "@components/UI/Button/Button";
 import "./CabinetForm.css";
@@ -69,7 +70,7 @@ export function CabinetForm(props) {
                   id="name-cab"
                   aria-label="Имя"
                   placeholder=""
-                  value={name}
+                  value={capitalizeFirstLetter(name)}
                   onChange={(e) =>
                     handleChange(e, setName, nameError, setNameError)
                   }

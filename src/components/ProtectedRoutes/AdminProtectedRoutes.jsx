@@ -5,7 +5,7 @@ import { ADMINEMAIL } from "@constants/constants";
 import { userSelect } from "@store/userSlice";
 import { Loader } from "@components/UI/Loader/Loader";
 
-export const AdminProtectedRoutes = () => {
+function AdminProtectedRoutes() {
   const user = useSelector(userSelect);
 
   useEffect(() => {
@@ -24,4 +24,6 @@ export const AdminProtectedRoutes = () => {
 
   // Показываем вложенные маршруты
   return <Outlet />;
-};
+}
+
+export default AdminProtectedRoutes;

@@ -5,11 +5,10 @@ import { Provider } from "react-redux";
 import store from "./store";
 import { LoginProvider } from "@context/LoginContext";
 import { MobileMenuProvider } from "@context/MobileMenuContext";
+import App from "./App.jsx";
 
 import "./styles/normalize.css";
 import "./styles/common.css";
-
-import App from "./App.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>

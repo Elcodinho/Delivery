@@ -1,4 +1,4 @@
-import { useContext, useState, useEffect } from "react";
+import { useContext, useState, useEffect, Suspense } from "react";
 import { useMediaQuery } from "@mui/material";
 import { Outlet } from "react-router-dom";
 import { MobileMenuContext } from "@context/MobileMenuContext";
@@ -7,6 +7,7 @@ import { Footer } from "@components/Footer/Footer";
 import { MobileNav } from "@components/Mobile/MobileNav/MobileNav";
 import { MobileMenu } from "@components/Mobile/MobileMenu/MobileMenu";
 import { UpButton } from "@components/UI/UpButton/UpButton";
+import { Loader } from "@components/UI/Loader/Loader";
 
 export function Layout() {
   const isMobile = useMediaQuery("(max-width:580px)");
@@ -38,7 +39,9 @@ export function Layout() {
   return (
     <>
       <Header />
-      <Outlet />
+      <Suspense fallback={<Loader />}>
+        <Outlet />
+      </Suspense>
       <Footer />
       {isMobile && showMobileMenu && <MobileMenu />}
       {isMobile && <MobileNav />}

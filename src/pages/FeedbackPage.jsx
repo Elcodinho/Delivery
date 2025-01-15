@@ -1,8 +1,11 @@
 import { Feedback } from "@components/Feedback/Feedback";
-export function FeedbackPage() {
+
+function FeedbackPage() {
   return (
     <main>
       <Feedback />
     </main>
   );
 }
+
+export default FeedbackPage;

@@ -5,6 +5,7 @@ import { format } from "date-fns";
 import { ru } from "date-fns/locale";
 import { addProposition, clearError } from "@store/propositionsSlice";
 import { validateEmail } from "@utils/formUtils/validateEmail";
+import { capitalizeFirstLetter } from "@utils/capitalizeFirstLetter";
 import { useClearError } from "@hooks/useClearError";
 import { Button } from "@components/UI/Button/Button";
 import { WarningError } from "@components/UI/Warnings/WarningError/WarningError";
@@ -146,7 +147,7 @@ export function FeedbackForm(props) {
             {/* Name */}
             <InputName
               id="name"
-              name={name}
+              name={capitalizeFirstLetter(name)}
               setName={setName}
               nameError={nameError}
               setNameError={setNameError}

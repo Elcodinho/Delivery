@@ -2,13 +2,13 @@ import React from "react";
 import { useState, useEffect, useMemo, useCallback } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import LazyLoad from "react-lazyload";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 import { getInitialSize } from "@utils/getInitialSize";
 import { addProductToCart } from "@utils/addProductToCart";
 import { addPopup } from "@utils/addPopup";
 import { Toggle } from "@components/UI/Toggles/Toggle/Toggle";
 import { Button } from "@components/UI/Button/Button";
-import { ImageLoader } from "@components/UI/ImageLoader/ImageLoader";
 import "./Card.css";
 
 export const Card = React.memo(function Card(props) {
@@ -94,21 +94,20 @@ export const Card = React.memo(function Card(props) {
   return (
     <li className="card">
       {disabled && <div className="card--disabled">Временно недоступно</div>}
-      <LazyLoad height={300} offset={500} placeholder={<ImageLoader />} once>
-        {!imgError ? (
-          <img
-            className="card__img"
-            src={img}
-            alt={name}
-            loading="lazy"
-            onError={handleError} // При ошибке загрузки вызывается обработчик
-          />
-        ) : (
-          <div className="img--error">
-            <p>Ошибка загрузки изображения</p> {/* Показываем div с ошибкой */}
-          </div>
-        )}
-      </LazyLoad>
+      {!imgError ? (
+        <LazyLoadImage
+          className="card__img"
+          src={img}
+          alt={name}
+          effect="blur"
+          onError={handleError}
+        />
+      ) : (
+        <div className="img--error">
+          <p>Ошибка загрузки изображения</p>
+        </div>
+      )}
+
       <div className="card__text-block">
         <Link
           className="card__link"

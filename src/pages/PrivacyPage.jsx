@@ -1,8 +1,11 @@
 import { Privacy } from "@components/Privacy/Privacy";
-export function PrivacyPage() {
+
+function PrivacyPage() {
   return (
     <main>
       <Privacy />
     </main>
   );
 }
+
+export default PrivacyPage;

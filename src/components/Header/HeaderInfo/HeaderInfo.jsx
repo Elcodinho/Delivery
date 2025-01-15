@@ -5,9 +5,10 @@ import { useMediaQuery } from "@mui/material";
 import { PHONE, ADRESS, SCHEDULE, ADMINEMAIL } from "@constants/constants";
 import { phoneFormatter } from "@utils/formatters/phoneFormatter";
 import { getUserData } from "@utils/firebase/getUserData";
+import { capitalizeFirstLetter } from "@utils/capitalizeFirstLetter";
 import useAdminCheck from "@hooks/useAdminCheck";
 import { LoginContext } from "@context/LoginContext";
-import logo from "@assets/images/logo54.webp";
+import logo from "@assets/images/logo.png";
 import { FiMapPin } from "react-icons/fi";
 import { IoEnterOutline } from "react-icons/io5";
 import userImg from "@assets/images/user-icon.svg";
@@ -65,7 +66,11 @@ export function HeaderInfo() {
     <section className="header-info">
       <div className="header-info__wrapper">
         <div className="header-info__logo">
-          <NavLink to="/" className="header-info__logo-link">
+          <NavLink
+            to="/"
+            className="header-info__logo-link"
+            aria-label="Перейти на главную страницу"
+          >
             <img
               src={logo}
               alt="Логотип главной страницы"
@@ -140,8 +145,13 @@ export function HeaderInfo() {
                   alt="Пользователь"
                 />
               </div>
-              {uid && userDataError && isAdmin && "Пользователь"}
-              {uid && !userDataError && !isAdmin && userName}
+              {uid &&
+                userDataError &&
+                (isAdmin ? "Администратор" : "Пользователь")}
+              {uid &&
+                !userDataError &&
+                !isAdmin &&
+                capitalizeFirstLetter(userName)}
               {uid && isAdmin && "Администратор"}
               {!uid && !userDataError && ""}
             </Link>

@@ -1,8 +1,11 @@
 import { Order } from "@components/Order/Order";
-export function OrderPage() {
+
+function OrderPage() {
   return (
     <main>
       <Order />
     </main>
   );
 }
+
+export default OrderPage;

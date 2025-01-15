@@ -5,7 +5,7 @@ import { userSelect } from "@store/userSlice";
 import { LoginContext } from "@context/LoginContext";
 import { Loader } from "@components/UI/Loader/Loader";
 
-export const ProtectedRoutes = () => {
+function ProtectedRoutes() {
   const user = useSelector(userSelect);
   const { setShowLogin } = useContext(LoginContext);
 
@@ -28,4 +28,6 @@ export const ProtectedRoutes = () => {
 
   // Показываем вложенные маршруты
   return <Outlet />;
-};
+}
+
+export default ProtectedRoutes;

@@ -1,8 +1,11 @@
 import { Delivery } from "@components/Delivery/Delivery";
-export function DeliveryPage() {
+
+function DeliveryPage() {
   return (
     <main>
       <Delivery />
     </main>
   );
 }
+
+export default DeliveryPage;

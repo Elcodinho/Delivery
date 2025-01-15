@@ -1,8 +1,11 @@
 import { Menu } from "@components/Menu/Menu";
-export function MenuPage() {
+
+function MenuPage() {
   return (
     <main>
       <Menu />
     </main>
   );
 }
+
+export default MenuPage;

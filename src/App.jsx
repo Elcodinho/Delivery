@@ -1,24 +1,30 @@
+import { lazy } from "react";
 import { Routes, Route } from "react-router-dom";
 import { useCartSync } from "@hooks/useCartSync";
 import { useUserSync } from "@hooks/useUserSync.js";
 
 // Pages
 import { Layout } from "@components/Layout/Layout";
-import { HomePage } from "@pages/HomePage";
-import { AboutPage } from "@pages/AboutPage";
-import { ContactsPage } from "@pages/ContactsPage";
-import { FeedbackPage } from "@pages/FeedBackPage";
-import { PersonalDataPage } from "@pages/PersonalDataPage";
-import { DeliveryPage } from "@pages/DeliveryPage";
-import { PrivacyPage } from "@pages/PrivacyPage";
-import { MenuPage } from "@pages/MenuPage";
-import { ProductPage } from "@pages/ProductPage";
-import { OrderPage } from "@pages/OrderPage";
-import { CabinetPage } from "@pages/CabinetPage";
-import { AdminPage } from "@pages/AdminPage";
-import { NotFoundpage } from "@pages/NotFoundPage";
-import { ProtectedRoutes } from "@components/ProtectedRoutes/ProtectedRoutes";
-import { AdminProtectedRoutes } from "@components/ProtectedRoutes/AdminProtectedRoutes";
+
+const HomePage = lazy(() => import("@pages/HomePage"));
+const AboutPage = lazy(() => import("@pages/AboutPage"));
+const ContactsPage = lazy(() => import("@pages/ContactsPage"));
+const FeedbackPage = lazy(() => import("@pages/FeedBackPage"));
+const PersonalDataPage = lazy(() => import("@pages/PersonalDataPage"));
+const DeliveryPage = lazy(() => import("@pages/DeliveryPage"));
+const PrivacyPage = lazy(() => import("@pages/PrivacyPage"));
+const MenuPage = lazy(() => import("@pages/MenuPage"));
+const ProductPage = lazy(() => import("@pages/ProductPage"));
+const OrderPage = lazy(() => import("@pages/OrderPage"));
+const CabinetPage = lazy(() => import("@pages/CabinetPage"));
+const AdminPage = lazy(() => import("@pages/AdminPage"));
+const NotFoundpage = lazy(() => import("@pages/NotFoundpage"));
+const ProtectedRoutes = lazy(() =>
+  import("@components/ProtectedRoutes/ProtectedRoutes")
+);
+const AdminProtectedRoutes = lazy(() =>
+  import("@components/ProtectedRoutes/AdminProtectedRoutes")
+);
 
 function App() {
   // Обновляем состтяние state для корзины при любом обновлении local storage

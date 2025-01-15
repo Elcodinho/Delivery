@@ -6,6 +6,7 @@ import { removeUser } from "@store/userSlice";
 import { getUserData } from "@utils/firebase/getUserData";
 import { updateUserData } from "@utils/firebase/updateUserData";
 import { phoneFormatter } from "@utils/formatters/phoneFormatter.js";
+import { capitalizeFirstLetter } from "@utils/capitalizeFirstLetter.js";
 import { useResetWarning } from "@hooks/useResetWarning";
 import useAdminCheck from "@hooks/useAdminCheck.js";
 import { db } from "../../firebase.js";
@@ -92,7 +93,7 @@ export function Cabinet() {
     setSendingUserDataLoader(true);
     try {
       const data = {
-        name: name.trim(),
+        name: name.trim().toLowerCase(),
         phone: phone.replace(/[\s()+-]/g, "").trim(),
         gender,
         ...(date.trim() !== "" && { date: date.trim() }),
@@ -168,7 +169,7 @@ export function Cabinet() {
                       : isAdmin
                       ? "Администратор"
                       : userData.name
-                      ? userData.name
+                      ? capitalizeFirstLetter(userData.name)
                       : "Пользователь"}
                   </p>
                 </div>
@@ -191,7 +192,9 @@ export function Cabinet() {
                 <div className="cabinet__info-item">
                   <p className="cabinet__info-label">Имя</p>
                   <p className="cabinet__info-text">
-                    {loading ? loadingText : userData.name || notData}
+                    {loading
+                      ? loadingText
+                      : capitalizeFirstLetter(userData.name) || notData}
                   </p>
                 </div>
                 {/*  */}

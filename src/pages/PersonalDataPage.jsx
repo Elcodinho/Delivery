@@ -1,8 +1,11 @@
 import { PersonalData } from "@components/PersonalData/PersonalData";
-export function PersonalDataPage() {
+
+function PersonalDataPage() {
   return (
     <main>
       <PersonalData />
     </main>
   );
 }
+
+export default PersonalDataPage;

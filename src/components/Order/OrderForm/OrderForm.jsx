@@ -9,6 +9,7 @@ import { handlePhoneChange } from "@utils/formUtils/handlePhoneChange";
 import { handleEmailChange } from "@utils/formUtils/handleEmailChange";
 import { phoneFormatter } from "@utils/formatters/phoneFormatter";
 import { getUserData } from "@utils/firebase/getUserData";
+import { capitalizeFirstLetter } from "@utils/capitalizeFirstLetter";
 import { OrderTotal } from "@components/Order/OrderTotal/OrderTotal";
 import { OrderFormToggle } from "./OrderFormToggle/OrderFormToggle";
 import { FormPickup } from "./FormPickup/FormPickup";
@@ -165,7 +166,7 @@ export function OrderForm() {
                     id="name-order"
                     aria-label="Имя"
                     placeholder=""
-                    value={name}
+                    value={capitalizeFirstLetter(name)}
                     onChange={(e) =>
                       handleChange(e, setName, nameError, setNameError)
                     }

@@ -1,8 +1,11 @@
 import { About } from "@components/About/About";
-export function AboutPage() {
+
+function AboutPage() {
   return (
     <main>
       <About />
     </main>
   );
 }
+
+export default AboutPage;

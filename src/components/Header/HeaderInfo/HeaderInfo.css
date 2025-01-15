@@ -10,11 +10,6 @@
   padding: 15px 0;
 }
 
-.header-info__logo {
-  max-width: 130px;
-  max-height: 39px;
-}
-
 .header-info__logo-link {
   display: block;
   width: 100%;
@@ -23,8 +18,8 @@
 
 .header-info__logo-img {
   display: block;
-  width: 130px;
-  height: 39px;
+  width: 160px;
+  height: 55px;
 }
 /* adress */
 
